@@ -1,0 +1,8 @@
+﻿{
+  "FromName": "",
+  "FromEmail": "",
+  "DomainName": "Your domain name configured in Mailgun",
+  "ApiKey": "Your Mailgun api key",
+  "SecretKey": "Your Mailgun secret",
+  "Enabled": false
+}

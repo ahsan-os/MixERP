@@ -1,0 +1,20 @@
+﻿@using Frapid.WebsiteBuilder
+<div class="ui modal" id="UploadModal">
+    <i class="close icon"></i>
+    <div class="header">
+        @Resources.UploadAFile
+    </div>
+    <div class="content">
+        <div class="ui basic segment" id="UploaderSegment">
+            <div class="ui positive message" style="display: none;">
+                <div class="ui small header">@Resources.UploadAnotherFile</div>
+            </div>
+            <img class="ui preview image vpad8" />
+            <div class="ui uploader buttons">
+                <label for="FileInputFile" class="ui positive button">@Resources.Upload</label>
+                <button class="ui negative close button" onclick="$('#UploadModal').modal('hide');">@Resources.Close</button>
+                <input id="FileInputFile" data-handler="" data-loader-id="UploaderSegment" class="file" style="display: none" type="file">
+            </div>
+        </div>
+    </div>
+</div>

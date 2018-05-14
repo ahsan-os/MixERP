@@ -1,0 +1,46 @@
+﻿@model dynamic
+
+@{
+    ViewBag.Title = I18N.SMTPConfiguration;
+    Layout = ViewBag.Layout;
+}
+
+<script>
+    var scrudFactory = new Object();
+
+    scrudFactory.title = window.translate("SmtpConfiguration");
+
+    scrudFactory.viewAPI = "/api/views/config/smtp-config-scrud-view";
+    scrudFactory.viewTableName = "config.smtp_config_scrud_view";
+
+    scrudFactory.formAPI = "/api/forms/config/smtp-configs";
+    scrudFactory.formTableName = "config.smtp_configs";
+
+    scrudFactory.excludedColumns = ["AuditUserId", "AuditTs", "Deleted"];
+
+
+    scrudFactory.allowDelete = true;
+    scrudFactory.allowEdit = true;
+
+    scrudFactory.live = "ConfigurationName";
+
+    scrudFactory.layout = [
+        {
+            tab: "",
+            fields: [
+            ]
+        }
+    ];
+
+    $.get('/ScrudFactory/View.html', function (view) {
+        $.get('/ScrudFactory/Form.html', function (form) {
+            $("#ScrudFactoryView").html(view);
+            $("#ScrudFactoryForm").html(form);
+            $.cachedScript("/assets/js/scrudfactory-view.js");
+            $.cachedScript("/assets/js/scrudfactory-form.js");
+        });
+    });
+</script>
+
+<div id="ScrudFactoryForm"></div>
+<div id="ScrudFactoryView"></div>

@@ -1,0 +1,25 @@
+﻿@using Frapid.i18n
+
+@{
+    ViewBag.Title = "Invalid Confirmation Code";
+    Layout = ViewBag.LayoutPath + ViewBag.Layout;
+}
+@if (CultureManager.IsRtl())
+{
+    <link rel="Stylesheet" href="@Href("~/assets/css/backend.rtl.css")" />
+}
+else
+{
+    <link rel="Stylesheet" href="@Href("~/assets/css/backend.css")" />
+}
+
+<div id="section" class="ui basic padded signup left aligned segment">
+    <div class="ui container">
+        <div class="ui header">Invalid Confirmation Code</div>
+        <div class="ui divider"></div>
+        <p>
+            The supplied confirmation token is either invalid or expired.
+        </p>
+        <a href="/" class="ui small padded purple button">Return Home</a>
+    </div>
+</div>

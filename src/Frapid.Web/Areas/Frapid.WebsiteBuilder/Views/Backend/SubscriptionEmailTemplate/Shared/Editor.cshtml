@@ -1,0 +1,33 @@
+﻿@using Frapid.WebsiteBuilder
+@model Frapid.WebsiteBuilder.ViewModels.Template
+<style>
+    #editor {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+    }
+</style>
+
+<div class="ui stackable divided grid" style="height: 100%;">
+    <div class="ui three wide column segment">
+        <div class="ui header">
+            @ViewBag.Title
+        </div>
+        <div class="ui basic buttons">
+            <div class="ui basic button" id="SaveButton">@Resources.Save</div>
+            <a class="ui basic button" href="javascript:history.go(-1)">@Resources.Back</a>
+        </div>
+    </div>
+
+    <div class="thirteen wide column" data-target="editor" style="height: 100%;">
+        <div id="editor">
+        </div>
+    </div>
+</div>
+
+<script>
+    var html = "@Html.Encode(HttpUtility.JavaScriptStringEncode(Model.Contents))";
+</script>
+<script src="~/Areas/Frapid.WebsiteBuilder/scripts/subscription-email-template/shared/editor.js"></script>

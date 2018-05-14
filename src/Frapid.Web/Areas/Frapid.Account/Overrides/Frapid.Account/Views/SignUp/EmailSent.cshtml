@@ -1,0 +1,27 @@
+﻿@using Frapid.i18n
+
+@{
+    ViewBag.Title = "Email Sent";
+    Layout = ViewBag.LayoutPath + ViewBag.Layout;
+}
+@if (CultureManager.IsRtl())
+{
+    <link rel="Stylesheet" href="@Href("~/assets/css/backend.rtl.css")" />
+}
+else
+{
+    <link rel="Stylesheet" href="@Href("~/assets/css/backend.css")" />
+}
+
+<div id="section" class="ui basic padded signup left aligned segment">
+    <div class="ui container">
+        <div class="ui header">Please Confirm Your Registration</div>
+        <div class="ui divider"></div>
+        <p>
+            Thank you for registering! A confirmation email has been sent to your email address.
+            Please click on the link in that email to activate your account.
+        </p>
+
+        <a href="/" class="ui small padded purple button">Return Home</a>
+    </div>
+</div>

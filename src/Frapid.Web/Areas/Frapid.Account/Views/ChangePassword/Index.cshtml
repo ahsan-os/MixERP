@@ -1,0 +1,137 @@
+﻿@using Frapid.ApplicationState.Cache
+@using Frapid.i18n
+@{
+    ViewBag.Title = @I18N.ChangePassword;
+    Layout = ViewBag.LayoutPath + ViewBag.Layout;
+}
+@if (CultureManager.IsRtl())
+{
+    <link rel="Stylesheet" href="@Href("~/assets/css/backend.rtl.css")" />
+}
+else
+{
+    <link rel="Stylesheet" href="@Href("~/assets/css/backend.css")" />
+}
+
+<div class="ui attached padded change password left aligned segment" style="height:700px">
+    <div class="ui very relaxed container">
+        <div class="ui stackable very relaxed padded grid">
+            <div class="ten wide column">
+                <div class="ui stackable form">
+                    <div class="ui huge header">@I18N.ChangePassword</div>
+                    <div class="ui divider"></div>
+                    <div class="field">
+                        <label for="UserNameInputText">@I18N.UserName</label>
+                        <input type="text" id="UserNameInputText" maxlength="100" required="" disabled="disabled" readonly="readonly" value="@AppUsers.GetCurrent().Name" />
+                    </div>
+                    <div class="two fields">
+                        <div class="field">
+                            <label for="OldPasswordInputPassword">@I18N.OldPassword</label>
+                            <input type="password"
+                                   id="OldPasswordInputPassword"
+                                   required=""
+                                   maxlength="32"
+                                   data-validation-target=".big.error" />
+                        </div>
+                    </div>
+                    <div class="two fields">
+                        <div class="field">
+                            <label for="PasswordInputPassword">@I18N.NewPassword</label>
+                            <input type="password"
+                                   id="PasswordInputPassword"
+                                   required=""
+                                   maxlength="32"
+                                   data-validation-expression="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,32}$"
+                                   data-validation-message="@I18N.PasswordValidationMessage"
+                                   data-validation-target=".big.error"/>
+                        </div>
+                        <div class="field">
+                            <label for="ConfirmPasswordInputPassword">@I18N.ConfirmPassword</label>
+                            <input type="password" id="ConfirmPasswordInputPassword" 
+                                   data-match-target="PasswordInputPassword" required=""/>
+                        </div>
+                    </div>
+
+
+                    <div class="email address field">
+                        <label for="EmailAddressInput">@I18N.Email</label>
+                        <input type="email" id="EmailAddressInput" required=""/>
+                        <div class="ui pointing label">@I18N.LeaveThisFieldEmpty</div>
+                    </div>
+
+                    <div class="big error vpad8"></div>
+                    <div class="ui blue button" id="ChangePasswordButton">@I18N.ChangeMyPassword</div>
+                    <a class="ui negative button" href="/">Cancel</a>
+                </div>
+            </div>
+            <div class="six wide column">
+                <div class="ui positive message">
+                    <div class="ui header">@I18N.PleaseNote</div>
+                    <div class="ui divider"></div>
+                    @Html.Raw(I18N.CookieMessage)
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<script src="/i18n/resources.js?cultureCode=@CultureManager.GetCurrentUiCulture().Name"></script>
+<script src="/assets/js/backend.js"></script>
+<script src="/scripts/jssha1.5/src/sha.js"></script>
+<script src="/Areas/Frapid.Account/scripts/account/change-password/index.js"></script>
+<script>
+    var bigError = $(".big.error");
+    $(".email.address.field").hide();
+
+    $(document).ready(function () {
+        window.validator.initialize($(".change.password.segment"));
+    });
+
+    $("#ChangePasswordButton").click(function () {
+        function request(model) {
+            const url = "/account/change-password";
+            const data = JSON.stringify(model);
+            return window.getAjaxRequest(url, "POST", data);
+        };
+
+        function validate() {
+            bigError.html("");
+            const formEl = $(".change.password.segment");
+
+            var isValid = window.validator.validate(formEl);
+
+            const hp = $("#EmailAddressInput").val();
+
+            if (hp) {
+                isValid = false;
+            };
+
+            return isValid;
+        };
+
+        bigError.html("");
+
+        const isValid = validate();
+        if (!isValid) {
+            return;
+        };
+
+
+        var formEl = $(".change.password.segment");
+        formEl.addClass("loading");
+        const model = window.serializeForm(formEl);
+
+
+        const ajax = request(model);
+        ajax.success(function (response) {
+            if (response) {
+                window.location = "/account/change-password/success";
+            }else {
+                alert(window.translate("PasswordNotChangedRecheckExistingPassword"));
+                formEl.removeClass("loading");
+            };
+        });
+    });
+
+</script>

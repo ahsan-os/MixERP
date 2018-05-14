@@ -1,0 +1,44 @@
+﻿@model Config
+@{
+    Layout = ViewBag.Layout;
+}
+
+<style>
+    .relaxed.segment .container { padding: 4em; }
+</style>
+<div class="ui attached relaxed elastic email configuration segment">
+    <div class="ui container">
+        <div class="ui huge header">Setup Elastic Email for Frapid</div>
+        <div class="ui yellow message">
+            Send email marketing campaigns without even lifting a finger. With our autoresponders or drip campaigns your contacts will always feel connected.
+        </div>
+        <div class="ui flat form">
+            <div class="two fields">
+                <div class="field">
+                    <label for="FromNameInputText">From Name</label>
+                    <input type="text" id="FromNameInputText" value="@Model.FromName" />
+                </div>
+                <div class="field">
+                    <label for="FromEmailInputEmail">From Email</label>
+                    <input type="email" id="FromEmailInputEmail" value="@Model.FromEmail" />
+                </div>
+            </div>
+            <div class="field">
+                <label for="ApiKeyInputText">Api Key</label>
+                <input type="text" id="ApiKeyInputText" value="@Model.ApiKey" />
+            </div>
+            <div class="field">
+                <div class="ui toggle checkbox">
+                    <input id="EnabledCheckbox" type="checkbox" data-checked="@Model.Enabled.ToString().ToLower()" />
+                    <label>Is Enabled</label>
+                </div>
+            </div>
+            <button id="SaveButton" class="ui positive button">Save</button>
+        </div>
+        <div class="ui red message">
+            Please note that Elastic Email does not support sending attachments on a free plan.
+        </div>
+    </div>
+</div>
+
+<script src="/Areas/ElasticEmail/scripts/backend/index.js"></script>

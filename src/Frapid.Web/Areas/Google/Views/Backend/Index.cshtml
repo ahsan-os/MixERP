@@ -1,0 +1,32 @@
+﻿@model Config
+@{
+    Layout = ViewBag.Layout;
+}
+
+<style>
+    .relaxed.segment {
+         min-height: 900px;
+     }
+    .relaxed.segment .container { padding: 4em; }
+</style>
+<div class="ui attached relaxed google configuration segment">
+    <div class="ui container">
+        <div class="ui huge header">Setup Google Integration for Frapid</div>
+        <div class="ui yellow message">
+            Google Integration for Frapid enables you to make use of <a target="_blank" href="https://support.google.com/googleapi/answer/7015000?hl=en&ref_topic=7014522">Google APIs and Google Cloud Platform resources</a>.
+        </div>
+        <div class="ui flat form">
+            <div class="field">
+                <label for="PlacesApiWebServiceKeyInputText">Google Places Web API Service Key</label>
+                <input type="text" id="" value="@Model.PlacesApiWebServiceKey" />
+            </div>
+            <div class="field">
+                <label for="MapsJavascriptApiKeyInputText">Google Maps Javascript API Key</label>
+                <input type="text" id="MapsJavascriptApiKeyInputText" value="@Model.MapsJavascriptApiKey" />
+            </div>
+            <button id="SaveButton" class="ui positive button">Save</button>
+        </div>
+    </div>
+</div>
+
+<script src="/Areas/Google/scripts/backend/index.js"></script>

@@ -1,0 +1,52 @@
+﻿@using Frapid.WebsiteBuilder
+@model Frapid.WebsiteBuilder.ViewModels.SearchResult
+
+@{
+    ViewBag.Description = "";
+    ViewBag.Title = @Resources.ContentNotFound;
+    Layout = Model.LayoutPath + Model.Layout;
+    ViewBag.LayoutPath = Model.LayoutPath;
+    ViewBag.NoIndex = true;
+}
+<style>
+    .http.not.found.segment {
+        min-height: 700px;
+    }
+     .search.results .item { padding: 1.2em 0; }
+
+    .search.results .item .header { font-size: 1.27em; }
+
+    .search.results .item .link { color: green; }
+
+    .search.results .item .result .posted.on { color: #888; }
+
+    .search.results .item .result { max-width: 650px; }
+</style>
+<div class="http not found">
+    <div class="">
+        <div class="ui section red header">@Resources.ContentNotFound</div>
+        <p class="ui negative message">@Resources.ContentNotFoundMessage</p>
+        <div class="ui horizontal divider divider">
+            <i class="search icon"></i>            
+        </div>
+
+        @if (Model.Contents.Any())
+        {
+            <div class="vertically padded result section">
+                <div class="ui search results">
+                    @foreach (var item in Model.Contents)
+                {
+                        <div class="item">
+                            <a href="@item.LinkUrl" class="header">@item.Title</a>
+                            <div class="link">@item.LinkUrl</div>
+                            <div class="result">
+                                <span class="posted on">@item.LastUpdatedOn.ToString("u") - </span>
+                                @item.Contents
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        }
+    </div>
+</div>

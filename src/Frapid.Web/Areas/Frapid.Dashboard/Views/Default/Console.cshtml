@@ -1,0 +1,71 @@
+﻿<link rel="stylesheet" type="text/css" href="/Areas/Frapid.Dashboard/styles/default/console.css" />
+
+<div class="ui very relaxed attached add widget segment" style="display: none;">
+    <div class="ui container">
+        <div class="ui huge teal header">
+            @Resources.AddNewWidget
+            <span class="sub header">@Resources.AddNewWidgetToThisConsole</span>
+        </div>
+        <div class="ui divider"></div>
+        <div class="ui flat form">
+            <div class="two fields">
+                <div class="field">
+                    <label for="WidgetAreaSelect">@Resources.WidgetArea</label>
+                    <select id="WidgetAreaSelect" data-api="/dashboard/widgets/areas" data-is-array="true"></select>
+                </div>
+                <div class="field">
+                    <label for="WidgetSelect">@Resources.SelectWidget</label>
+                    <select id="WidgetSelect"></select>
+                </div>
+            </div>
+            <button id="AddWidgetButton" class="ui green button">@Resources.YesPlease</button>
+            <button class="ui basic button" onclick="$('.add.widget.segment').hide();">@Resources.HideForNow</button>
+        </div>
+    </div>
+</div>
+
+<div class="ui attached console very relaxed borderless segment">
+    <div class="title">
+        <section class="heading">
+            <span class="document heading" contenteditable="true">
+                @Resources.UntitledDashboard
+            </span>
+        </section>
+        <div class="actions">
+            <div class="ui basic buttons">
+                <button id="AddNewButton" class="ui basic icon button" title="@Resources.CreateNewDashboardConsole">
+                    <i class="file outline icon"></i>
+                </button>
+                <button class="ui basic icon button" onclick="$('.add.widget.segment').fadeIn(500);" title="@Resources.AddNewWidget">
+                    <i class="plus icon"></i>
+                </button>
+                <div id="OpenButton" class="ui icon top right pointing dropdown button" title="@Resources.OpenWidget">
+                    <i class="folder open icon"></i>
+                    <div class="menu">
+                        <div class="ui search icon input">
+                            <i class="search icon"></i>
+                            <input name="search" placeholder="Search" type="text">
+                        </div>
+                        <div class="divider"></div>
+                        <div class="header">
+                            <i class="tags icon"></i>
+                            @Resources.SelectWidgetConsole
+                        </div>
+                    </div>
+                </div>
+                <button id="DefaultButton" class="ui basic icon button" title="@Resources.MakeDefaultConsole">
+                    <i class="star icon"></i>
+                </button>
+                <button id="SaveButton" class="ui basic icon button" title="@Resources.Save">
+                    <i class="save icon"></i>
+                </button>
+                <button id="DeleteButton" class="ui basic icon button" title="@Resources.Delete">
+                    <i class="delete icon"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="ui widget-container doubling stackable compact grid"></div>
+</div>
+
+<script src="/Areas/Frapid.Dashboard/scripts/default/console.js" async="" defer=""></script>

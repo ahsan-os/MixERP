@@ -1,0 +1,45 @@
+﻿@using Frapid.i18n
+@model dynamic
+
+@{
+    ViewBag.Title = I18N.ResetMyAccount;
+    Layout = ViewBag.LayoutPath + ViewBag.Layout;
+}
+@if (CultureManager.IsRtl())
+{
+    <link rel="Stylesheet" href="@Href("~/assets/css/backend.rtl.css")"/>
+}
+else
+{
+    <link rel="Stylesheet" href="@Href("~/assets/css/backend.css")"/>
+}
+
+<div class="ui attached padded reset password left aligned segment">
+    <div class="ui container">
+        <div class="ui huge header">@I18N.ResetMyAccount</div>
+        <div class="ui stackable form" style="max-width: 400px;">
+            <div class="field">
+                <label for="PasswordInputPassword">@I18N.Password</label>
+                <input type="password"
+                       id="PasswordInputPassword"
+                       required=""
+                       maxlength="32"
+                       data-validation-expression="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,32}$"
+                       data-validation-message="@I18N.PasswordValidationMessage"
+                       data-validation-target=".big.error"/>
+            </div>
+            <div class="field">
+                <label for="ConfirmPasswordInputPassword">@I18N.ConfirmPassword</label>
+                <input type="password" id="ConfirmPasswordInputPassword" data-match-target="PasswordInputPassword" required=""/>
+            </div>
+
+
+        </div>
+        <div class="big error vpad8"></div>
+        <button class="ui positive button" id="SetPasswordButton">@I18N.SetPassword</button>
+        <a class="ui negative button" href="/">@I18N.Cancel</a>
+    </div>
+</div>
+<script src="/i18n/resources.js?cultureCode=@CultureManager.GetCurrentUiCulture().Name"></script>
+<script src="/assets/js/backend.js"></script>
+<script src="/Areas/Frapid.Account/scripts/account/reset-confirmation/index.js"></script>

@@ -1,0 +1,50 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Frapid</title>
+    <link rel="stylesheet" type="text/css" href="/Areas/Frapid.Reports/Styles/source.css" />	
+    <style type="text/css" media="all">
+        @media print {
+            .hide {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    {Header}
+    <div class="hide report-command" style="position: fixed;top:20px;right: 20px; ">
+        <a href="javascript:window.print();">
+            Print
+        </a>
+		&nbsp;
+        <a href="javascript:top.close();">
+            Close
+        </a>
+    </div>
+    <h1>
+        {ReportHeading}
+    </h1>
+    <hr />
+    Printed On: {PrintDate}<br />
+    User: {UserName}<br />
+    Office Code: {OfficeCode}
+    <br />
+    <br />
+    {Table}
+    <div class="hide" style="padding-top: 18px;">
+        <a href="javascript:top.close();">
+            Close This Report
+        </a>
+    </div>
+
+    <script type="text/javascript">
+        document.onkeydown = function (evt) {
+            evt = evt || window.event;
+            if (evt.keyCode === 27) {//ESC
+                top.close();
+            }
+        };
+    </script>
+</body>
+</html>

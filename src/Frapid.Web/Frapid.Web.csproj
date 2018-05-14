@@ -1,0 +1,554 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.2\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.2\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="..\packages\Microsoft.Net.Compilers.1.3.2\build\Microsoft.Net.Compilers.props" Condition="Exists('..\packages\Microsoft.Net.Compilers.1.3.2\build\Microsoft.Net.Compilers.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{77C7D586-FEE9-40E2-A1C4-699EF4B0A1F3}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Frapid.Web</RootNamespace>
+    <AssemblyName>Frapid.Web</AssemblyName>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <Use64BitIISExpress />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Antlr3.Runtime, Version=3.5.0.2, Culture=neutral, PublicKeyToken=eb42632606e9261f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Common.Logging, Version=3.3.1.0, Culture=neutral, PublicKeyToken=af08829b84f0328e, processorArchitecture=MSIL">
+      <HintPath>..\packages\Common.Logging.3.3.1\lib\net40\Common.Logging.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Common.Logging.Core, Version=3.3.1.0, Culture=neutral, PublicKeyToken=af08829b84f0328e, processorArchitecture=MSIL">
+      <HintPath>..\packages\Common.Logging.Core.3.3.1\lib\net40\Common.Logging.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevTrends.MvcDonutCaching, Version=1.3.0.0, Culture=neutral, PublicKeyToken=73c58d802958a09f, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\MvcDonutCaching.1.3.0\lib\net40\DevTrends.MvcDonutCaching.dll</HintPath>
+    </Reference>
+    <Reference Include="EcmaScript.NET, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\EcmaScript.Net.1.0.1.0\lib\net20\EcmaScript.NET.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Owin, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Owin.2.2.1\lib\net45\Microsoft.AspNet.Identity.Owin.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.SignalR.Core, Version=2.2.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.SignalR.Core.2.2.1\lib\net45\Microsoft.AspNet.SignalR.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.SignalR.SystemWeb, Version=2.2.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.SignalR.SystemWeb.2.2.1\lib\net45\Microsoft.AspNet.SignalR.SystemWeb.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.2\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.IdentityModel.Logging, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.IdentityModel.Logging.1.1.0\lib\net451\Microsoft.IdentityModel.Logging.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.IdentityModel.Tokens, Version=5.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.IdentityModel.Tokens.5.1.0\lib\net451\Microsoft.IdentityModel.Tokens.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.3.0.1\lib\net45\Microsoft.Owin.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Cors, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Cors.3.0.1\lib\net45\Microsoft.Owin.Cors.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Host.SystemWeb, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Host.SystemWeb.3.0.1\lib\net45\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.3.0.1\lib\net45\Microsoft.Owin.Security.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Cookies, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.Cookies.3.0.1\lib\net45\Microsoft.Owin.Security.Cookies.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Facebook, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.Facebook.3.0.1\lib\net45\Microsoft.Owin.Security.Facebook.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Google, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.Google.3.0.1\lib\net45\Microsoft.Owin.Security.Google.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Jwt, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.Jwt.3.0.1\lib\net45\Microsoft.Owin.Security.Jwt.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.MicrosoftAccount, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.MicrosoftAccount.3.0.1\lib\net45\Microsoft.Owin.Security.MicrosoftAccount.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.OAuth, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.OAuth.3.0.1\lib\net45\Microsoft.Owin.Security.OAuth.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Twitter, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.Twitter.3.0.1\lib\net45\Microsoft.Owin.Security.Twitter.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Owin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=f0ebd12fd5e55cc5, processorArchitecture=MSIL">
+      <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Quartz, Version=2.4.1.0, Culture=neutral, PublicKeyToken=f6b8c98a402cc8a4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Quartz.2.4.1\lib\net40\Quartz.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Serilog, Version=2.0.0.0, Culture=neutral, PublicKeyToken=24c2f752a8e58a10, processorArchitecture=MSIL">
+      <HintPath>..\packages\Serilog.2.3.0\lib\net46\Serilog.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Serilog.Sinks.File, Version=2.0.0.0, Culture=neutral, PublicKeyToken=24c2f752a8e58a10, processorArchitecture=MSIL">
+      <HintPath>..\packages\Serilog.Sinks.File.3.1.1\lib\net45\Serilog.Sinks.File.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Serilog.Sinks.RollingFile, Version=2.0.0.0, Culture=neutral, PublicKeyToken=24c2f752a8e58a10, processorArchitecture=MSIL">
+      <HintPath>..\packages\Serilog.Sinks.RollingFile.3.2.0\lib\net45\Serilog.Sinks.RollingFile.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="StackExchange.Redis.StrongName, Version=1.1.608.0, Culture=neutral, PublicKeyToken=c219ff1ca8c2ce46, processorArchitecture=MSIL">
+      <HintPath>..\packages\StackExchange.Redis.StrongName.1.1.608\lib\net46\StackExchange.Redis.StrongName.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.IdentityModel.Tokens.Jwt, Version=4.0.20622.1351, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IdentityModel.Tokens.Jwt.4.0.2.206221351\lib\net45\System.IdentityModel.Tokens.Jwt.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Web.Cors, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Cors.5.2.3\lib\net45\System.Web.Cors.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Http, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.3\lib\net45\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.Owin, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Owin.5.2.3\lib\net45\System.Web.Http.Owin.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.3\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Optimization, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.3\lib\net45\System.Web.Razor.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="WebGrease, Version=1.6.5135.21930, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Yahoo.Yui.Compressor, Version=2.7.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\YUICompressor.NET.2.7.0.0\lib\NET20\Yahoo.Yui.Compressor.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Application\AccountConfig.cs" />
+    <Compile Include="Controllers\AssetsController.cs" />
+    <Compile Include="Application\BackupRegistration.cs" />
+    <Compile Include="Application\AssetConfig.cs" />
+    <Compile Include="Application\ClassicAssemblyResolver.cs" />
+    <Compile Include="Application\DefaultAssemblyResolver.cs" />
+    <Compile Include="Controllers\BundleController.cs" />
+    <Compile Include="Controllers\SiteMapController.cs" />
+    <Compile Include="Application\DefaultExceptionLogger.cs" />
+    <Compile Include="Application\ExceptionLogger.cs" />
+    <Compile Include="FrapidApplication.cs" />
+    <Compile Include="Jobs\EndOfDayJob.cs" />
+    <Compile Include="Application\EodTaskRegistration.cs" />
+    <Compile Include="Application\FilterConfig.cs" />
+    <Compile Include="Application\LogManager.cs" />
+    <Compile Include="Application\RouteConfig.cs" />
+    <Compile Include="Application\StartupRegistration.cs" />
+    <Compile Include="Application\WebApiConfig.cs" />
+    <Compile Include="Controllers\InstallController.cs" />
+    <Compile Include="Controllers\ResourceController.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Startup.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\bootstrap-theme.css" />
+    <Content Include="Content\bootstrap-theme.min.css" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="images\social\facebook.png" />
+    <Content Include="images\social\linkedin.png" />
+    <Content Include="images\social\twitter.png" />
+    <Content Include="scripts\bootstrap.js" />
+    <Content Include="scripts\bootstrap.min.js" />
+    <Content Include="packages.config" />
+    <Content Include="AppInfo.json" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\bootstrap.min.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Content\bootstrap-theme.min.css.map" />
+    <Content Include="Content\bootstrap-theme.css.map" />
+    <None Include="job_scheduling_data_2_0.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Properties\PublishProfiles\frapid-publish-profile.pubxml" />
+    <Content Include="Resources\Configs\DomainsApproved.json" />
+    <Content Include="Resources\Configs\DomainsInstalled.json" />
+    <Content Include="Resources\Configs\JwtConfig.json" />
+    <Content Include="Resources\Configs\Parameters.config" />
+    <Content Include="Resources\Configs\web.config" />
+    <Content Include="Resources\web.config" />
+    <None Include="scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="scripts\frapid\core\array.js" />
+    <Content Include="scripts\frapid\core\browser.js" />
+    <Content Include="scripts\frapid\core\conversion.js" />
+    <Content Include="scripts\frapid\core\date-expressions.js" />
+    <Content Include="scripts\frapid\core\dom\checkable.js" />
+    <Content Include="scripts\frapid\core\dom\document.js" />
+    <Content Include="scripts\frapid\core\dom\events.js" />
+    <Content Include="scripts\frapid\core\dom\frame.js" />
+    <Content Include="scripts\frapid\core\dom\popunder.js" />
+    <Content Include="scripts\frapid\core\dom\select.js" />
+    <Content Include="scripts\frapid\core\dom\uploader.js" />
+    <Content Include="scripts\frapid\core\enums.js" />
+    <Content Include="scripts\frapid\core\frapid-ajax.js" />
+    <Content Include="scripts\frapid\core\grid\cell.js" />
+    <Content Include="scripts\frapid\core\grid\print-grid.js" />
+    <Content Include="scripts\frapid\core\json.js" />
+    <Content Include="scripts\frapid\core\libraries\chartjs.js" />
+    <Content Include="scripts\frapid\core\libraries\colorbox.js" />
+    <Content Include="scripts\frapid\core\libraries\notify.js" />
+    <Content Include="scripts\frapid\core\libraries\semantic-ui.js" />
+    <Content Include="scripts\frapid\core\localization.js" />
+    <Content Include="scripts\frapid\core\location.js" />
+    <Content Include="scripts\frapid\core\prototype\string.js" />
+    <Content Include="scripts\frapid\core\validation.js" />
+    <Content Include="scripts\frapid\core\window.js" />
+    <Content Include="scripts\frapid\utilities\countries.js" />
+    <Content Include="scripts\frapid\utilities\country-codes.js" />
+    <Content Include="scripts\frapid\utilities\form.js" />
+    <Content Include="scripts\frapid\utilities\localizable.js" />
+    <Content Include="scripts\frapid\utilities\validator.js" />
+    <Content Include="scripts\jquery-1.9.1.js" />
+    <None Include="scripts\jquery-2.2.4.intellisense.js" />
+    <Content Include="scripts\jquery-2.2.4.js" />
+    <Content Include="scripts\jquery-2.2.4.min.js" />
+    <Content Include="scripts\jquery-ui.js" />
+    <Content Include="scripts\jquery-ui.min.js" />
+    <Content Include="scripts\jquery.address.js" />
+    <Content Include="scripts\jquery.signalR-2.2.1.js" />
+    <Content Include="scripts\jquery.signalR-2.2.1.min.js" />
+    <Content Include="scripts\jquery.signalR.js" />
+    <Content Include="scripts\jquery.signalR.min.js" />
+    <Content Include="scripts\knockout-3.4.0.debug.js" />
+    <Content Include="scripts\knockout-3.4.0.js" />
+    <Content Include="scripts\knockout.validation.js" />
+    <Content Include="scripts\knockout.validation.min.js" />
+    <Content Include="scripts\knockout.validation.min.js.map" />
+    <Content Include="scripts\modernizr-2.8.3.js" />
+    <Content Include="scripts\modules\scrud-factory\form\ajax-request-initialize.js" />
+    <Content Include="scripts\modules\scrud-factory\form\block-begin.js" />
+    <Content Include="scripts\modules\scrud-factory\form\block-end.js" />
+    <Content Include="scripts\modules\scrud-factory\form\event-on-ajax-stop.js" />
+    <Content Include="scripts\modules\scrud-factory\form\event-on-doc-keydown.js" />
+    <Content Include="scripts\modules\scrud-factory\form\event-on-doc-ready.js" />
+    <Content Include="scripts\modules\scrud-factory\form\form-actions.js" />
+    <Content Include="scripts\modules\scrud-factory\form\form-cancel.js" />
+    <Content Include="scripts\modules\scrud-factory\form\form-create.js" />
+    <Content Include="scripts\modules\scrud-factory\form\form-custom-fields.js" />
+    <Content Include="scripts\modules\scrud-factory\form\form-edit.js" />
+    <Content Include="scripts\modules\scrud-factory\form\form-layout-field-group.js" />
+    <Content Include="scripts\modules\scrud-factory\form\form-layout.js" />
+    <Content Include="scripts\modules\scrud-factory\form\form-load-default-values.js" />
+    <Content Include="scripts\modules\scrud-factory\form\form-load-dropdowns.js" />
+    <Content Include="scripts\modules\scrud-factory\form\form-navigation.js" />
+    <Content Include="scripts\modules\scrud-factory\form\form-reset.js" />
+    <Content Include="scripts\modules\scrud-factory\form\form-save.js" />
+    <Content Include="scripts\modules\scrud-factory\form\form-validate.js" />
+    <Content Include="scripts\modules\scrud-factory\form\initialization.js" />
+    <Content Include="scripts\modules\scrud-factory\form\title.js" />
+    <Content Include="scripts\modules\scrud-factory\form\trigger-events.js" />
+    <Content Include="scripts\modules\scrud-factory\form\url.js" />
+    <Content Include="scripts\modules\scrud-factory\form\visibility.js" />
+    <Content Include="scripts\modules\scrud-factory\shared\conversion.js" />
+    <Content Include="scripts\modules\scrud-factory\shared\field-factory.js" />
+    <Content Include="scripts\modules\scrud-factory\shared\localization.js" />
+    <Content Include="scripts\modules\scrud-factory\shared\scrud-class.js" />
+    <Content Include="scripts\modules\scrud-factory\shared\view.js" />
+    <Content Include="scripts\modules\scrud-factory\view\add-button.js" />
+    <Content Include="scripts\modules\scrud-factory\view\ajax-load-page-count.js" />
+    <Content Include="scripts\modules\scrud-factory\view\block-begin.js" />
+    <Content Include="scripts\modules\scrud-factory\view\block-end.js" />
+    <Content Include="scripts\modules\scrud-factory\view\buttons-action.js" />
+    <Content Include="scripts\modules\scrud-factory\view\buttons-custom.js" />
+    <Content Include="scripts\modules\scrud-factory\view\buttons.js" />
+    <Content Include="scripts\modules\scrud-factory\view\check.js" />
+    <Content Include="scripts\modules\scrud-factory\view\events-on-doc-ready.js" />
+    <Content Include="scripts\modules\scrud-factory\view\events-on-viewready.js" />
+    <Content Include="scripts\modules\scrud-factory\view\export.js" />
+    <Content Include="scripts\modules\scrud-factory\view\filters-ajax.js" />
+    <Content Include="scripts\modules\scrud-factory\view\filters.js" />
+    <Content Include="scripts\modules\scrud-factory\view\gridview-actions-delete.js" />
+    <Content Include="scripts\modules\scrud-factory\view\gridview-actions-edit-ajax.js" />
+    <Content Include="scripts\modules\scrud-factory\view\gridview-actions-edit.js" />
+    <Content Include="scripts\modules\scrud-factory\view\gridview-actions-get-key.js" />
+    <Content Include="scripts\modules\scrud-factory\view\gridview-actions.js" />
+    <Content Include="scripts\modules\scrud-factory\view\gridview-ajax.js" />
+    <Content Include="scripts\modules\scrud-factory\view\gridview.js" />
+    <Content Include="scripts\modules\scrud-factory\view\import-export.js" />
+    <Content Include="scripts\modules\scrud-factory\view\import.js" />
+    <Content Include="scripts\modules\scrud-factory\view\initialization.js" />
+    <Content Include="scripts\modules\scrud-factory\view\kanban-cards-ajax.js" />
+    <Content Include="scripts\modules\scrud-factory\view\kanban-cards.js" />
+    <Content Include="scripts\modules\scrud-factory\view\kanban-ratable.js" />
+    <Content Include="scripts\modules\scrud-factory\view\kanban-segment-ajax.js" />
+    <Content Include="scripts\modules\scrud-factory\view\kanban-segment.js" />
+    <Content Include="scripts\modules\scrud-factory\view\kanban-sortable.js" />
+    <Content Include="scripts\modules\scrud-factory\view\meta-definition.js" />
+    <Content Include="scripts\modules\scrud-factory\view\paging.js" />
+    <Content Include="scripts\modules\scrud-factory\view\procedure-annotation.js" />
+    <Content Include="scripts\modules\scrud-factory\view\query-string.js" />
+    <Content Include="scripts\modules\scrud-factory\view\select.js" />
+    <Content Include="scripts\modules\scrud-factory\view\verification-ajax.js" />
+    <Content Include="scripts\modules\scrud-factory\view\verification.js" />
+    <Content Include="scripts\modules\scrud-factory\view\view-components.js" />
+    <Content Include="scripts\modules\scrud-factory\view\view-shared.js" />
+    <Content Include="scripts\modules\scrud-factory\view\view-success.js" />
+    <Content Include="scripts\respond.js" />
+    <Content Include="scripts\respond.matchmedia.addListener.js" />
+    <Content Include="scripts\respond.matchmedia.addListener.min.js" />
+    <Content Include="scripts\respond.min.js" />
+    <Content Include="scripts\sammy-0.7.5.js" />
+    <Content Include="scripts\sammy-0.7.5.min.js" />
+    <Content Include="ScrudFactory\Form.html" />
+    <Content Include="ScrudFactory\View.html" />
+    <Content Include="Static\images\70white.png" />
+    <Content Include="Static\images\logo-inverted-sm.png" />
+    <Content Include="Static\images\logo-inverted.png" />
+    <Content Include="Static\images\logo-sm.png" />
+    <Content Include="Static\images\logo.png" />
+    <Content Include="Static\images\transparent20.png" />
+    <Content Include="Static\images\transparent50.png" />
+    <Content Include="styles\backend\frapid.css" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="scripts\jquery-2.2.4.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Areas\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Libraries\Frapid.ApplicationState\Frapid.ApplicationState.csproj">
+      <Project>{ef3d84f8-3d64-45d7-9050-3ae204f5aa72}</Project>
+      <Name>Frapid.ApplicationState</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Libraries\Frapid.Areas\Frapid.Areas.csproj">
+      <Project>{0361910A-7773-4EE9-861B-FFC5636D82D1}</Project>
+      <Name>Frapid.Areas</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Libraries\Frapid.AssetBundling\Frapid.AssetBundling.csproj">
+      <Project>{4e863154-9d48-4023-bb76-8405a98bcaff}</Project>
+      <Name>Frapid.AssetBundling</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Libraries\Frapid.Backups\Frapid.Backups.csproj">
+      <Project>{8993ad31-c303-4ca0-92d9-c100585a78e5}</Project>
+      <Name>Frapid.Backups</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Libraries\Frapid.Configuration\Frapid.Configuration.csproj">
+      <Project>{ca3c3d39-6775-4234-b343-38f0724adcf8}</Project>
+      <Name>Frapid.Configuration</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Libraries\Frapid.DataAccess\Frapid.DataAccess.csproj">
+      <Project>{9BEA3809-B6D5-4025-AE7E-868E5E7E9C76}</Project>
+      <Name>Frapid.DataAccess</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Libraries\Frapid.DbPolicy\Frapid.DbPolicy.csproj">
+      <Project>{e2c5690c-ef80-4afa-8107-5e58a936b15f}</Project>
+      <Name>Frapid.DbPolicy</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Libraries\Frapid.Framework\Frapid.Framework.csproj">
+      <Project>{a4dee358-3203-425c-80e9-8eba0a01b73f}</Project>
+      <Name>Frapid.Framework</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Libraries\Frapid.i18n\Frapid.i18n.csproj">
+      <Project>{88DFDF57-A52B-4D71-A0C4-BEF1A3839506}</Project>
+      <Name>Frapid.i18n</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Libraries\Frapid.Installer\Frapid.Installer.csproj">
+      <Project>{BFFE76A6-7E9D-42FA-AB3A-108BD2125923}</Project>
+      <Name>Frapid.Installer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Libraries\Frapid.Messaging\Frapid.Messaging.csproj">
+      <Project>{9408fede-8a04-460d-8fd9-1c710c1baaeb}</Project>
+      <Name>Frapid.Messaging</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Libraries\Frapid.TokenManager\Frapid.TokenManager.csproj">
+      <Project>{EF3BDE7C-A3D5-493A-8817-BF47DF9CAE47}</Project>
+      <Name>Frapid.TokenManager</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Libraries\Frapid.WebApi\Frapid.WebApi.csproj">
+      <Project>{BA48911F-16A7-4CC7-A04C-6559BAE1F89F}</Project>
+      <Name>Frapid.WebApi</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>51255</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:51255/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>True</UseCustomServer>
+          <CustomServerUrl>https://localhost</CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+    <MonoDevelop>
+      <Properties>
+        <XspParameters Port="890" Address="127.0.0.1" SslMode="None" SslProtocol="Default" KeyType="None" CertFile="" KeyFile="" PasswordOptions="None" Password="" Verbose="True" />
+      </Properties>
+    </MonoDevelop>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.Net.Compilers.1.3.2\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Net.Compilers.1.3.2\build\Microsoft.Net.Compilers.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.2\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.2\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

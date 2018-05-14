@@ -1,0 +1,114 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{9BEA3809-B6D5-4025-AE7E-868E5E7E9C76}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Frapid.DataAccess</RootNamespace>
+    <AssemblyName>Frapid.DataAccess</AssemblyName>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\Frapid.Web\bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Npgsql, Version=3.1.9.0, Culture=neutral, PublicKeyToken=5d8b90d52f46fda7, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Npgsql.3.1.9\lib\net451\Npgsql.dll</HintPath>
+    </Reference>
+    <Reference Include="Serilog, Version=2.0.0.0, Culture=neutral, PublicKeyToken=24c2f752a8e58a10, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Serilog.2.3.0\lib\net46\Serilog.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Caching" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DAL\EntityViews.cs" />
+    <Compile Include="DbErrorParser.cs" />
+    <Compile Include="Errors\SqlServer\UniqueKeyViolation.cs" />
+    <Compile Include="Extensions\NpgsqlExtensions.cs" />
+    <Compile Include="Extensions\SqlClientExtensions.cs" />
+    <Compile Include="IDbErrorMessage.cs" />
+    <Compile Include="Models\AccessTypeEnum.cs" />
+    <Compile Include="Models\CustomField.cs" />
+    <Compile Include="DataAccessException.cs" />
+    <Compile Include="Models\DisplayField.cs" />
+    <Compile Include="Models\EntityColumn.cs" />
+    <Compile Include="Models\EntityView.cs" />
+    <Compile Include="Factory.cs" />
+    <Compile Include="Models\Filter.cs" />
+    <Compile Include="Models\FilterCondition.cs" />
+    <Compile Include="FilterManager.cs" />
+    <Compile Include="IDBAccess.cs" />
+    <Compile Include="IPoco.cs" />
+    <Compile Include="IPolicy.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PropertyManager.cs" />
+    <Compile Include="Subtext\ScriptReader.cs" />
+    <Compile Include="Subtext\ScriptSplitter.cs" />
+    <Compile Include="Subtext\SeparatorLineReader.cs" />
+    <Compile Include="Subtext\SqlParseException.cs" />
+    <Compile Include="UnauthorizedException.cs" />
+    <Compile Include="Errors\PostgreSQL\UniqueKeyViolation.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Frapid.Framework\Frapid.Framework.csproj">
+      <Project>{a4dee358-3203-425c-80e9-8eba0a01b73f}</Project>
+      <Name>Frapid.Framework</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Frapid.Configuration\Frapid.Configuration.csproj">
+      <Project>{ca3c3d39-6775-4234-b343-38f0724adcf8}</Project>
+      <Name>Frapid.Configuration</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Frapid.i18n\Frapid.i18n.csproj">
+      <Project>{88DFDF57-A52B-4D71-A0C4-BEF1A3839506}</Project>
+      <Name>Frapid.i18n</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Frapid.Mapper\Frapid.Mapper.csproj">
+      <Project>{86545C4A-5202-4368-B013-EA37615CBD8E}</Project>
+      <Name>Frapid.Mapper</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

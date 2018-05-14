@@ -1,0 +1,42 @@
+﻿@using Frapid.WebsiteBuilder
+@model dynamic
+
+@{
+    ViewBag.Title = Resources.ContentList;
+    Layout = ViewBag.Layout;
+}
+
+<script>
+    var scrudFactory = new Object();
+
+    scrudFactory.title = window.translate("Contents");
+
+    scrudFactory.viewAPI = "/api/views/website/content-scrud-view";
+    scrudFactory.viewTableName = "website.content_scrud_view";
+
+    scrudFactory.formAPI = "/api/forms/website/contents";
+    scrudFactory.formTableName = "website.contents";
+
+    scrudFactory.excludedColumns = ["AuditUserId", "AuditTs", "Deleted"];
+
+
+    scrudFactory.allowDelete = true;
+    scrudFactory.allowEdit = true;
+    scrudFactory.addNewUrl = `contents/manage?ReturnUrl=${encodeURIComponent(location.pathname + location.search)}`;
+    scrudFactory.editUrl = `contents/manage?ReturnUrl=${encodeURIComponent(location.pathname + location
+        .search)}&ContentId=`;
+
+    scrudFactory.card = {
+        header: "Title",
+        meta: "Alias",
+        description: "SeoDescription"
+    };
+
+    $.get('/ScrudFactory/View.html', function(view) {
+        $("#ScrudFactoryView").html(view);
+        $.cachedScript("/assets/js/scrudfactory-view.js");
+    });
+</script>
+
+<div id="ScrudFactoryForm"></div>
+<div id="ScrudFactoryView"></div>

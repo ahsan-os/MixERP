@@ -1,0 +1,648 @@
+@font-face {
+    font-family: 'Roboto';
+    font-weight: 100;
+    font-style: normal;
+    src: url('/fonts/Roboto-100/Roboto-100.eot');
+    src: url('/fonts/Roboto-100/Roboto-100.eot?#iefix') format('embedded-opentype'), local('Roboto Thin'), local('Roboto-100'), url('/fonts/Roboto-100/Roboto-100.woff2') format('woff2'), url('/fonts/Roboto-100/Roboto-100.woff') format('woff'), url('/fonts/Roboto-100/Roboto-100.ttf') format('truetype'), url('/fonts/Roboto-100/Roboto-100.svg#Roboto') format('svg');
+}
+
+@font-face {
+    font-family: 'Roboto';
+    font-weight: 300;
+    font-style: normal;
+    src: url('/fonts/Roboto-300/Roboto-300.eot');
+    src: url('/fonts/Roboto-300/Roboto-300.eot?#iefix') format('embedded-opentype'), local('Roboto Light'), local('Roboto-300'), url('/fonts/Roboto-300/Roboto-300.woff2') format('woff2'), url('/fonts/Roboto-300/Roboto-300.woff') format('woff'), url('/fonts/Roboto-300/Roboto-300.ttf') format('truetype'), url('/fonts/Roboto-300/Roboto-300.svg#Roboto') format('svg');
+}
+
+@font-face {
+    font-family: 'Roboto';
+    font-weight: 400;
+    font-style: normal;
+    src: url('/fonts/Roboto-regular/Roboto-regular.eot');
+    src: url('/fonts/Roboto-regular/Roboto-regular.eot?#iefix') format('embedded-opentype'), local('Roboto'), local('Roboto-regular'), url('/fonts/Roboto-regular/Roboto-regular.woff2') format('woff2'), url('/fonts/Roboto-regular/Roboto-regular.woff') format('woff'), url('/fonts/Roboto-regular/Roboto-regular.ttf') format('truetype'), url('/fonts/Roboto-regular/Roboto-regular.svg#Roboto') format('svg');
+}
+
+@font-face {
+    font-family: 'Roboto';
+    font-weight: 500;
+    font-style: normal;
+    src: url('/fonts/Roboto-500/Roboto-500.eot');
+    src: url('/fonts/Roboto-500/Roboto-500.eot?#iefix') format('embedded-opentype'), local('Roboto Medium'), local('Roboto-500'), url('/fonts/Roboto-500/Roboto-500.woff2') format('woff2'), url('/fonts/Roboto-500/Roboto-500.woff') format('woff'), url('/fonts/Roboto-500/Roboto-500.ttf') format('truetype'), url('/fonts/Roboto-500/Roboto-500.svg#Roboto') format('svg');
+}
+
+@font-face {
+    font-family: 'Roboto';
+    font-weight: 700;
+    font-style: normal;
+    src: url('/fonts/Roboto-700/Roboto-700.eot');
+    src: url('/fonts/Roboto-700/Roboto-700.eot?#iefix') format('embedded-opentype'), local('Roboto Bold'), local('Roboto-700'), url('/fonts/Roboto-700/Roboto-700.woff2') format('woff2'), url('/fonts/Roboto-700/Roboto-700.woff') format('woff'), url('/fonts/Roboto-700/Roboto-700.ttf') format('truetype'), url('/fonts/Roboto-700/Roboto-700.svg#Roboto') format('svg');
+}
+
+@font-face {
+    font-family: 'Roboto';
+    font-weight: 900;
+    font-style: normal;
+    src: url('/fonts/Roboto-900/Roboto-900.eot');
+    src: url('/fonts/Roboto-900/Roboto-900.eot?#iefix') format('embedded-opentype'), local('Roboto Black'), local('Roboto-900'), url('/fonts/Roboto-900/Roboto-900.woff2') format('woff2'), url('/fonts/Roboto-900/Roboto-900.woff') format('woff'), url('/fonts/Roboto-900/Roboto-900.ttf') format('truetype'), url('/fonts/Roboto-900/Roboto-900.svg#Roboto') format('svg');
+}
+
+@font-face {
+    font-family: 'Roboto';
+    font-weight: 100;
+    font-style: italic;
+    src: url('/fonts/Roboto-100italic/Roboto-100italic.eot');
+    src: url('/fonts/Roboto-100italic/Roboto-100italic.eot?#iefix') format('embedded-opentype'), local('Roboto Thin Italic'), local('Roboto-100italic'), url('/fonts/Roboto-100italic/Roboto-100italic.woff2') format('woff2'), url('/fonts/Roboto-100italic/Roboto-100italic.woff') format('woff'), url('/fonts/Roboto-100italic/Roboto-100italic.ttf') format('truetype'), url('/fonts/Roboto-100italic/Roboto-100italic.svg#Roboto') format('svg');
+}
+
+@font-face {
+    font-family: 'Roboto';
+    font-weight: 300;
+    font-style: italic;
+    src: url('/fonts/Roboto-300italic/Roboto-300italic.eot');
+    src: url('/fonts/Roboto-300italic/Roboto-300italic.eot?#iefix') format('embedded-opentype'), local('Roboto Light Italic'), local('Roboto-300italic'), url('/fonts/Roboto-300italic/Roboto-300italic.woff2') format('woff2'), url('/fonts/Roboto-300italic/Roboto-300italic.woff') format('woff'), url('/fonts/Roboto-300italic/Roboto-300italic.ttf') format('truetype'), url('/fonts/Roboto-300italic/Roboto-300italic.svg#Roboto') format('svg');
+}
+
+@font-face {
+    font-family: 'Roboto';
+    font-weight: 400;
+    font-style: italic;
+    src: url('/fonts/Roboto-italic/Roboto-italic.eot');
+    src: url('/fonts/Roboto-italic/Roboto-italic.eot?#iefix') format('embedded-opentype'), local('Roboto Italic'), local('Roboto-italic'), url('/fonts/Roboto-italic/Roboto-italic.woff2') format('woff2'), url('/fonts/Roboto-italic/Roboto-italic.woff') format('woff'), url('/fonts/Roboto-italic/Roboto-italic.ttf') format('truetype'), url('/fonts/Roboto-italic/Roboto-italic.svg#Roboto') format('svg');
+}
+
+@font-face {
+    font-family: 'Roboto';
+    font-weight: 500;
+    font-style: italic;
+    src: url('/fonts/Roboto-500italic/Roboto-500italic.eot');
+    src: url('/fonts/Roboto-500italic/Roboto-500italic.eot?#iefix') format('embedded-opentype'), local('Roboto Medium Italic'), local('Roboto-500italic'), url('/fonts/Roboto-500italic/Roboto-500italic.woff2') format('woff2'), url('/fonts/Roboto-500italic/Roboto-500italic.woff') format('woff'), url('/fonts/Roboto-500italic/Roboto-500italic.ttf') format('truetype'), url('/fonts/Roboto-500italic/Roboto-500italic.svg#Roboto') format('svg');
+}
+
+@font-face {
+    font-family: 'Roboto';
+    font-weight: 700;
+    font-style: italic;
+    src: url('/fonts/Roboto-700italic/Roboto-700italic.eot');
+    src: url('/fonts/Roboto-700italic/Roboto-700italic.eot?#iefix') format('embedded-opentype'), local('Roboto Bold Italic'), local('Roboto-700italic'), url('/fonts/Roboto-700italic/Roboto-700italic.woff2') format('woff2'), url('/fonts/Roboto-700italic/Roboto-700italic.woff') format('woff'), url('/fonts/Roboto-700italic/Roboto-700italic.ttf') format('truetype'), url('/fonts/Roboto-700italic/Roboto-700italic.svg#Roboto') format('svg');
+}
+
+@font-face {
+    font-family: 'Roboto';
+    font-weight: 900;
+    font-style: italic;
+    src: url('/fonts/Roboto-900italic/Roboto-900italic.eot');
+    src: url('/fonts/Roboto-900italic/Roboto-900italic.eot?#iefix') format('embedded-opentype'), local('Roboto Black Italic'), local('Roboto-900italic'), url('/fonts/Roboto-900italic/Roboto-900italic.woff2') format('woff2'), url('/fonts/Roboto-900italic/Roboto-900italic.woff') format('woff'), url('/fonts/Roboto-900italic/Roboto-900italic.ttf') format('truetype'), url('/fonts/Roboto-900italic/Roboto-900italic.svg#Roboto') format('svg');
+}
+
+
+html, body, .jstree, div, .button, p {
+    font-family: 'Roboto' !important;
+}
+
+html, body, .jstree {
+    font-size: 12px;
+    font-weight: 400;
+    color: #555;
+}
+
+#dashboard-container {
+    height: 100% !important;
+    border: none !important;
+    margin-top: 3.5em;
+    z-index: 1;
+    padding: 0;
+}
+
+#editor {
+    font-size: 12pt;
+}
+
+#PhoneMenu a {
+    display: block !important;
+    text-align: center !important;
+    padding: 0.8em 0;
+    font-weight: bold;
+    color: #1B1C1D;
+}
+
+    #PhoneMenu a span {
+        display: block;
+        margin: 1em !important;
+    }
+
+.apps {
+    text-align: center;
+}
+
+    .apps > .item {
+        display: inline-block;
+        flex-direction: column;
+        padding: 0.2em 0em 0 0em;
+        border: 1px solid transparent;
+        width: 8em;
+        height: 12em;
+        overflow: hidden;
+        position: relative;
+		vertical-align: top;
+    }
+
+        .apps > .item > .app > div.icon {
+            padding-top: 0.2em;
+            font-size: 2.4em;
+        }
+
+            .apps > .item > .app > div.icon i {
+                text-shadow: 0.1em 0.1em 0.2em rgba(0, 0, 0, 0.4) !important;
+            }
+
+        .apps > .item > .app > div.image.icon {
+            height: 2em;
+            width: 2em;
+            background: #fafafa;
+            margin: 0 auto;
+            border-radius: 0.5em !important;
+            margin-top: 0.2em !important;
+            margin-bottom: 0.5em !important;
+            padding: 0 !important;
+            border: 1px solid #ddd;
+        }
+
+        .apps > .item > .app > div.icon img {
+            height: 100%;
+            padding: 0.1em 0em;
+        }
+
+        .apps > .item > .app > div.icon .circular.icon {
+            border-radius: 0.5em !important;
+            margin-bottom: 0.2em;
+        }
+
+
+        .apps > .item > .app > span {
+            color: #fff;
+            text-shadow: 1px 1px 0.5em #000;
+            text-transform: uppercase;
+            font-size: 0.87em;
+            font-weight: normal;
+        }
+
+#PhoneMenu .item:hover i,
+#PhoneMenu .item:hover .image {
+    transition: all 0.3s ease;
+    transform: scale(1.2);
+}
+
+.large.icon {
+    font-size: 3em !important;
+    text-align: center !important;
+}
+
+.ui.link span.text {
+    padding: 0.7em 0 !important;
+    display: block !important;
+    text-align: center !important;
+}
+
+#Search input {
+    text-align: center;
+}
+
+    #Search input:focus {
+        min-width: 30vw;
+    }
+
+.hidden, .initially.hidden {
+    display: none;
+}
+
+
+label, .ui.toggle.checkbox label {
+    cursor: pointer;
+}
+
+input[readonly], input[disabled], textarea[readonly], textarea[disabled], select[readonly], select[disabled], .dropdown.disabled {
+    background-color: #f0f0f0 !important;
+    cursor: not-allowed;
+}
+
+[data-ng-view], [ng-view] {
+    height: 100%;
+}
+
+.vpad8 {
+    padding: 8px 0;
+}
+
+.error {
+    color: brown;
+}
+
+.background.slider {
+    filter: grayscale(70%);
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #e3e3e3;
+    height: 100%;
+    width: 100%;
+    z-index: -2;
+}
+
+.dashboard.menu {
+	background: #3a3a3a !important;
+	border-style: none !important;
+	z-index: 3;
+}	
+
+@media(min-width: 768px){
+	.dashboard.menu {
+		position: fixed;
+		top: 0;
+		left: 0;
+		height: 4em;
+	}
+	
+	.mobile.only{
+		display: none;
+	}
+}
+
+@media(max-width: 768px){
+	.hidden.on.mobile{
+		display:none;
+	}
+
+	.ui.stackable.menu .right.menu {
+		flex-direction: column;
+	}
+	
+	#dashboard-container{
+		margin-top:0;
+	}
+}
+
+    .dashboard.menu > .item,
+    .dashboard.menu > .menu > .item {
+        color: #f0f0f0 !important;
+        border-right: 1px solid #444 !important;
+        cursor: pointer;
+    }
+
+        .dashboard.menu > .item,
+		.dashboard.menu > .stackable.menu .item,
+        .dashboard.menu > .menu > .item:not(.search):hover {
+            background: #333 !important;
+        }
+
+.powered.by {
+    padding: 2em;
+    text-align: center;
+}
+
+.dashboard.menu > .item,
+.dashboard.menu > .menu > .item,
+.dashboard.menu > .item span,
+.dashboard.menu > .menu > .item span {
+    text-transform: uppercase !important;
+    font-size: 0.9em;
+    letter-spacing: 0.09em;
+    word-spacing: 0.15em;
+    font-weight: 400;
+}
+
+.powered.by a {
+    color: #eaeaea;
+    text-shadow: 2px 2px 5px #222;
+    text-transform: uppercase !important;
+    font-size: 0.87em;
+    letter-spacing: 0.1em;
+}
+
+.powered.by img {
+    margin: 0 auto;
+}
+
+
+
+@media (min-width: 1100px) {
+    #PhoneMenu {
+		padding: 4em;
+		border-radius: 1em;
+		background-color: transparent;
+		background-repeat: repeat;
+		background: rgba(255, 255, 255, 0.3) !important;
+	}
+}
+
+
+@media (max-width: 768px) {
+    .apps > .item {
+        width: 6rem;
+        height: 9rem;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+    }
+	
+	.hidden.on.mobile{
+		display:none!important;
+	}
+}
+
+
+
+
+.nowrap {
+    -moz-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.table {
+    font-size: 0.87em;
+}
+
+    .table th {
+        letter-spacing: 0.05em;
+        text-transform: uppercase !important;
+        font-size: 0.89em;
+    }
+
+.notify {
+    z-index: 19999 !important;
+    -webkit-filter: blur(0) !important;
+    -moz-filter: blur(0) !important;
+    -o-filter: blur(0) !important;
+    -ms-filter: blur(0) !important;
+    filter: blur(0) !important;
+}
+
+.menu .item .sticker {
+    font-size: 0.879em;
+    background: #E74C3C;
+    display: inline-block;
+    text-align: center;
+    padding: 0.5em 0.7em;
+    border-radius: 3em;
+    color: white;
+    position: absolute;
+    font-weight: bold;
+    top: 0.5em;
+    right: -0.25em;
+    z-index: 10;
+    border: 1px solid #D63F2F;
+}
+
+.notification.popup {
+    width: 400px !important;
+    max-height: 600px;
+    overflow: auto;
+}
+
+
+.notification.popup {
+    padding: 0 !important;
+}
+
+    .notification.popup > .heading {
+        display: flex;
+        padding: 1em;
+        border-bottom: 1px solid #ccc;
+    }
+
+        .notification.popup > .heading a:hover {
+            color: #E74C3C;
+        }
+
+        .notification.popup > .heading .title,
+        .notification.popup > .heading .mark.all.as.read {
+            width: 50%;
+            font-weight: bold;
+        }
+
+        .notification.popup > .heading .mark.all.as.read {
+            text-align: right !important;
+        }
+
+    .notification.popup .items .item {
+        display: inline-flex;
+        padding: 1em;
+        width: 100%;
+    }
+
+        .notification.popup .items .item:nth-child(even) {
+            background: #f5f5f5;
+        }
+
+        .notification.popup .items .item:nth-child(odd) {
+            background: #efefef;
+        }
+
+        .notification.popup .items .item:not(:last-of-type) {
+            border-bottom: 1px solid #ccc;
+        }
+
+    .notification.popup .items .app {
+        font-size: 1.4em;
+        color: #eee;
+        margin-right: 0.5em;
+    }
+
+        .notification.popup .items .app .icon {
+            width: 2em;
+            height: 2em;
+            padding: 0.3em 0em;
+            background: #777;
+        }
+
+    .notification.popup .items .timestamp {
+        font-size: 0.7em;
+        color: #888;
+        text-transform: uppercase;
+        display: block;
+        padding-top: 0.7em;
+    }
+
+    .notification.popup .items .message {
+        display: block;
+    }
+
+    .notification.popup a {
+        color: #444;
+        cursor: pointer;
+    }
+
+        .notification.popup a:hover {
+            color: #222;
+        }
+
+.find {
+    position: fixed;
+    top: 5em;
+    right: 0.8em;
+    color: #eee;
+    text-transform: uppercase;
+    font-size: 0.78em;
+    z-index: 2000 !important;
+    letter-spacing: 1px;
+    font-weight: 500;
+}
+
+    .find .results {
+        max-height: 500px;
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
+
+    .find .result {
+        width: 460px;
+        background: #333;
+        display: flex;
+        border-bottom: 1px solid #444;
+        cursor: pointer;
+        padding: 1.2em;
+    }
+
+        .find .result.active,
+        .find .result:hover {
+            background: #222;
+        }
+
+            .find .result.active .description,
+            .find .result:hover .description {
+                color: #ddd !important;
+            }
+
+        .find .result .feature {
+            padding-left: 1em;
+            font-size: 1.1em;
+            color: #eee !important;
+        }
+
+            .find .result .feature .breadcrumb {
+                color: #aaa;
+                font-weight: 400;
+                letter-spacing: 0;
+                font-size: 0.9em;
+                display: block;
+            }
+
+
+        .find .result .icon {
+            font-size: 1.2em;
+        }
+
+    .find .close {
+        background: #2a2a2a !important;
+        padding: 1em;
+        border-bottom: 1px solid #444;
+        border-radius: 0.5em 0.5em 0 0;
+        letter-spacing: 0.02em;
+        font-size: 1.3em;
+    }
+
+        .find .close .left {
+            display: inline-block;
+            width: 50%;
+            text-align: left;
+        }
+
+        .find .close .right {
+            display: inline-block;
+            width: 50%;
+            text-align: right;
+            font-size: 0.7em;
+        }
+
+.rtl .find .close .right {
+    text-align: left;
+}
+
+.rtl .find .close .left {
+    text-align: right;
+}
+
+.find .close a {
+    color: #eee !important;
+}
+
+input[data-feature-search] {
+    background: #444 !important;
+    border: none !important;
+    color: #eee !important;
+    padding: 1em !important;
+    text-transform: uppercase;
+    font-size: 0.87em !important;
+    width: 220px;
+    letter-spacing: 1px;
+}
+
+.adjacent.button {
+    margin: 0.25em !important;
+}
+
+.fluid.width {
+    width: 100%;
+}
+
+.overflown {
+    overflow: auto;
+}
+
+.notification .unseen {
+    font-weight: 600 !important;
+}
+
+.ui-timepicker-wrapper {
+    width: 10em !important;
+}
+
+.notify blockquote,
+.notification.item .message blockquote {
+    margin: 0 !important;
+    margin-top: 0.5em !important;
+    margin-bottom: 0.5em !important;
+    padding: 0.5em 1em;
+    border-left: 4px solid #E8C29B;
+    font-weight: 400;
+    color: #A67261 !important;
+}
+
+.ui.table a:not(.button) {
+    color: #888 !important;
+}
+
+    .ui.table a:not(.button):hover {
+        color: #333 !important;
+    }
+
+.dashboard.menu .scrolling.menu .item {
+    letter-spacing: 0;
+}
+
+#trumbowyg-icons {
+    display: none;
+}
+
+select.inverted{
+	background: #333!important;
+	border:1px solid #444!important;
+}
+
+.ace_editor {
+	font-family: Consolas,Courier,source-code-pro,monospace !important;
+}
+
+.ace_editor div {
+	font: inherit !important;
+}
+
+@media print {
+	.dashboard.menu {
+		display: none;
+	}
+
+	#dashboard-container{
+		margin: 0!important;
+	}
+}

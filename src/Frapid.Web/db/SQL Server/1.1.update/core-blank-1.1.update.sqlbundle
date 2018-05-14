@@ -1,0 +1,3 @@
+- default-language : 
+- script-directory : db/SQL Server/1.1.update/src
+- output-directory:db/SQL Server/1.1.update

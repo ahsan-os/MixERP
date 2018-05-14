@@ -1,0 +1,46 @@
+﻿@model Frapid.Account.ViewModels.Reset
+@using Frapid.i18n
+@{
+    ViewBag.Title = "Reset Your Account";
+    Layout = ViewBag.LayoutPath + ViewBag.Layout;
+    ViewBag.Description = "To reset your password, enter the email address which is registered in our website. We will send you an email on your email address with instructions to help you reset your password.";
+}
+@if (CultureManager.IsRtl())
+{
+    <link rel="Stylesheet" href="@Href("~/assets/css/backend.rtl.css")" />
+}
+else
+{
+    <link rel="Stylesheet" href="@Href("~/assets/css/backend.css")" />
+}
+
+
+<div id="section" class="ui basic padded reset password left aligned segment">
+    <div class="ui container">
+        <div class="ui huge header">Forgot Your Password?</div>
+        <div class="ui positive message">
+            To reset your password, enter the email address which is registered in our website.
+            We will send you an email on your email address with instructions to help you
+            reset your password.
+        </div>
+        <div class="ui stackable form" style="max-width: 400px;">
+            <div class="field">
+                <label>Enter Your Email Address</label>
+                <input type="email" id="EmailInputEmail" required="" />
+            </div>
+            <div class="hidden field">
+                <label>Enter Your Email Address Again</label>
+                <input type="email" id="ConfirmEmailInputEmail" required="" />
+            </div>
+
+            <input type="hidden" id="TokenInputHidden" value="@Model.Token"/>
+
+        </div>
+        <div class="big error vpad8"></div>
+        <button class="ui positive button" id="ResetButton">Reset My Account</button>
+        <a class="ui negative button" href="/">Cancel</a>
+    </div>
+</div>
+<script src="/i18n/resources.js?cultureCode=@CultureManager.GetCurrentUiCulture().Name"></script>
+<script src="/assets/js/backend.js"></script>
+<script src="/Areas/Frapid.Account/scripts/account/reset/index.js"></script>

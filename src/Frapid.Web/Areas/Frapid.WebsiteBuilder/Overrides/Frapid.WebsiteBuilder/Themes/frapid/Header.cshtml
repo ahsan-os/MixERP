@@ -1,0 +1,16 @@
+﻿@using Frapid.WebsiteBuilder.Models;
+@using Frapid.Configuration;
+
+<header class="ui fixed stackable basic small menu">
+    <div class="ui container">
+        <a class="logo" href="/">
+            <img src="/my/template/images/frapid-logo.png" style="height:24px;" />
+        </a>
+        <div class="right menu">
+            @foreach (var item in MenuService.GetMenus(TenantConvention.GetTenant(), "Default"))
+            {
+                <a class="item" target="@item.Target" href="@item.Url">@item.Title</a>
+            }
+        </div>
+    </div>
+</header>

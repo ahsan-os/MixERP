@@ -1,0 +1,3 @@
+- default-language : 
+- script-directory : db/PostgreSQL/2.x/2.0/src
+- output-directory:db/PostgreSQL/2.x/2.0

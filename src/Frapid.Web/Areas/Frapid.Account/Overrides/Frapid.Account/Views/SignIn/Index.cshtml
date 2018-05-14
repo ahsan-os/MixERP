@@ -1,0 +1,127 @@
+﻿@using Frapid.Areas
+@using Frapid.i18n
+@model Frapid.Account.ViewModels.SignIn
+
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="description" content="Frapid Framework"/>
+    <!-- <link href="https://fonts.googleapis.com/css?family=Titillium+Web" rel="stylesheet" type="text/css"/> -->
+    <title>
+        @Resources.SignIn
+    </title>
+    @if (CultureManager.IsRtl())
+    {
+        <link rel="Stylesheet" href="@Href("~/assets/css/backend.rtl.css")"/>
+    }
+    else
+    {
+        <link rel="Stylesheet" href="@Href("~/assets/css/backend.css")"/>
+    }
+
+    @if (!string.IsNullOrWhiteSpace(Model.GoogleSigninClientId))
+    {
+        <!-- Google Sign In -->
+        <meta name="google-signin-scope" content="@Model.GoogleSignInScope">
+        <meta name="google-signin-client_id" content="@Model.GoogleSigninClientId">
+        <script src="https://apis.google.com/js/platform.js" async defer></script>
+    }
+
+    <script src="/i18n/resources.js?cultureCode=@CultureManager.GetCurrentUiCulture().Name"></script>
+    <script src="/assets/js/backend.js"></script>
+    <script src="/scripts/jssha1.5/src/sha.js"></script>
+</head>
+<body id="SignInBody">
+<div id="signin-form">
+    <div class="ui attached stackable padded segment" id="SignInSegment">
+        <img class="ui small image" src="/Static/images/logo.png">
+        <div class="ui big error large dividing header vpad8"></div>
+        <div class="ui toggle checkbox vpad8">
+            <input id="SocialLoginCheckbox" type="checkbox">
+            <label for="SocialLoginCheckbox">@I18N.SocialLogin</label>
+        </div>
+        <form class="ui stackable login form" id="LoginForm">
+            <div class="field">
+                <label for="EmailInputEmail">@I18N.EmailAddress</label>
+                <div class="ui left icon input">
+                    <i class="user icon"></i>
+                    <input id="EmailInputEmail" placeholder="@I18N.Email"
+                           autocapitalize="off" autocorrect="off" type="email" required=""/>
+                </div>
+            </div>
+            <div class="field">
+                <label for="PasswordInputPassword">@I18N.Password</label>
+                <div class="ui left icon input">
+                    <i class="lock icon"></i>
+                    <input id="PasswordInputPassword" placeholder="@I18N.Password" type="password" required=""/>
+                </div>
+            </div>
+            <div class="field">
+                <label for="OfficeIdSelect">@I18N.SelectOffice</label>
+                <select class="office select" id="OfficeIdSelect" required=""></select>
+            </div>
+            <div class="field">
+                <label for="CultureSelect">Select Language</label>
+                <select class="language select" id="CultureSelect" required=""></select>
+            </div>
+            <div class="field">
+                <input type="hidden" id="ChallengeInputHidden"
+                       value="@Model.Challenge"/>
+            </div>
+            <div class="ui buttons">
+                <button id="SignInButton" title="CRTL + RETURN" class="ui grey button" type="submit">
+                    @I18N.SignIn
+                </button>
+                <a class="ui button" href="/">@I18N.Cancel</a>
+            </div>
+            <div class="exception field"></div>
+        </form>
+        <div id="SocialLoginForm" class="ui login form" style="display: none;">
+            <div class="field">
+                <label for="SocialOfficeSelect">@I18N.SelectOffice</label>
+                <select class="office select" id="SocialOfficeSelect"></select>
+            </div>
+            <div class="field">
+                <label for="SocialLanguageSelect">@I18N.SelectLanguage</label>
+                <select class="language select" id="SocialLanguageSelect"></select>
+            </div>
+            <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"
+                 data-width="134px" data-height="32">
+            </div>
+            <div class="tpad8"></div>
+            <div class="ui facebook fluid button" id="FacebookButton" style="width: 134px;">
+                <i class="facebook icon"></i>@I18N.Facebook
+
+            </div>
+        </div>
+        <div class="ui breadcrumb vpad8">
+            <a class="section" href="/account/sign-up">@I18N.CreateAnAccount</a>
+            <div class="divider"> / </div>
+            <a class="section" href="/account/reset">@I18N.ResetMyPassword</a>
+        </div>
+    </div>
+</div>
+@Html.GetAntiForgeryToken(Request.Url)
+<script>
+    var fbAppId = '@Model.FacebookAppId';
+    var fbScope = '@Model.FacebookScope';
+    localStorage.removeItem("haveWeMet");
+</script>
+<div id="fb-root"></div>
+<script src="/Areas/Frapid.Account/scripts/account/sign-in/default.js"></script>
+
+@if (!string.IsNullOrWhiteSpace(Model.FacebookAppId))
+{
+    <!-- Facebook Sign In -->
+    <script src="/Areas/Frapid.Account/scripts/account/sign-in/facebook.js"></script>
+}
+
+@if (!string.IsNullOrWhiteSpace(Model.GoogleSigninClientId))
+{
+    <!-- Google Sign In -->
+    <script src="/Areas/Frapid.Account/scripts/account/sign-in/google.js"></script>
+}
+</body>
+</html>

@@ -1,0 +1,28 @@
+﻿@using Frapid.WebsiteBuilder
+<div class="ui small modal" id="DeleteThemeModal">
+    <i class="close icon"></i>
+    <div class="ui red large header">
+        @Resources.ProceedWithCaution
+    </div>
+    <div class="content">
+        <div class="ui large header">@Html.Raw(Resources.ConfirmThemeDelete)</div>
+        <p>
+            @Resources.ThemeDeleteWarning
+        </p>
+
+        <div class="ui negative message" style="display: none;">
+            <div class="ui small exception header">@Resources.CannotDeleteThemeBecauseOfError</div>
+        </div>
+
+    </div>
+    <div class="ui content attached segment">
+        <div class="ui buttons">
+            <div class="ui green button" onclick="showDeleteThemeModal();">
+                @Resources.NoDontDeleteThisTheme
+            </div>
+            <div class="ui red button" id="DeleteThemeButton">
+                @Resources.Yes
+            </div>
+        </div>
+    </div>
+</div>

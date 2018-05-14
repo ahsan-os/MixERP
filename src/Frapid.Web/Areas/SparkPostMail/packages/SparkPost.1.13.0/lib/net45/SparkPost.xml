@@ -1,0 +1,1293 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>SparkPost</name>
+    </assembly>
+    <members>
+        <member name="F:SparkPost.BounceCategory.Undefined">
+             <summary>
+             None or unable to parse.
+             </summary>
+            </member>
+        <member name="F:SparkPost.BounceCategory.Undetermined">
+             <summary>
+             The response text could not be identified.
+             </summary>
+            </member>
+        <member name="F:SparkPost.BounceCategory.Hard">
+             <summary>
+             Hard bounce: Invalid recipient, no recipient.
+             </summary>
+            </member>
+        <member name="F:SparkPost.BounceCategory.Soft">
+             <summary>
+             Soft bounce: soft bounced, DNS failure, MX record not found, mailbox is full, message too large, timeout, delayed, auto-reply, unspecified reason.
+             </summary>
+            </member>
+        <member name="F:SparkPost.BounceCategory.Admin">
+             <summary>
+             The message was failed by Momentum's (SparkPost) configured policies or the message is a subscribe request.
+             </summary>
+            </member>
+        <member name="F:SparkPost.BounceCategory.Block">
+             <summary>
+             The message was blocked by the receiver (spam).
+             </summary>
+            </member>
+        <member name="F:SparkPost.BounceClass.Undefined">
+             <summary>
+             None or unable to parse.
+             </summary>
+            </member>
+        <member name="F:SparkPost.BounceClass.Undetermined">
+             <summary>
+             Undetermined
+             The response text could not be identified.
+             Category: Undetermined.
+             </summary>
+            </member>
+        <member name="F:SparkPost.BounceClass.InvalidRecipient">
+             <summary>
+             Invalid Recipient
+             The recipient is invalid.
+             Category: Hard.
+             </summary>
+            </member>
+        <member name="F:SparkPost.BounceClass.SoftBounce">
+             <summary>
+             Soft Bounce
+             The message soft bounced.
+             Category: Soft.
+             </summary>
+            </member>
+        <member name="F:SparkPost.BounceClass.DnsFailure">
+             <summary>
+             DNS Failure
+             The message bounced due to a DNS failure.
+             Category: Soft.
+             </summary>
+            </member>
+        <member name="F:SparkPost.BounceClass.MailboxFull">
+             <summary>
+             Mailbox Full
+             The message bounced due to the remote mailbox being over quota.
+             Category: Soft.
+             </summary>
+            </member>
+        <member name="F:SparkPost.BounceClass.TooLarge">
+             <summary>
+             Too Large
+             The message bounced because it was too large for the recipient.
+             Category: Soft.
+             </summary>
+            </member>
+        <member name="F:SparkPost.BounceClass.Timeout">
+             <summary>
+             Timeout
+             The message timed out.
+             Category: Soft.
+             </summary>
+            </member>
+        <member name="F:SparkPost.BounceClass.AdminFailure">
+             <summary>
+             Admin Failure
+             The message was failed by Momentum's configured policies.
+             Category: Admin.
+             </summary>
+            </member>
+        <member name="F:SparkPost.BounceClass.GenericBounceNoRecipient">
+             <summary>
+             Generic Bounce: No RCPT
+             No recipient could be determined for the message.
+             Category: Hard.
+             </summary>
+            </member>
+        <member name="F:SparkPost.BounceClass.GenericBounce">
+             <summary>
+             Generic Bounce
+             The message failed for unspecified reasons.
+             Category: Soft.
+             </summary>
+            </member>
+        <member name="F:SparkPost.BounceClass.MailBlock">
+             <summary>
+             Mail Block
+             The message was blocked by the receiver.
+             Category: Block.
+             </summary>
+            </member>
+        <member name="F:SparkPost.BounceClass.SpamBlock">
+             <summary>
+             Spam Block
+             The message was blocked by the receiver as coming from a known spam source.
+             Category: Block.
+             </summary>
+            </member>
+        <member name="F:SparkPost.BounceClass.SpamContent">
+             <summary>
+             Spam Content
+             The message was blocked by the receiver as spam.
+             Category: Block.
+             </summary>
+            </member>
+        <member name="F:SparkPost.BounceClass.ProhibitedAttachment">
+             <summary>
+             Prohibited Attachment
+             The message was blocked by the receiver because it contained an attachment.
+             Category: Block.
+             </summary>
+            </member>
+        <member name="F:SparkPost.BounceClass.RelayingDenied">
+             <summary>
+             Relaying Denied
+             The message was blocked by the receiver because relaying is not allowed.
+             Category: Block.
+             </summary>
+            </member>
+        <member name="F:SparkPost.BounceClass.AutoReply">
+             <summary>
+             Auto-Reply
+             The message is an auto-reply/vacation mail.
+             Category: Soft.
+             </summary>
+            </member>
+        <member name="F:SparkPost.BounceClass.TransientFailure">
+             <summary>
+             Transient Failure
+             Message transmission has been temporarily delayed.
+             Category: Soft.
+             </summary>
+            </member>
+        <member name="F:SparkPost.BounceClass.Subscribe">
+             <summary>
+             Subscribe
+             The message is a subscribe request.
+             Category: Admin.
+             </summary>
+            </member>
+        <member name="F:SparkPost.BounceClass.Unsubscribe">
+             <summary>
+             Unsubscribe
+             The message is an unsubscribe request.
+             Category: Hard.
+             </summary>
+            </member>
+        <member name="F:SparkPost.BounceClass.ChallengeResponse">
+             <summary>
+             Challenge-Response
+             The message is a challenge-response probe.
+             Category: Soft.
+             </summary>
+            </member>
+        <member name="M:SparkPost.Dkim.ConvertToDkim(System.dynamic)">
+             <summary>
+                 Convert json result form Sparkpost API to Dkim.
+             </summary>
+             <param name="result">Json result form Sparkpost API.</param>
+             <returns></returns>
+            </member>
+        <member name="M:SparkPost.Dns.ConvertToDns(System.dynamic)">
+             <summary>
+                 Convert json result form Sparkpost API to Dns.
+             </summary>
+             <param name="result">Json result form Sparkpost API.</param>
+             <returns></returns>
+            </member>
+        <member name="M:SparkPost.IMetrics.GetDeliverability(System.Object)">
+             <summary>
+             Provides high-level summary of aggregate metrics.
+             </summary>
+             <param name="query"></param>
+             <returns></returns>
+            </member>
+        <member name="M:SparkPost.IMetrics.GetDeliverabilityByDomain(System.Object)">
+             <summary>
+             Provides aggregate metrics grouped by domain over the time window specified.
+             </summary>
+             <param name="query"></param>
+             <returns></returns>
+            </member>
+        <member name="M:SparkPost.IMetrics.GetDeliverabilityBySendingIp(System.Object)">
+             <summary>
+             Provides aggregate metrics grouped by sending IP over the time window specified.
+             </summary>
+             <param name="query"></param>
+             <returns></returns>
+            </member>
+        <member name="M:SparkPost.IMetrics.GetDeliverabilityByIpPool(System.Object)">
+             <summary>
+             Provides aggregate metrics grouped by IP pool over the time window specified.
+             </summary>
+             <param name="query"></param>
+             <returns></returns>
+            </member>
+        <member name="M:SparkPost.IMetrics.GetDeliverabilityBySendingDomain(System.Object)">
+             <summary>
+             Provides aggregate metrics grouped by sending domain over the time window specified.
+             </summary>
+             <param name="query"></param>
+             <returns></returns>
+            </member>
+        <member name="M:SparkPost.IMetrics.GetDeliverabilityBySubaccount(System.Object)">
+             <summary>
+             Provides aggregate metrics grouped by subaccount over the time window specified. Please note that master account events will be returned grouped by the subaccount_id field containing the value 0.
+             </summary>
+             <param name="query"></param>
+             <returns></returns>
+            </member>
+        <member name="M:SparkPost.IMetrics.GetDeliverabilityByCampaign(System.Object)">
+             <summary>
+             Provides aggregate metrics grouped by campaign over the time window specified.
+             </summary>
+             <param name="query"></param>
+             <returns></returns>
+            </member>
+        <member name="M:SparkPost.IMetrics.GetDeliverabilityByTemplate(System.Object)">
+             <summary>
+             Provides aggregate metrics grouped by template over the time window specified.
+             </summary>
+             <param name="query"></param>
+             <returns></returns>
+            </member>
+        <member name="M:SparkPost.IMetrics.GetDeliverabilityByWatchedDomain(System.Object)">
+             <summary>
+             Provides aggregate metrics grouped by watched domain over the time window specified.
+             </summary>
+             <param name="query"></param>
+             <returns></returns>
+            </member>
+        <member name="M:SparkPost.IMetrics.GetDeliverabilityByTimeSeries(System.Object)">
+             <summary>
+             Provides deliverability metrics ordered by a precision of time.
+             </summary>
+             <param name="query"></param>
+             <returns></returns>
+            </member>
+        <member name="M:SparkPost.IMetrics.GetBounceReasons(System.Object)">
+             <summary>
+             Provides deliverability metrics, specific to bounce events, grouped by the bounce reasons.
+             </summary>
+             <param name="query"></param>
+             <returns></returns>
+            </member>
+        <member name="M:SparkPost.IMetrics.GetBounceReasonsByDomain(System.Object)">
+             <summary>
+             Provides deliverability metrics, specific to bounce events, grouped by the domain and bounce reasons.
+             </summary>
+             <param name="query"></param>
+             <returns></returns>
+            </member>
+        <member name="M:SparkPost.IMetrics.GetBounceClassifications(System.Object)">
+             <summary>
+             Provides deliverability metrics, specific to bounce events, grouped by the bounce classification.
+             </summary>
+             <param name="query"></param>
+             <returns></returns>
+            </member>
+        <member name="M:SparkPost.IMetrics.GetRejectionReasons(System.Object)">
+             <summary>
+             Provides deliverability metrics, specific to rejection events, grouped by the rejection reasons.
+             </summary>
+             <param name="query"></param>
+             <returns></returns>
+            </member>
+        <member name="M:SparkPost.IMetrics.GetRejectionReasonsByDomain(System.Object)">
+             <summary>
+             Provides deliverability metrics, specific to rejection events, grouped by the domain and rejection reasons.
+             </summary>
+             <param name="query"></param>
+             <returns></returns>
+            </member>
+        <member name="M:SparkPost.IMetrics.GetDelayReasons(System.Object)">
+             <summary>
+             Provides deliverability metrics, specific to delay events, grouped by the delay reasons.
+             </summary>
+             <param name="query"></param>
+             <returns></returns>
+            </member>
+        <member name="M:SparkPost.IMetrics.GetDelayReasonsByDomain(System.Object)">
+             <summary>
+             Provides deliverability metrics, specific to delay events, grouped by the domain and delay reasons.
+             </summary>
+             <param name="query"></param>
+             <returns></returns>
+            </member>
+        <member name="M:SparkPost.IMetrics.GetEngagementDetails(System.Object)">
+             <summary>
+             Provides deliverability metrics, specific to engagement events (clicks/opens);, grouped by the link name or URL.
+             </summary>
+             <param name="query"></param>
+             <returns></returns>
+            </member>
+        <member name="M:SparkPost.IMetrics.GetDeliveriesByAttempt(System.Object)">
+             <summary>
+             Provides aggregate count of deliveries grouped by the attempt number.
+             </summary>
+             <param name="query"></param>
+             <returns></returns>
+            </member>
+        <member name="M:SparkPost.IMetrics.GetDomains">
+             <summary>
+             Returns a list of domains that the Metrics API contains data on.
+             </summary>
+             <returns></returns>
+            </member>
+        <member name="M:SparkPost.IMetrics.GetDomains(System.Object)">
+             <summary>
+             Returns a list of domains that the Metrics API contains data on.
+             </summary>
+             <param name="metricsSimpleQuery"></param>
+             <returns></returns>
+            </member>
+        <member name="M:SparkPost.IMetrics.GetIpPools">
+             <summary>
+             Returns a list of IP pools that the Metrics API contains data on.
+             </summary>
+             <returns></returns>
+            </member>
+        <member name="M:SparkPost.IMetrics.GetIpPools(System.Object)">
+             <summary>
+             Returns a list of IP pools that the Metrics API contains data on.   
+             </summary>
+             <param name="metricsSimpleQuery"></param>
+             <returns></returns>
+            </member>
+        <member name="M:SparkPost.IMetrics.GetSendingIps">
+             <summary>
+             Returns a list of sending IPs that the Metrics API contains data on.
+             </summary>
+             <returns></returns>
+            </member>
+        <member name="M:SparkPost.IMetrics.GetSendingIps(System.Object)">
+             <summary>
+             Returns a list of sending IPs that the Metrics API contains data on.
+             </summary>
+             <param name="metricsSimpleQuery"></param>
+             <returns></returns>
+            </member>
+        <member name="M:SparkPost.IMetrics.GetCampaigns">
+             <summary>
+             Returns a list of campaigns that the Metrics API contains data on.
+             </summary>
+             <returns></returns>
+            </member>
+        <member name="M:SparkPost.IMetrics.GetCampaigns(System.Object)">
+             <summary>
+             Returns a list of campaigns that the Metrics API contains data on.
+             </summary>
+             <param name="metricsSimpleQuery"></param>
+             <returns></returns>
+            </member>
+        <member name="M:SparkPost.IRecipientLists.Create(SparkPost.RecipientList)">
+             <summary>
+             Creates a recipient list.
+             </summary>
+             <param name="recipientList">The properties of the recipientList to create.</param>
+             <returns>The response from the API.</returns>
+            </member>
+        <member name="M:SparkPost.IRecipientLists.Retrieve(System.String)">
+             <summary>
+             Retrieves a recipient list.
+             </summary>
+             <param name="recipientListsId">The id of the recipient list to retrieve.</param>
+             <returns>The response from the API.</returns>
+            </member>
+        <member name="M:SparkPost.IRecipientLists.Delete(System.String)">
+             <summary>
+             Deletes a recipient list.
+             </summary>
+             <param name="id"></param>
+             <returns>A success or failure.</returns>
+            </member>
+        <member name="M:SparkPost.IRecipientLists.Update(SparkPost.RecipientList)">
+             <summary>
+             Updates a recipient list.
+             </summary>
+             <param name="recipientList"></param>
+             <returns></returns>
+            </member>
+        <member name="P:SparkPost.MessageEvent.Type">
+             <summary>
+             "type": {
+               "description": "Type of event this record describes",
+               "sampleValue": "bounce"
+             }
+             "type": "out_of_band",
+             </summary>
+            </member>
+        <member name="P:SparkPost.MessageEvent.TypeEnum">
+             <summary>
+             Type of event this record describes
+             </summary>
+            </member>
+        <member name="P:SparkPost.MessageEvent.BounceClass">
+             <summary>
+             "bounce_class": {
+               "description": "Classification code for a given message (see [Bounce Classification Codes](https://support.sparkpost.com/customer/portal/articles/1929896))",
+               "sampleValue": "1"
+             },
+             "bounce_class": "10",
+             </summary>
+            </member>
+        <member name="P:SparkPost.MessageEvent.BounceClassEnum">
+             <summary>
+             Classification code for a given message (see [Bounce Classification Codes](https://support.sparkpost.com/customer/portal/articles/1929896))
+             </summary>
+            </member>
+        <member name="P:SparkPost.MessageEvent.BounceClassDetails">
+             <summary>
+             Classification code for a given message (see [Bounce Classification Codes](https://support.sparkpost.com/customer/portal/articles/1929896))
+             </summary>
+            </member>
+        <member name="P:SparkPost.MessageEvent.CampaignId">
+             <summary>
+             "campaign_id": {
+               "description": "Campaign of which this message was a part",
+               "sampleValue": "Example Campaign Name"
+             },
+             "campaign_id": "My campaign name",
+             </summary>
+            </member>
+        <member name="P:SparkPost.MessageEvent.CustomerId">
+             <summary>
+             "customer_id": {
+               "description": "SparkPost-customer identifier through which this message was sent",
+               "sampleValue": "1"
+             },
+             "customer_id": "12345",
+             </summary>
+            </member>
+        <member name="P:SparkPost.MessageEvent.DeliveryMethod">
+             <summary>
+             "delv_method": {
+               "description": "Protocol by which SparkPost delivered this message",
+               "sampleValue": "esmtp"
+             },
+             "delv_method": "esmtp",
+             </summary>
+            </member>
+        <member name="P:SparkPost.MessageEvent.DeviceToken">
+             <summary>
+             "device_token": {
+               "description": "Token of the device / application targeted by this PUSH notification message. Applies only when delv_method is gcm or apn.",
+               "sampleValue": "45c19189783f867973f6e6a5cca60061ffe4fa77c547150563a1192fa9847f8a"
+             },
+             </summary>
+            </member>
+        <member name="P:SparkPost.MessageEvent.ErrorCode">
+             <summary>
+             "error_code": {
+               "description": "Error code by which the remote server described a failed delivery attempt",
+               "sampleValue": "554"
+             },
+             "error_code": "550",
+             </summary>
+            </member>
+        <member name="P:SparkPost.MessageEvent.IpAddress">
+             <summary>
+             "ip_address": {
+               "description": "IP address of the host to which SparkPost delivered this message; in engagement events, the IP address of the host where the HTTP request originated",
+               "sampleValue": "127.0.0.1"
+             },
+             </summary>
+            </member>
+        <member name="P:SparkPost.MessageEvent.MessageId">
+             <summary>
+             "message_id": {
+               "description": "SparkPost-cluster-wide unique identifier for this message",
+               "sampleValue": "0e0d94b7-9085-4e3c-ab30-e3f2cd9c273e"
+             },
+             "message_id": "00021f9a27476a273c57",
+             </summary>
+            </member>
+        <member name="P:SparkPost.MessageEvent.MessageFrom">
+             <summary>
+             "msg_from": {
+               "description": "Sender address used on this message's SMTP envelope",
+               "sampleValue": "sender@example.com"
+             },
+             "msg_from": "msprvs1=17827RA6TC8Pz=bounces-12345@sparkpostmail1.com",
+             </summary>
+            </member>
+        <member name="P:SparkPost.MessageEvent.MessageSize">
+             <summary>
+             "msg_size": {
+               "description": "Message's size in bytes",
+               "sampleValue": "1337"
+             },
+             "msg_size": "3168",
+             </summary>
+            </member>
+        <member name="P:SparkPost.MessageEvent.NumberOfRetries">
+             <summary>
+             "num_retries": {
+               "description": "Number of failed attempts before this message was successfully delivered; when the first attempt succeeds, zero",
+               "sampleValue": "2"
+             },
+             "num_retries": "0",
+             </summary>
+            </member>
+        <member name="P:SparkPost.MessageEvent.Metadata">
+             <summary>
+             "rcpt_meta": {
+               "description": "Metadata describing the message recipient",
+               "sampleValue": {
+                 "customKey": "customValue"
+               }
+             },
+            "rcpt_meta": {
+              "CustomKey1": "Custom Value 1",
+              "CustomKey2": "Custom Value 2"
+            },
+             </summary>
+            </member>
+        <member name="P:SparkPost.MessageEvent.Tags">
+             <summary>
+             "rcpt_tags": {
+               "description": "Tags applied to the message which generated this event",
+               "sampleValue": [
+                 "male",
+                 "US"
+               ]
+             },
+             "rcpt_tags": [ "CustomTag1" ],
+             </summary>
+            </member>
+        <member name="P:SparkPost.MessageEvent.RecipientTo">
+             <summary>
+             "rcpt_to": {
+               "description": "Recipient address used on this message's SMTP envelope",
+               "sampleValue": "recipient@example.com"
+             },
+             "rcpt_to": "to@domain.com",
+             </summary>
+            </member>
+        <member name="P:SparkPost.MessageEvent.RecipientType">
+             <summary>
+             "rcpt_type": {
+               "description": "Indicates that a recipient address appeared in the Cc or Bcc header or the archive JSON array",
+               "sampleValue": "cc"
+             },
+             </summary>
+            </member>
+        <member name="P:SparkPost.MessageEvent.RawReason">
+             <summary>
+             "raw_reason": {
+               "description": "Unmodified, exact response returned by the remote server due to a failed delivery attempt",
+               "sampleValue": "MAIL REFUSED - IP (17.99.99.99) is in black list"
+             },
+             "raw_reason": "550 [internal] [oob] The recipient is invalid.",
+             </summary>
+            </member>
+        <member name="P:SparkPost.MessageEvent.Reason">
+             <summary>
+             "reason": {
+               "description": "Canonicalized text of the response returned by the remote server due to a failed delivery attempt",
+               "sampleValue": "MAIL REFUSED - IP (a.b.c.d) is in black list"
+             },
+             "reason": "550 [internal] [oob] The recipient is invalid.",
+             </summary>
+            </member>
+        <member name="P:SparkPost.MessageEvent.RoutingDomain">
+             <summary>
+             "routing_domain": {
+               "description": "Domain receiving this message",
+               "sampleValue": "example.com"
+             },
+             "routing_domain": "domain.com",
+             </summary>
+            </member>
+        <member name="P:SparkPost.MessageEvent.Subject">
+             <summary>
+             "subject": {
+               "description": "Subject line from the email header",
+               "sampleValue": "Summer deals are here!"
+             },
+             "subject": "My email subject",
+             </summary>
+            </member>
+        <member name="P:SparkPost.MessageEvent.TemplateId">
+             <summary>
+             "template_id": {
+               "description": "Slug of the template used to construct this message",
+               "sampleValue": "templ-1234"
+             },
+             "template_id": "smtp_47287131967131576",
+             </summary>
+            </member>
+        <member name="P:SparkPost.MessageEvent.TemplateVersion">
+             <summary>
+             "template_version": {
+               "description": "Version of the template used to construct this message",
+               "sampleValue": "1"
+             },
+             "template_version": "0",
+             </summary>
+            </member>
+        <member name="P:SparkPost.MessageEvent.Timestamp">
+             <summary>
+             "timestamp": {
+               "description": "Event date and time, in Unix timestamp format (integer seconds since 00:00:00 GMT 1970-01-01)",
+               "sampleValue": 1427736822
+             },
+             "timestamp": "2016-04-27T10:54:25.000+00:00"
+             </summary>
+            </member>
+        <member name="P:SparkPost.MessageEvent.TransmissionId">
+             <summary>
+             "transmission_id": {
+               "description": "Transmission which originated this message",
+               "sampleValue": "64836157861974168"
+             }
+             "transmission_id": "47287131967131576",
+             </summary>
+            </member>
+        <member name="P:SparkPost.MessageEvent.EventId">
+             <summary>
+             Not documented.
+             "event_id": "84320004715329757",
+             </summary>
+            </member>
+        <member name="P:SparkPost.MessageEvent.FriendlyFrom">
+             <summary>
+             Not documented.
+             "friendly_from": "from@domain.com",
+             </summary>
+            </member>
+        <member name="P:SparkPost.MessageEvent.IpPool">
+             <summary>
+             Not documented.
+             "ip_pool": "shared",
+             </summary>
+            </member>
+        <member name="P:SparkPost.MessageEvent.QueueTime">
+             <summary>
+             Not documented.
+             "queue_time": "3004",
+             </summary>
+            </member>
+        <member name="P:SparkPost.MessageEvent.RawRecipientTo">
+             <summary>
+             Not documented.
+             "raw_rcpt_to": "to@domain.com",
+             </summary>
+            </member>
+        <member name="P:SparkPost.MessageEvent.SendingIp">
+             <summary>
+             Not documented.
+             "sending_ip": "shared",
+             </summary>
+            </member>
+        <member name="P:SparkPost.MessageEvent.TDate">
+             <summary>
+             Not documented.
+             "tdate": "2016-04-27T22:05:40.000Z",
+             </summary>
+            </member>
+        <member name="P:SparkPost.MessageEvent.Transactional">
+             <summary>
+             Not documented.
+             "transactional": "1",
+             </summary>
+            </member>
+        <member name="P:SparkPost.MessageEvent.RemoteAddress">
+             <summary>
+             Not documented.
+             "remote_addr": "A.B.C.D:25512",
+             </summary>
+            </member>
+        <member name="P:SparkPost.MessageEventsQuery.BounceClasses">
+             <summary>
+             bounce_classes : Number : Comma-delimited list of bounce classification codes to search.
+             See Bounce Classification Codes at https://support.sparkpost.com/customer/portal/articles/1929896.
+             Example: 1,10,20.
+             </summary>
+            </member>
+        <member name="P:SparkPost.MessageEventsQuery.CampaignIds">
+             <summary>
+             campaign_ids : ? : (optional, string, `Example Campaign Name`) ... Comma-delimited list of campaign ID's to search (i.e. campaign_id used during creation of a transmission).
+             </summary>
+            </member>
+        <member name="P:SparkPost.MessageEventsQuery.Events">
+             <summary>
+             events : List : Comma-delimited list of event types to search. Defaults to all event types.
+             Example: delivery, injection, bounce, delay, policy_rejection, out_of_band, open, click, generation_failure, generation_rejection, spam_complaint, list_unsubscribe, link_unsubscribe.
+             </summary>
+            </member>
+        <member name="P:SparkPost.MessageEventsQuery.FriendlyFroms">
+             <summary>
+             friendly_froms : ? : (optional, list, `sender@mail.example.com`) ... Comma-delimited list of friendly_froms to search.
+             </summary>
+            </member>
+        <member name="P:SparkPost.MessageEventsQuery.From">
+             <summary>
+             from : Datetime : Datetime in format of YYYY-MM-DDTHH:MM.
+             Example: 2014-07-20T08:00.
+             Default: One hour ago.
+             </summary>
+            </member>
+        <member name="P:SparkPost.MessageEventsQuery.MessageIds">
+             <summary>
+             message_ids : List : Comma-delimited list of message ID's to search.
+             Example: 0e0d94b7-9085-4e3c-ab30-e3f2cd9c273e.
+             </summary>
+            </member>
+        <member name="P:SparkPost.MessageEventsQuery.Page">
+             <summary>
+             page : number : The results page number to return. Used with per_page for paging through results.
+             Example: 25.
+             Default: 1.
+             </summary>
+            </member>
+        <member name="P:SparkPost.MessageEventsQuery.PerPage">
+             <summary>
+             per_page : Number : Number of results to return per page. Must be between 1 and 10,000 (inclusive).
+             Example: 100.
+             Default: 1000.
+             </summary>
+            </member>
+        <member name="P:SparkPost.MessageEventsQuery.Reason">
+             <summary>
+             reason : String :Bounce/failure/rejection reason that will be matched using a wildcard(e.g., %reason%).
+             Example: bounce.
+             </summary>
+            </member>
+        <member name="P:SparkPost.MessageEventsQuery.Recipients">
+             <summary>
+             recipients : List : Comma-delimited list of recipients to search.
+             Example: recipient @example.com.
+             </summary>
+            </member>
+        <member name="P:SparkPost.MessageEventsQuery.Subaccounts">
+             <summary>
+             subaccounts : List : Comma-delimited list of subaccount ID's to search.
+             Example: 101.
+             </summary>
+            </member>
+        <member name="P:SparkPost.MessageEventsQuery.TemplateIds">
+             <summary>
+             template_ids : List : Comma-delimited list of template ID's to search.
+             Example: templ-1234.
+             </summary>
+            </member>
+        <member name="P:SparkPost.MessageEventsQuery.Timezone">
+             <summary>
+             timezone : String : Standard timezone identification string.
+             Example: America/New_York.
+             Default: UTC.
+             </summary>
+            </member>
+        <member name="P:SparkPost.MessageEventsQuery.To">
+             <summary>
+             to : Datetime : Datetime in format of YYYY-MM-DDTHH:MM.
+             Example: 2014-07-20T09:00.
+             Default: now.
+             </summary>
+            </member>
+        <member name="P:SparkPost.MessageEventsQuery.TransmissionIds">
+             <summary>
+             transmission_ids : List : Comma-delimited list of transmission ID's to search (i.e. id generated during creation of a transmission).
+             Example: 65832150921904138.
+             </summary>
+            </member>
+        <member name="F:SparkPost.MessageEventType.Undefined">
+             <summary>
+             Undefined/unknown or unable to parse.
+             </summary>
+            </member>
+        <member name="F:SparkPost.MessageEventType.Delivery">
+             <summary>
+             delivery
+             Delivery.
+             Remote MTA acknowledged receipt of a message.
+             </summary>
+            </member>
+        <member name="F:SparkPost.MessageEventType.Injection">
+             <summary>
+             injection
+             Injection.
+             Message is received by or injected into SparkPost.
+             </summary>
+            </member>
+        <member name="F:SparkPost.MessageEventType.Bounce">
+             <summary>
+             bounce
+             Bounce.
+             Remote MTA has permanently rejected a message.
+             </summary>
+            </member>
+        <member name="F:SparkPost.MessageEventType.Delay">
+             <summary>
+             delay
+             Delay.
+             Remote MTA has temporarily rejected a message.
+             </summary>
+            </member>
+        <member name="F:SparkPost.MessageEventType.PolicyRejection">
+             <summary>
+             policy_rejection
+             Policy Rejection.
+             Due to policy, SparkPost rejected a message or failed to generate a message.
+             </summary>
+            </member>
+        <member name="F:SparkPost.MessageEventType.OutOfBand">
+             <summary>
+             out_of_band
+             Out of Band.
+             Remote MTA initially reported acceptance of a message, but it has since asynchronously reported that the message was not delivered.
+             </summary>
+            </member>
+        <member name="F:SparkPost.MessageEventType.Open">
+             <summary>
+             open
+             Open.
+             Recipient opened a message in a mail client, thus rendering a tracking pixel.
+             </summary>
+            </member>
+        <member name="F:SparkPost.MessageEventType.Click">
+             <summary>
+             click
+             Click.
+             Recipient clicked a tracked link in a message, thus prompting a redirect through the SparkPost click-tracking server to the link's destination.
+             </summary>
+            </member>
+        <member name="F:SparkPost.MessageEventType.GenerationFailure">
+             <summary>
+             generation_failure
+             Generation Failure.
+             Message generation failed for an intended recipient.
+             </summary>
+            </member>
+        <member name="F:SparkPost.MessageEventType.GenerationRejection">
+             <summary>
+             generation_rejection
+             Generation Rejection.
+             SparkPost rejected message generation due to policy.
+             </summary>
+            </member>
+        <member name="F:SparkPost.MessageEventType.SpamComplaint">
+             <summary>
+             spam_complaint
+             Spam Complaint.
+             Message was classified as spam by the recipient.
+             </summary>
+            </member>
+        <member name="F:SparkPost.MessageEventType.ListUnsubscribe">
+             <summary>
+             list_unsubscribe
+             List Unsubscribe.
+             User clicked the 'unsubscribe' button on an email client.
+             </summary>
+            </member>
+        <member name="F:SparkPost.MessageEventType.LinkUnsubscribe">
+             <summary>
+             link_unsubscribe
+             Link Unsubscribe.
+             User clicked a hyperlink in a received email.
+             </summary>
+            </member>
+        <member name="F:SparkPost.MessageEventType.SmsStatus">
+             <summary>
+             sms_status
+             SMS Status.
+             SMPP/SMS message produced a status log output.
+             </summary>
+            </member>
+        <member name="F:SparkPost.MessageEventType.RelayInjection">
+             <summary>
+             relay_injection
+             Relay Injection.
+             Relayed message is received by or injected into SparkPost.
+             </summary>
+            </member>
+        <member name="F:SparkPost.MessageEventType.RelayRejection">
+             <summary>
+             relay_rejection
+             Relay Rejection.
+             SparkPost rejected a relayed message or failed to generate a relayed message.
+             </summary>
+            </member>
+        <member name="F:SparkPost.MessageEventType.RelayDelivery">
+             <summary>
+             relay_delivery
+             Relay Delivery.
+             Remote HTTP Endpoint acknowledged receipt of a relayed message.
+             </summary>
+            </member>
+        <member name="F:SparkPost.MessageEventType.RelayTempfail">
+             <summary>
+             relay_tempfail
+             Relay Temporary Failure.
+             Remote HTTP Endpoint has failed to accept a relayed message.
+             </summary>
+            </member>
+        <member name="F:SparkPost.MessageEventType.RelayPermfail">
+             <summary>
+             relay_permfail
+             Relay Permanent Failure.
+             Relayed message has reached the maximum retry threshold and will be removed from the system.
+             </summary>
+            </member>
+        <member name="M:SparkPost.Metrics.GetDeliverability(System.Object)">
+             <summary>
+             Provides high-level summary of aggregate metrics.
+             </summary>
+             <param name="query"></param>
+             <returns></returns>
+            </member>
+        <member name="M:SparkPost.Metrics.GetDeliverabilityByDomain(System.Object)">
+             <summary>
+             Provides aggregate metrics grouped by domain over the time window specified.
+             </summary>
+             <param name="query"></param>
+             <returns></returns>
+            </member>
+        <member name="M:SparkPost.Metrics.GetDeliverabilityBySendingIp(System.Object)">
+             <summary>
+             Provides aggregate metrics grouped by sending IP over the time window specified.
+             </summary>
+             <param name="query"></param>
+             <returns></returns>
+            </member>
+        <member name="M:SparkPost.Metrics.GetDeliverabilityByIpPool(System.Object)">
+             <summary>
+             Provides aggregate metrics grouped by IP pool over the time window specified.
+             </summary>
+             <param name="query"></param>
+             <returns></returns>
+            </member>
+        <member name="M:SparkPost.Metrics.GetDeliverabilityBySendingDomain(System.Object)">
+             <summary>
+             Provides aggregate metrics grouped by sending domain over the time window specified.
+             </summary>
+             <param name="query"></param>
+             <returns></returns>
+            </member>
+        <member name="M:SparkPost.Metrics.GetDeliverabilityBySubaccount(System.Object)">
+             <summary>
+             Provides aggregate metrics grouped by subaccount over the time window specified. Please note that master account events will be returned grouped by the subaccount_id field containing the value 0.
+             </summary>
+             <param name="query"></param>
+             <returns></returns>
+            </member>
+        <member name="M:SparkPost.Metrics.GetDeliverabilityByCampaign(System.Object)">
+             <summary>
+             Provides aggregate metrics grouped by campaign over the time window specified.
+             </summary>
+             <param name="query"></param>
+             <returns></returns>
+            </member>
+        <member name="M:SparkPost.Metrics.GetDeliverabilityByTemplate(System.Object)">
+             <summary>
+             Provides aggregate metrics grouped by template over the time window specified.
+             </summary>
+             <param name="query"></param>
+             <returns></returns>
+            </member>
+        <member name="M:SparkPost.Metrics.GetDeliverabilityByWatchedDomain(System.Object)">
+             <summary>
+             Provides aggregate metrics grouped by watched domain over the time window specified.
+             </summary>
+             <param name="query"></param>
+             <returns></returns>
+            </member>
+        <member name="M:SparkPost.Metrics.GetDeliverabilityByTimeSeries(System.Object)">
+             <summary>
+             Provides deliverability metrics ordered by a precision of time.
+             </summary>
+             <param name="query"></param>
+             <returns></returns>
+            </member>
+        <member name="M:SparkPost.Metrics.GetBounceReasons(System.Object)">
+             <summary>
+             Provides deliverability metrics, specific to bounce events, grouped by the bounce reasons.
+             </summary>
+             <param name="query"></param>
+             <returns></returns>
+            </member>
+        <member name="M:SparkPost.Metrics.GetBounceReasonsByDomain(System.Object)">
+             <summary>
+             Provides deliverability metrics, specific to bounce events, grouped by the domain and bounce reasons.
+             </summary>
+             <param name="query"></param>
+             <returns></returns>
+            </member>
+        <member name="M:SparkPost.Metrics.GetBounceClassifications(System.Object)">
+             <summary>
+             Provides deliverability metrics, specific to bounce events, grouped by the bounce classification.
+             </summary>
+             <param name="query"></param>
+             <returns></returns>
+            </member>
+        <member name="M:SparkPost.Metrics.GetRejectionReasons(System.Object)">
+             <summary>
+             Provides deliverability metrics, specific to rejection events, grouped by the rejection reasons.
+             </summary>
+             <param name="query"></param>
+             <returns></returns>
+            </member>
+        <member name="M:SparkPost.Metrics.GetRejectionReasonsByDomain(System.Object)">
+             <summary>
+             Provides deliverability metrics, specific to rejection events, grouped by the domain and rejection reasons.
+             </summary>
+             <param name="query"></param>
+             <returns></returns>
+            </member>
+        <member name="M:SparkPost.Metrics.GetDelayReasons(System.Object)">
+             <summary>
+             Provides deliverability metrics, specific to delay events, grouped by the delay reasons.
+             </summary>
+             <param name="query"></param>
+             <returns></returns>
+            </member>
+        <member name="M:SparkPost.Metrics.GetDelayReasonsByDomain(System.Object)">
+             <summary>
+             Provides deliverability metrics, specific to delay events, grouped by the domain and delay reasons.
+             </summary>
+             <param name="query"></param>
+             <returns></returns>
+            </member>
+        <member name="M:SparkPost.Metrics.GetEngagementDetails(System.Object)">
+             <summary>
+             Provides deliverability metrics, specific to engagement events (clicks/opens), grouped by the link name or URL.
+             </summary>
+             <param name="query"></param>
+             <returns></returns>
+            </member>
+        <member name="M:SparkPost.Metrics.GetDeliveriesByAttempt(System.Object)">
+             <summary>
+             Provides aggregate count of deliveries grouped by the attempt number.
+             </summary>
+             <param name="query"></param>
+             <returns></returns>
+            </member>
+        <member name="M:SparkPost.Metrics.GetDomains">
+             <summary>
+             Returns a list of domains that the Metrics API contains data on.
+             </summary>
+             <returns></returns>
+            </member>
+        <member name="M:SparkPost.Metrics.GetDomains(System.Object)">
+             <summary>
+             Returns a list of domains that the Metrics API contains data on.
+             </summary>
+             <param name="metricsSimpleQuery"></param>
+             <returns></returns>
+            </member>
+        <member name="M:SparkPost.Metrics.GetIpPools">
+             <summary>
+             Returns a list of IP pools that the Metrics API contains data on.
+             </summary>
+             <returns></returns>
+            </member>
+        <member name="M:SparkPost.Metrics.GetIpPools(System.Object)">
+             <summary>
+             Returns a list of IP pools that the Metrics API contains data on.   
+             </summary>
+             <param name="metricsSimpleQuery"></param>
+             <returns></returns>
+            </member>
+        <member name="M:SparkPost.Metrics.GetSendingIps">
+             <summary>
+             Returns a list of sending IPs that the Metrics API contains data on.
+             </summary>
+             <returns></returns>
+            </member>
+        <member name="M:SparkPost.Metrics.GetSendingIps(System.Object)">
+             <summary>
+             Returns a list of sending IPs that the Metrics API contains data on.
+             </summary>
+             <param name="metricsSimpleQuery"></param>
+             <returns></returns>
+            </member>
+        <member name="M:SparkPost.Metrics.GetCampaigns">
+             <summary>
+             Returns a list of campaigns that the Metrics API contains data on.
+             </summary>
+             <returns></returns>
+            </member>
+        <member name="M:SparkPost.Metrics.GetCampaigns(System.Object)">
+             <summary>
+             Returns a list of campaigns that the Metrics API contains data on.
+             </summary>
+             <param name="metricsSimpleQuery"></param>
+             <returns></returns>
+            </member>
+        <member name="P:SparkPost.MetricsField.AllDeliverability">
+             <summary>
+             A list of all metrics that are valid for GetDeliverabilityXyz() methods.
+             </summary>
+            </member>
+        <member name="P:SparkPost.MetricsField.AllBounce">
+             <summary>
+             A list of all metrics that are valid for GetBounceXyz() methods.
+             </summary>
+            </member>
+        <member name="P:SparkPost.MetricsField.AllEngagement">
+             <summary>
+             A list of all metrics that are valid for GetEngagementDetails().
+             </summary>
+            </member>
+        <member name="P:SparkPost.MetricsResourceQuery.Match">
+             <summary>
+             Only return results containing this string
+             </summary>
+            </member>
+        <member name="P:SparkPost.MetricsResourceQuery.Limit">
+             <summary>
+             Maximum number of results to return
+             </summary>
+            </member>
+        <member name="P:SparkPost.MetricsResourceQuery.Timezone">
+             <summary>
+             Standard timezone identification string, defaults to UTC
+             </summary>
+            </member>
+        <member name="M:SparkPost.SendingDomain.ConvertToSendingDomain(System.dynamic)">
+             <summary>
+             Convert json result form Sparkpost API to SendingDomain.
+             </summary>
+             <param name="result">Json result form Sparkpost API.</param>
+             <returns></returns>
+            </member>
+        <member name="M:SparkPost.SendingDomainStatus.ConvertToSendingDomainStatus(System.dynamic)">
+             <summary>
+                 Convert json result form Sparkpost API to SendingDomainStatus.
+             </summary>
+             <param name="result">Json result form Sparkpost API.</param>
+             <returns></returns>
+            </member>
+        <member name="T:SparkPost.IClient">
+             <summary>
+             Provides access to the SparkPost API.
+             </summary>
+            </member>
+        <member name="P:SparkPost.IClient.ApiKey">
+             <summary>
+             Gets or sets the key used for requests to the SparkPost API.
+             </summary>
+            </member>
+        <member name="P:SparkPost.IClient.ApiHost">
+             <summary>
+             Gets or sets the base URL of the SparkPost API.
+             </summary>
+            </member>
+        <member name="P:SparkPost.IClient.Transmissions">
+             <summary>
+             Gets access to the transmissions resource of the SparkPost API.
+             </summary>
+            </member>
+        <member name="P:SparkPost.IClient.Suppressions">
+             <summary>
+             Gets access to the suppressions resource of the SparkPost API.
+             </summary>
+            </member>
+        <member name="P:SparkPost.IClient.Subaccounts">
+             <summary>
+             Gets access to the subaccounts resource of the SparkPost API.
+             </summary>
+            </member>
+        <member name="P:SparkPost.IClient.Webhooks">
+             <summary>
+             Gets access to the webhooks resource of the SparkPost API.
+             </summary>
+            </member>
+        <member name="P:SparkPost.IClient.MessageEvents">
+             <summary>
+             Gets access to the message events resource of the SparkPost API.
+             </summary>
+            </member>
+        <member name="P:SparkPost.IClient.InboundDomains">
+             <summary>
+             Gets access to the inbound domains resource of the SparkPost API.
+             </summary>
+            </member>
+        <member name="P:SparkPost.IClient.SendingDomains">
+             <summary>
+             Gets access to the sending domains resource of the SparkPost API.
+             </summary>
+            </member>
+        <member name="P:SparkPost.IClient.RelayWebhooks">
+             <summary>
+             Gets access to the relay webhooks resource of the SparkPost API.
+             </summary>
+            </member>
+        <member name="P:SparkPost.IClient.Templates">
+             <summary>
+             Gets access to the Templates resource of the SparkPost API.
+             </summary>
+            </member>
+        <member name="P:SparkPost.IClient.Metrics">
+             <summary>
+             Gets access to the metrics resource of the SparkPost API.
+             </summary>
+            </member>
+        <member name="P:SparkPost.IClient.Version">
+             <summary>
+             Gets the API version supported by this client.
+             </summary>
+            </member>
+        <member name="P:SparkPost.IClient.CustomSettings">
+             <summary>
+             Get the custom settings for this client.
+             </summary>
+            </member>
+        <member name="P:SparkPost.IClient.SubaccountId">
+             <summary>
+             Gets the sub account.
+             </summary>
+            </member>
+        <member name="T:SparkPost.ITransmissions">
+             <summary>
+             Provides access to the transmissions resource of the SparkPost API.
+             </summary>
+            </member>
+        <member name="M:SparkPost.ITransmissions.Send(SparkPost.Transmission)">
+             <summary>
+             Sends an email transmission.
+             </summary>
+             <param name="transmission">The properties of the transmission to send.</param>
+             <returns>The response from the API.</returns>
+            </member>
+        <member name="M:SparkPost.ITransmissions.Retrieve(System.String)">
+             <summary>
+             Retrieves an email transmission.
+             </summary>
+             <param name="transmissionId">The id of the transmission to retrieve.</param>
+             <returns>The response from the API.</returns>
+            </member>
+        <member name="M:SparkPost.ITransmissions.List">
+             <summary>
+             Lists recent email transmissions.
+             </summary>
+             <returns>The response from the API.</returns>
+            </member>
+        <member name="T:SparkPost.ITemplates">
+             <summary>
+             Provides access to the templates resource of the SparkPost API.
+             </summary>
+            </member>
+        <member name="M:SparkPost.ITemplates.Create(SparkPost.Template)">
+             <summary>
+             Creates an email template.
+             </summary>
+             <param name="template">The properties of the template to create.</param>
+             <returns>The response from the API.</returns>
+            </member>
+        <member name="M:SparkPost.ITemplates.Retrieve(System.String,System.Nullable{System.Boolean})">
+             <summary>
+             Retrieves an email template.
+             </summary>
+             <param name="templateId">The id of the template to retrieve.</param>
+             <param name="draft">If true, returns the most recent draft template. If false, returns the most recent published template. If not provided, returns the most recent template version regardless of draft or published.</param>
+             <returns>The response from the API.</returns>
+            </member>
+        <member name="M:SparkPost.VerifySendingDomainStatus.ConvertToVerifySendingDomainStatus(System.dynamic)">
+             <summary>
+             Convert json result form Sparkpost API to VerifySendingDomainStatus.
+             </summary>
+             <param name="result">Json result form Sparkpost API.</param>
+             <returns></returns>
+            </member>
+    </members>
+</doc>

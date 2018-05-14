@@ -1,0 +1,79 @@
+﻿@using Frapid.WebsiteBuilder
+@model dynamic
+
+@{
+    ViewBag.Title = @Resources.Contacts;
+    Layout = ViewBag.Layout;
+}
+
+<script>
+    var scrudFactory = new Object();
+
+    scrudFactory.title = window.translate("Contacts");
+
+    scrudFactory.viewAPI = "/api/views/website/contact-scrud-view";
+    scrudFactory.viewTableName = "website.contact_scrud_view";
+
+    scrudFactory.formAPI = "/api/forms/website/contacts";
+    scrudFactory.formTableName = "website.contacts";
+
+    scrudFactory.excludedColumns = ["AuditUserId", "AuditTs", "Deleted"];
+
+
+    scrudFactory.allowDelete = true;
+    scrudFactory.allowEdit = true;
+
+    scrudFactory.live = "Title";
+
+    scrudFactory.layout = [
+        {
+            tab: "",
+            fields: [
+                ["ContactId", ""],
+                ["Title", "Name"],
+                ["Position", "Email"],
+                ["Recipients"],
+                ["Address"],
+                ["City", "State"],
+                ["Country", "PostalCode"],
+                ["Telephone", ""],
+                ["Details"]
+            ]
+        }
+    ];
+
+    scrudFactory.card = {
+        header: "Title",
+        meta: "Name",
+        description: "Description"
+    };
+
+
+    $.get('/ScrudFactory/View.html', function (view) {
+        $.get('/ScrudFactory/Form.html', function (form) {
+            $("#ScrudFactoryView").html(view);
+            $("#ScrudFactoryForm").html(form);
+            $.cachedScript("/assets/js/scrudfactory-view.js");
+            $.cachedScript("/assets/js/scrudfactory-form.js");
+        });
+    });
+</script>
+
+<script>
+    $(document).on("formready", function() {
+        $("#category_name").keyup(function() {
+            function getAlias(title) {
+                return title.toLowerCase().replace(/ +(?= )/g, '').replace(/ /g, '-').replace(/[^\w-]+/g, '');
+            };
+
+            const category = $(this).val();
+            const alias = getAlias(category);
+
+            $("#alias").val(alias);
+
+        });
+    });
+</script>
+
+<div id="ScrudFactoryForm"></div>
+<div id="ScrudFactoryView"></div>

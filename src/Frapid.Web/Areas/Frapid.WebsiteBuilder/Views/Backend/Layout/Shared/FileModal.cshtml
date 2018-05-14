@@ -1,0 +1,20 @@
+﻿@using Frapid.WebsiteBuilder
+<div class="ui small modal" id="FileModal">
+    <i class="close icon"></i>
+    <div class="header">
+        @Resources.CreateANewFile
+    </div>
+    <div class="content">
+        <div class="ui padded form">
+            <div class="field">
+                <label>@Resources.Location</label>
+                <div class="ui container label" data-container=""></div>
+            </div>
+            <div class="field">
+                <label>@Resources.FileName</label>
+                <input type="text" />
+            </div>
+            <button class="ui button" onclick="createFile(this);">@Resources.Create</button>
+        </div>
+    </div>
+</div>

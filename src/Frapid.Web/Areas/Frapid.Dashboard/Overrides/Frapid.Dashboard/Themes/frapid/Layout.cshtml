@@ -1,0 +1,147 @@
+﻿@model dynamic
+@using Frapid.ApplicationState.Cache
+@using Frapid.i18n
+@using Newtonsoft.Json
+@using Frapid.Dashboard.Helpers
+
+<!DOCTYPE html>
+<html data-ng-app="FrapidApp">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="description" content="Frapid Framework"/>
+    <title data-ng-bind="$root.title">@ViewBag.Title</title>
+
+    @{
+        string themeSelector = ViewBag.LayoutPath + "ThemeSelector.cshtml";
+
+        string bodyClass;
+
+        if (CultureManager.IsRtl())
+        {
+            bodyClass = "rtl";
+            <link rel="Stylesheet" href="@Href("~/assets/css/backend.rtl.css")"/>
+        }
+        else
+        {
+            bodyClass = "ltr";
+            <link rel="Stylesheet" href="@Href("~/assets/css/backend.css")"/>
+        }
+    }
+
+
+    <link href="~/dashboard/my/template/contents/dashboard.css" rel="stylesheet"/>
+    <script src="/i18n/resources.js?cultureCode=@CultureManager.GetCurrentUiCulture().Name"></script>
+    <script src="~/assets/js/backend.js"></script>
+    <script src="/signalr/hubs"></script>
+
+    <script src="~/dashboard/my/template/contents/theme-selector.js"></script>
+    <script src="~/dashboard/my/template/contents/apps.js"></script>
+
+    @if (!string.IsNullOrEmpty(ViewBag.CustomStylesheetPath))
+    {
+        <link href="@ViewBag.CustomStylesheetPath" type="text/css" rel="stylesheet"/>
+    }
+
+</head>
+<body class="@bodyClass">
+<div class="background slider active"></div>
+<div class="background slider"></div>
+<div class="ui flowing notification popup top left transition hidden">
+    <div class="heading">
+        <div class="title">@Resources.Notifications</div>
+        <a class="mark all as read">@Resources.MarkAllAsRead</a>
+    </div>
+    <div class="items">
+        <div class="placeholder item">
+            <i class="ui green check circle icon"></i>
+            @Resources.YouDontHaveAnyNotification
+        </div>
+    </div>
+</div>
+<div class="ui attached basic small dashboard stackable menu">
+    <a class="item" data-ng-click="toogleDashboard();">
+        <i class="pin icon"></i>
+		<span class='mobile only'>@Resources.Dashboard</span>
+    </a>
+    <div class="ui stackable inverted menu" data-scope="app-menus" style="display:none;">
+
+    </div>
+    <div class="right menu">
+        <div class="search item hidden on mobile">
+            <div class="ui input">
+                <input type="text" data-feature-search placeholder="@Resources.CtrlShiftF"/>
+            </div>
+        </div>
+        <div class="ui dropdown select language item">
+            <input name="filters" type="hidden">
+            <i class="world icon"></i>
+            <span class="text">@CultureManager.GetCurrent().NativeName</span>
+            <div class="menu">
+                <div class="ui icon search input">
+                    <i class="search icon"></i>
+                    <input id="SearchLanguageButton" placeholder="@Resources.Search" type="text"/>
+                </div>
+                <div class="divider"></div>
+                <div class="header">
+                    <i class="world icon"></i>
+                    @Resources.SelectLanguage
+                </div>
+                <div class="scrolling menu">
+                    @foreach (var language in LocalizationHelper.GetSupportedLanguages())
+                    {
+                        <div class="item" data-value="@language.CultureCode">
+                            @language.NativeName
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+        @Html.Partial(themeSelector)
+        <a class="notification item" href="javascript:void(0)" title="@Resources.Notifications">
+            <i class="alarm icon"></i>
+			<span class='mobile only'>@Resources.Notifications</span>
+        </a>
+        <a class="item" href="/" target="_blank" title="@Resources.GoToWebsite">
+            <i class="external icon"></i>
+			<span class='mobile only'>@Resources.GoToWebsite</span>
+        </a>
+        <a class="item" href="/account/sign-out" title="@Resources.SignOut" target="_self">
+            <i class="log out icon"></i>
+			<span class='mobile only'>@Resources.SignOut</span>
+        </a>
+    </div>
+</div>
+<div class="ui find feature" style="display: none;">
+    <div class="close">
+        <div class="left">
+            @Resources.SearchResults
+        </div>
+        <div class="right">
+            <a href="javascript:void(0)" onclick="$('.ui.find.feature').fadeOut(500);">
+                <i class="delete icon"></i>
+            </a>
+        </div>
+    </div>
+    <div class="results">
+
+    </div>
+</div>
+
+<div id="dashboard-container" class="ui basic attached segment" style="height: 100%;">
+    <div data-ng-view>
+        @RenderBody()
+    </div>
+</div>
+
+<script src="~/dashboard/my/template/contents/dashboard.js"></script>
+
+@if (!string.IsNullOrEmpty(ViewBag.CustomJavascriptPath))
+{
+    <script src="@ViewBag.CustomJavascriptPath" async defer></script>
+}
+
+@Html.AntiForgeryToken()
+</body>
+</html>

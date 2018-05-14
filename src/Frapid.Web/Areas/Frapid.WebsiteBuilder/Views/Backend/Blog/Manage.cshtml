@@ -1,0 +1,111 @@
+﻿@using Frapid.Areas
+@using Frapid.WebsiteBuilder
+@model Frapid.WebsiteBuilder.DTO.Content
+
+@{
+    bool isMarkDown = !string.IsNullOrWhiteSpace(Model.Markdown);
+    ViewBag.Title = Model.Title;
+    Layout = ViewBag.Layout;
+
+    var publishOn = Model.PublishOn ?? DateTimeOffset.Now;
+}
+
+<script src="/scripts/trumbowyg/dist/trumbowyg.js"></script>
+<link rel="stylesheet" href="/scripts/trumbowyg/dist/ui/trumbowyg.min.css">
+
+<style>
+.compact.column{
+	padding:0!important;
+}
+
+.trumbowyg-box{
+	padding:0!important;
+	margin:0!important;
+	min-height:1000px!important;
+}
+
+.trumbowyg-editor{
+	min-height:1000px!important;
+}
+
+.trumbowyg-fullscreen{
+	padding:3.7em 0 0 0!important;
+}    
+</style>
+<div class="ui attached content segment">
+    <div class="ui stackable doubling grid">
+        <div class="three wide column">
+            <div class="column">
+                <div class="ui violet header">@Resources.CreateNewBlogPost</div>
+            </div>
+            <div class="ui divider"></div>
+            <div wi class="ui flat form">
+                <input type="hidden" id="ContentIdInputHidden" data-entity="content_id" class="integer" value="@Model.ContentId" />
+                <input type="hidden" id="MarkdownInputHidden" data-entity="markdown" value="@Model.Markdown" />
+                <div class="">
+                    <div class="field">
+                        <label>@Resources.Title</label>
+                        <input id="TitleInputText" type="text" data-entity="title" value="@Model.Title" required="" />
+                    </div>
+                    <div class="field">
+                        <label>@Resources.Alias</label>
+                        <input id="AliasInputText" type="text" data-entity="alias" value="@Model.Alias" required="" />
+                    </div>
+                    <div class="field">
+                        <label>@Resources.Category</label>
+                        <select id="CategoryIdSelect" class="ui search integer dropdown"
+                                data-entity="category_id"
+                                required=""
+                                data-placeholder="true"
+                                data-api="/api/views/website/blog-category-view/display-fields"
+                                data-api-value-field="Value"
+                                data-api-key-field="Key"
+                                data-api-selected-value="@Model.CategoryId"></select>
+                    </div>
+                    <div class="field">
+                        <label>@Resources.Tags</label>
+                        <div class="ui tags" id="TagsDiv">
+                            <input type="text" value="@Model.Tags" />
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label>@Resources.PublishOn</label>
+                        <input id="PublishOnInputText" type="text" class="date" data-entity="publish_on" value="@(publishOn.ToString("d"))" required="" />
+                    </div>
+                    <div class="field">
+                        <label>@Resources.SeoDescription</label>
+                        <input id="SeoDescriptionInputText" type="text" data-entity="seo_description" value="@Model.SeoDescription" required="" />
+                    </div>
+                </div>
+                <div class="field">
+                    <label>&nbsp;</label>
+                    <div class="ui checkbox">
+                        <label for="IsDraftCheckbox">@Resources.Draft</label>
+                        <input id="IsDraftCheckbox" type="checkbox" data-value="@Model.IsDraft" />
+                    </div>
+                </div>
+                <div class="ui basic buttons">
+                    <button class="ui basic button" id="SaveButton">@Resources.Save</button>
+                    <a class="ui basic button" id="CancelButton">@Resources.Cancel</a>
+                </div>
+            </div>
+
+            <div class="ui container">
+                <div class="error vpad8 initially hidden">
+                    <div class="ui brown header">@Resources.Error</div>
+                    <ul class="ui red bulleted list"></ul>
+                    <div class="ui divider"></div>
+                </div>
+            </div>
+
+        </div>
+        <div class="thirteen wide compact column">
+            <textarea id="ContentsTextArea" style="width: 100%; display: none;">@Html.Raw(Model.Contents)</textarea>
+        </div>
+        @Html.GetAntiForgeryToken(this.Request.Url)
+    </div>
+</div>
+
+
+
+<script src="~/Areas/Frapid.WebsiteBuilder/scripts/blogs/manage.js"></script>

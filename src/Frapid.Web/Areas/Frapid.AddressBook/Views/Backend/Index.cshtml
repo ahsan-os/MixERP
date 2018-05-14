@@ -1,0 +1,354 @@
+﻿@using System.Globalization
+@using Frapid.AddressBook.Extensions
+@model Frapid.AddressBook.ViewModels.IndexViewModel
+
+@{
+    Layout = ViewBag.Layout;
+    var timeZones = TimeZoneInfo.GetSystemTimeZones();
+    var cultures = CultureInfo.GetCultures(CultureTypes.AllCultures);
+    string contactId = Guid.NewGuid().ToString();
+}
+<link rel="stylesheet" type="text/css" href="/scripts/semantic-ui-calendar-0.0.6/dist/calendar.min.css" />
+<script src="/scripts/semantic-ui-calendar-0.0.6/dist/calendar.min.js"></script>
+<script src="/scripts/trumbowyg/dist/trumbowyg.min.js"></script>
+<link rel="stylesheet" href="/scripts/trumbowyg/dist/ui/trumbowyg.min.css">
+<link rel="stylesheet" href="/Areas/Frapid.AddressBook/styles/index.css">
+
+
+<div class="ui frapid address book app attached segment">
+    <div class="left panel">
+        <div class="title">@I18N.SelectType</div>
+        <div class="ui select type form">
+            <div class="grouped fields">
+                <div class="field">
+                    <div class="ui radio checkbox">
+                        <input name="contact-type" checked="checked" type="radio" value="all" />
+                        <label>@I18N.AllContacts</label>
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="ui radio checkbox">
+                        <input name="contact-type" type="radio" value="private" />
+                        <label>@I18N.PrivateOnly</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="tag title">
+            <div class="ui checkbox">
+                <input type="checkbox" />
+                <label>
+                    @I18N.Tags
+                </label>
+            </div>
+        </div>
+        <div class="tags">
+            @foreach (string tag in Model.Tags)
+            {
+                <div class="ui checkbox">
+                    <input type="checkbox" data-tag="@tag" />
+                    <label>
+                        @tag
+                    </label>
+                </div>
+            }
+        </div>
+    </div>
+    <div class="middle panel">
+        <div class="toolbar">
+            <a class="new contact item" title="@I18N.AddNewContact">
+                <i class="plus icon"></i>
+            </a>
+            <a class="email item" title="@I18N.BulkEmail">
+                <i class="mail icon"></i>
+            </a>
+            <a class="sms item" title="@I18N.BulkSms">
+                <i class="file text outline icon"></i>
+            </a>
+            @*<a class="item" title="@I18N.FindDuplicates">
+                <i class="search icon"></i>
+            </a>
+            <a class="item" title="@I18N.SyncNow">
+                <i class="refresh icon"></i>
+            </a>*@
+            <label for="FileInputFile" class="item" title="@I18N.ImportContactsFromVcard">
+                <i class="cloud upload icon"></i>
+            </label>
+            <a id="ExportContactsAnchor" class="item" title="@I18N.ExportContactsToVcard">
+                <i class="cloud download icon"></i>
+            </a>
+            <input id="FileInputFile" type="file" data-handler="/dashboard/address-book/import/vcard" style="display: none">
+            <a id="DeleteAnchor" class="item" title="@I18N.DeleteContact">
+                <i class="remove icon"></i>
+            </a>
+        </div>
+        <div class="ui fluid action input">
+            <input placeholder="@I18N.Search" />
+            <button class="ui icon basic button">
+                <i class="search icon"></i>
+            </button>
+        </div>
+        <div class="scroller">
+            <div class="ui entries attached borderless not padded segment">
+            </div>
+        </div>
+    </div>
+    <div class="right panel" data-contact-id="">
+        <input id="FormattedNameInputText" class="title" value="@I18N.AddNewContact" />
+        <div class="ui two column doubling stackable celled divided padded grid">
+            <div class="column">
+                <div class="ui flat form">
+                    <input type="hidden" id="ContactIdInputHidden" value="@contactId" />
+                    <div class="two fields">
+                        <div class="field">
+                            <label>@I18N.Prefix</label>
+                            <input id="PrefixInputText" type="text"/>
+                        </div>
+                        <div class="field">
+                            <label>@I18N.Suffix</label>
+                            <input id="SuffixInputText" type="text"/>
+                        </div>
+                    </div>
+                    <div class="three fields">
+                        <div class="field">
+                            <label>@I18N.FirstName</label>
+                            <input id="FirstNameInputText" type="text"/>
+                        </div>
+                        <div class="field">
+                            <label>@I18N.MiddleName</label>
+                            <input id="MiddleNameInputText" type="text"/>
+                        </div>
+                        <div class="field">
+                            <label>@I18N.LastName</label>
+                            <input id="LastNameInputText" type="text"/>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label>@I18N.EmailAddresses</label>
+                        <div class="ui tags" id="EmailAddressesDiv">
+                            <input type="text"/>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label>@I18N.MobileNumbers</label>
+                        <div class="ui tags" id="MobileNumbersDiv">
+                            <input type="text"/>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label>@I18N.Tags</label>
+                        <div class="ui tags" id="TagsDiv">
+                            <input type="text"/>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <a id="ShowMoreAnchor">@I18N.More</a>
+                    </div>
+                </div>
+                <div class="ui flat form more" style="display: none;">
+                    <div class="field">
+                        <label>@I18N.NickName</label>
+                        <input id="NickNameInputText" type="text" />
+                    </div>
+                    <div class="field">
+                        <label>@I18N.Gender</label>
+                        <select id="GenderSelect">
+                            <option value="4">@I18N.NotSpecified</option>
+                            <option value="0">@I18N.Female</option>
+                            <option value="1">@I18N.Male</option>
+                            <option value="2">@I18N.NotApplicable</option>
+                            <option value="3">@I18N.Other</option>
+                        </select>
+                    </div>
+                    <div class="field">
+                        <label>@I18N.TelephoneNumbers</label>
+                        <div class="ui tags" id="TelephonesDiv">
+                            <input type="text" />
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label>@I18N.FaxNumbers</label>
+                        <div class="ui tags" id="FaxNumbersDiv">
+                            <input type="text" />
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label>@I18N.Website</label>
+                        <input id="UrlInputText" type="text" />
+                    </div>
+                    <div class="field">
+                        <label>@I18N.TimeZone</label>
+                        <select id="TimeZoneSelect">
+                            <option value="">Select</option>
+                            @foreach (var timeZone in timeZones)
+                            {
+                                <option value="@timeZone.StandardName" data-offset="@(timeZone.BaseUtcOffset.TotalMinutes*-1)">@timeZone.DisplayName</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="field">
+                        <label>@I18N.Language</label>
+                        <select id="LanguageSelect">
+                            <option value="">@I18N.Select</option>
+                            @foreach (var culture in cultures)
+                            {
+                                <option value="@culture.Name">@culture.DisplayName</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="two fields">
+                        <div class="field">
+                            <label>@I18N.Title</label>
+                            <input id="TitleInputText" type="text" />
+                        </div>
+                        <div class="field">
+                            <label>@I18N.Role</label>
+                            <input id="RoleInputText" type="text" />
+                        </div>
+                    </div>
+                    <div class="two fields">
+                        <div class="field">
+                            <label>@I18N.Organization</label>
+                            <input id="OrganizationInputText" type="text" />
+                        </div>
+                        <div class="field">
+                            <label>@I18N.OrganizationalUnit</label>
+                            <input id="OrganizationalUnitInputText" type="text" />
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label>@I18N.ContactType</label>
+                        <select id="KindSelect">
+                            <option value="0">@I18N.Individual</option>
+                            <option value="1">@I18N.Group</option>
+                            <option value="2">@I18N.Organization</option>
+                            <option value="3">@I18N.Location</option>
+                        </select>
+                    </div>
+                    <div class="field">
+                        <label>Linked User Id</label>
+                        <select id="AssociatedUserIdSelect">
+                            <option value="">@I18N.Select</option>
+                            @foreach (var user in Model.Users.OrderBy(x => x.UserId))
+                            {
+                                <option value="@user.UserId">@user.UserId.ToString("D4") - @user.Name</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="field">
+                        <label>@I18N.BirthDay</label>
+                        <div id="BirthDayCalendar" class="ui date only picker calendar">
+                            <input type="text" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="column">
+                <div class="ui flat form more" style="display: none;">
+                    <div class="field">
+                        <label>@I18N.UploadAvatar</label>
+                        <div class="ui attached borderless segment" id="UploaderSegment">
+                            <img class="ui small preview image vpad8" src="/images/logo.png" />
+                            <div class="ui hidden divider"></div>
+                            <div class="uploader buttons">
+                                <label for="PhotoInputHidden" class="ui positive button">@I18N.Upload</label>
+                                <input id="PhotoInputHidden"
+                                       data-handler="/dashboard/address-book/avatar/@contactId"
+                                       data-loader-id="UploaderSegment"
+                                       class="file" style="display: none" type="file"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label>@I18N.AddressLine1</label>
+                        <textarea id="AddressLine1TextArea" rows="2"></textarea>
+                    </div>
+                    <div class="field">
+                        <label>@I18N.AddressLine2</label>
+                        <textarea id="AddressLine2TextArea" rows="2"></textarea>
+                    </div>
+                    <div class="field">
+                        <label>@I18N.PostalCode</label>
+                        <input id="PostalCodeInputText" type="text" />
+                    </div>
+                    <div class="field">
+                        <label>@I18N.Street</label>
+                        <input id="StreetInputText" type="text" />
+                    </div>
+                    <div class="field">
+                        <label>@I18N.City</label>
+                        <input id="CityInputText" type="text" />
+                    </div>
+                    <div class="field">
+                        <label>@I18N.State</label>
+                        <input id="StateInputText" type="text" />
+                    </div>
+                    <div class="field">
+                        <label>@I18N.Country</label>
+                        <input id="CountryInputText" type="text" />
+                    </div>
+                    <div class="field">
+                        <label>@I18N.Note</label>
+                        <textarea id="NoteInputTextArea" rows="2"></textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="vpad8">
+            <div class="vpad8">
+                <div class="ui checked checkbox">
+                    <input id="IsPrivateCheckBox" checked type="checkbox">
+                    <label>
+                        @I18N.DoNotShareWithOtherUsers
+                    </label>
+                </div>
+            </div>
+            <button id="SaveButton" class="ui save positive button">@I18N.Save</button>
+        </div>
+    </div>
+</div>
+
+<div id="EmailModal" class="ui modal">
+    <i class="close icon"></i>
+    <div class="header">
+        @I18N.SendEmail
+    </div>
+    <div class="content">
+        <div class="ui flat form">
+            <div class="field">
+                <label>@I18N.Subject</label>
+                <input name="SubjectInputText" type="text" required data-persist placeholder="@I18N.EnterSubject" />
+            </div>
+            <div class="field">
+                <label>@I18N.Message</label>
+                <textarea name="MessageTextArea" placeholder="@I18N.EnterYourMessage" rows="20"></textarea>
+            </div>
+            <button id="SendEmailButton" class="ui positive button">@I18N.Send</button>
+            <button class="ui negative button" onclick="$('#EmailModal').modal('hide');">@I18N.Close</button>
+        </div>
+    </div>
+</div>
+
+<div id="SmsModal" class="ui modal">
+    <i class="close icon"></i>
+    <div class="header">
+        @I18N.SendTextMessage
+    </div>
+    <div class="content">
+        <div class="ui flat form">
+            <div class="field">
+                <label>@I18N.Subject</label>
+                <input name="SubjectInputText" type="text" required data-persist placeholder="@I18N.EnterSubject" />
+            </div>
+            <div class="field">
+                <label>@I18N.Message</label>
+                <textarea name="MessageTextArea" maxlength="160" placeholder="@I18N.EnterYourMessage" rows="4"></textarea>
+            </div>
+            <button id="SendSmsButton" class="ui positive button">@I18N.Send</button>
+            <button class="ui negative button" onclick="$('#SmsModal').modal('hide');">@I18N.Close</button>
+        </div>
+    </div>
+</div>
+
+
+<script src="/Areas/Frapid.AddressBook/scripts/index.js"></script>

@@ -1,0 +1,19 @@
+﻿Discovering target: Default
+Discovering tests from assembly: C:\Users\nirvan\Desktop\mixerp\frapid\src\Libraries\Tests\Frapid.Framework.Tests\bin\Debug\Frapid.Framework.Tests.dll
+Appdomain Disposed
+Test Suite Dump
+#0: Frapid.Framework.Tests/Default - 
+End: Test Suite Dump
+Thread#0:Scheduler: get next test for thread
+Thread#:Scheduler: at the end of normal test queue
+Thread#0:Scheduler: enumerator for thread is at end
+Thread#0:Scheduler: No more tests for thread 
+Thread#-1:Scheduler: get next test for thread
+Thread#:Scheduler: at the end of normal test queue
+Thread#-1:Scheduler: enumerator for thread is at end
+Total: 0
+Succeeded: 0
+Ignored: 0
+Pending: 0
+Skipped: 0
+Failed: 0

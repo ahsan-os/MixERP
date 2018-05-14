@@ -1,0 +1,509 @@
+<style>
+    .kanban.container {
+        overflow-y: hidden;
+        overflow-x: auto;
+    }
+
+
+    .kanban.segments .ui.segment {
+        max-width: 300px !important;
+        min-height: 700px;
+        padding: 8px;
+    }
+
+    .kanban-card {
+        cursor: pointer;
+    }
+
+        .kanban-card .header {
+            height: 2.5em;
+        }
+
+    .kanban.segments .ui.segment:nth-child(odd) {
+        background-color: #FAFAFA !important;
+    }
+
+    .kanban.segments .ui.segment:nth-child(even) {
+        background-color: #F9F9F9 !important;
+    }
+
+    .kanban.holder {
+        min-height: 100vh;
+        height: 100%;
+    }
+
+
+
+
+    .kanban.holder {
+    }
+
+    .kanban-card {
+        display: inline-block;
+        width: 200px;
+        border: 1px solid #eaeaea;
+        margin: 2px 1px;
+        cursor: pointer;
+        background: #fff;
+        filter: gray; /* IE6-9 */
+        filter: grayscale(0.8); /* Microsoft Edge and Firefox 35+ */
+        -webkit-filter: grayscale(0.8); /* Google Chrome, Safari 6+ & Opera 15+ */
+        transition: 0.2s;
+        transition-timing-function: ease-in;
+    }
+
+        .kanban-card:hover {
+            z-index: 10;
+            filter: gray; /* IE6-9 */
+            filter: grayscale(0.5); /* Microsoft Edge and Firefox 35+ */
+            -webkit-filter: grayscale(0.5);
+            border-color: #ddd;
+        }
+
+
+        .kanban-card .image {
+            display: block !important;
+        }
+
+        .kanban-card img {
+            width: 100%;
+            height: auto;
+        }
+
+        .kanban-card .header {
+            font-weight: 500;
+            color: red;
+            font-size: 1.32em;
+            padding-bottom: 0.25em;
+        }
+
+        .kanban-card .meta {
+            color: #888;
+            font-size: 0.8em;
+            line-height: 1.2;
+            text-transform: uppercase;
+            letter-spacing: 0.02em;
+        }
+
+        .kanban-card .content, .kanban-card .extra {
+            padding: 0.72em;
+        }
+
+    .unstyled.segment {
+        border: none !important;
+        box-shadow: none !important;
+    }
+
+    .kanban-placeholder {
+        border: 1px dotted #B5B45B;
+        background-color: #FAF9D9;
+        margin: 0 1em 1em 0;
+        height: 400px;
+    }
+
+    .vpad8 {
+        padding: 8px 0;
+    }
+
+    .vpad16 {
+        padding: 16px 0;
+    }
+
+    .tpad8 {
+        padding-top: 8px;
+    }
+
+    .tpad16 {
+        padding-top: 16px;
+    }
+
+    .ui.labels {
+        display: inline;
+    }
+
+    .mini input, .mini .text {
+        font-size: 9px !important;
+    }
+
+    .auto.overflow {
+        overflow: auto;
+    }
+
+    .mini.dropdown .item {
+        font-size: 1.0em !important;
+    }
+
+    .ui.filter.list .list > .item a.header, .ui.filter.list > .item a.header {
+        color: #666 !important;
+        font-size: 0.9em;
+    }
+
+    #ScrudView tr {
+        cursor: pointer;
+        transition: background-color 1s ease;
+    }
+
+        #ScrudView tr:hover {
+            background-color: #f6f6f6;
+        }
+
+    #ScrudView td:hover {
+        background-color: #f1f1f1;
+    }
+</style>
+
+<div class="ui view factory attached segment" style="display: none;">
+    <div class="ui inverted active view dimmer">
+        <div class="content">
+            <div class="ui text loader">
+                <span data-localize="Loading"></span>
+            </div>
+        </div>
+    </div>
+    <div id="VerificationPopUnder" class="ui initially hidden form popunder segment" style="width:400px;z-index:3; position: absolute;">
+        <div class="ui grey header">
+            <span data-localize="Verification"></span>
+        </div>
+        <div class="field">
+            <label for="ReasonTextArea">
+                <span data-localize="Reason"></span>
+            </label>
+            <textarea id="ReasonTextArea"></textarea>
+        </div>
+        <div class="ui buttons">
+            <a id="ApproveButton" class="ui green button" href="javascript:void(0);">
+                <span data-localize="Approve"></span>
+            </a>
+            <a id="RejectButton" class="ui orange button" href="javascript:void(0);">
+                <span data-localize="Reject"></span>
+            </a>
+
+            <a href="javascript:void(0);" class="ui red button" onclick="$('#VerificationPopUnder').fadeOut(500);">
+                <span data-localize="Close"></span>
+            </a>
+        </div>
+    </div>
+
+    <div class="ui stackable divided grid">
+        <div class="three wide filter column">
+            <div class="ui teal big header"><span data-localize="Filters"></span></div>
+            <div class="ui divider"></div>
+            <div data-filter-list class="ui relaxed filter list"></div>
+            <button class="ui small teal button" data-add-filter onclick="showView('filter', true)"><span data-localize="AddNew"></span></button>
+            <div class="vpad8"></div>
+            <section class="filter section" style="display: none;">
+                <div class="ui teal header" data-filter-header></div>
+                <div class="ui divider"></div>
+                <div data-filter-labels class="ui small labels">
+                </div>
+            </section>
+
+        </div>
+        <div class="thirteen wide scrud-grid column">
+            <div class="vpad16">
+                <div class="scrud title ui huge grey header"></div>
+                <div id="scrud-factory-description" class="ui info description message" style="display: none;">
+                </div>
+            </div>
+            <div id="KanbanForm" class="ui small modal">
+                <i class="close icon"></i>
+                <div class="ui grey header">
+                    <span data-localize="AddAKanbanList"></span>
+                </div>
+                <div class="content">
+                    <div class="ui form">
+                        <div class="field">
+                            <label for="KanbanIdInputText">
+                                <span data-localize="KanbanId"></span>
+                            </label>
+                            <input type="text" readonly id="KanbanIdInputText" />
+                        </div>
+                        <div class="field">
+                            <label for="KanbanNameInputText">
+                                <span data-localize="KanbanName"></span>
+                            </label>
+                            <input type="text" id="KanbanNameInputText" />
+                        </div>
+                        <div class="field">
+                            <label for="KanbanDescriptionTextArea">
+                                <span data-localize="Description"></span>
+                            </label>
+                            <textarea id="KanbanDescriptionTextArea"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="actions">
+                    <div class="ui basic buttons">
+                        <button class="ui cancel button">
+                            <span data-localize="Cancel"></span>
+                        </button>
+                        <a href="javascript:void(0);" class="ui button" onclick="saveOrUpdateKanban();">
+                            <span data-localize="OK"></span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="ui stackable vpad8 grid">
+                <div class="twelve wide column">
+                    <div class="ui basic buttons">
+                        <a id="AddNewButton" class="ui basic button">
+                            <span data-localize="AddNew"></span>
+                        </a>
+                        <a id="VerifyButton" class="ui basic button" style="display: none;">
+                            <span data-localize="Verify"></span>
+                        </a>
+                        <div class="ui icon top left pointing dropdown basic button" id="ExportDropDown">
+                            <span>
+                                <span data-localize="Export"></span>
+                            </span>
+                            <div class="menu">
+                                <div class="header">
+                                    <span data-localize="ExportThisDocument"></span>
+                                </div>
+                                <a class="item" href="javascript:void(0);" onclick="createDoc();">
+                                    <i class="file word outline blue icon"></i>
+                                    <span data-localize="ExportToDoc"></span>
+                                </a>
+                                <a class="item" href="javascript:void(0);" onclick="createXls();">
+                                    <i class="file excel outline green icon"></i>
+                                    <span data-localize="ExportToExcel"></span>
+                                </a>
+                                <a class="item" href="javascript:void(0);" onclick="createPDF();">
+                                    <i class="file pdf outline red icon"></i>
+                                    <span data-localize="ExportToPDF"></span>
+                                </a>
+                            </div>
+                        </div>
+                        <a id="PrintButton" href="javascript:void(0);" onclick="print()" class="ui basic button">
+                            <span data-localize="Print"></span>
+                        </a>
+                    </div>
+                </div>
+                <div class="right aligned four wide column">
+                    <div class="ui basic icon action mini buttons">
+                        <a class="ui active green basic icon button" data-target="kanban" data-localized-title="KanbanView">
+                            <i class="block layout icon"></i>
+                        </a>
+                        <a class="ui basic icon button" data-target="grid" data-localized-title="GridView">
+                            <i class="grid layout icon"></i>
+                        </a>
+                        <a class="ui basic icon button" data-target="filter" data-localized-title="FilterView">
+                            <i class="icons">
+                                <i class="filter layout icon"></i>
+                                <i class="corner add icon"></i>
+                            </i>
+                        </a>
+                        <a class="ui basic icon button" data-target="import" data-localized-title="Import">
+                            <i class="upload layout icon"></i>
+                        </a>
+                        <a class="ui basic icon button" onclick="clearQuery();" data-localized-title="ClearFilters">
+                            <i class="delete icon"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="ui stackable form segment" ID="Annotation" style="display: none;">
+                <div class="field">
+                    <button class="ui green button" id="ShowButton"><span data-localize="Show"></span></button>
+                </div>
+            </div>
+            <div class="ui stackable grid">
+                <div class="sixteen wide column">
+                    <div data-target="grid" style="display: none;">
+                        <div id="scrudjson" class="vpad8" style="width: 100%; overflow: auto;">
+                        </div>
+                    </div>
+
+                    <div data-target="kanban">
+                        <div class="kanban container">
+                            <div class="ui horizontal kanban segments" id="kanban" style="display: none;"></div>
+                        </div>
+                    </div>
+
+                    <div class="vpad16" data-target="filter">
+                        <div class="ui huge grey header">
+                            <span id="FilterName">
+                            </span>
+                        </div>
+                        <div class="ui divider"></div>
+
+                        <div class="ui stackable form" id="FilterForm">
+                            <div class="five fields">
+                                <div class="field">
+                                    <label for="ColumnSelect">
+                                        <span data-localize="SelectAColumn"></span>
+                                    </label>
+                                    <select id="ColumnSelect" data-scope="column" required></select>
+                                </div>
+                                <div class="field">
+                                    <label for="FilterConditionSelect">
+                                        <span data-localize="FilterCondition"></span>
+                                    </label>
+                                    <select id="FilterConditionSelect" data-scope="filter-condition" required></select>
+                                </div>
+                                <div class="field">
+                                    <label for="ValueInputText">
+                                        <span data-localize="Value"></span>
+                                    </label>
+                                    <input id="ValueInputText" required />
+                                </div>
+                                <div class="field">
+                                    <label for="AndInputText">
+                                        <span data-localize="And"></span>
+                                    </label>
+                                    <input id="AndInputText" readonly="readonly" />
+                                </div>
+                                <div class="field">
+                                    <label>&nbsp;</label>
+                                    <button class="ui button" id="AddFilterButton">
+                                        <span data-localize="Add"></span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <table class="ui striped table" id="FilterTable">
+                            <thead>
+                                <tr>
+                                    <th style="width: 100px;">
+                                        <span data-localize="Actions"></span>
+                                    </th>
+                                    <th>
+                                        <span data-localize="ColumnName"></span>
+                                    </th>
+                                    <th>
+                                        <span data-localize="Condition"></span>
+                                    </th>
+                                    <th>
+                                        <span data-localize="Value"></span>
+                                    </th>
+                                    <th>
+                                        <span data-localize="And"></span>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                        <div class="ui large grey header">
+                            <span data-localize="SaveThisFilter"></span>
+                        </div>
+                        <div class="ui divider"></div>
+                        <div class="ui form">
+                            <div class="fields">
+                                <div class="four wide field">
+                                    <label>
+                                        <span data-localize="FilterName"></span>
+                                    </label>
+                                    <input id="FilterNameInputText" />
+                                </div>
+                            </div>
+                            <div class="ui basic buttons">
+                                <button class="ui basic button" id="SaveFilterButton">
+                                    <span data-localize="Save"></span>
+                                </button>
+                                <button class="ui basic button" id="ManageFiltersButton">
+                                    <span data-localize="ManageFilters"></span>
+                                </button>
+                                <button class="ui basic button">
+                                    <span data-localize="Cancel"></span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="ui filter small modal">
+                            <i class="close icon"></i>
+                            <div class="ui huge grey header">
+                                <span data-localize="ManageFilters"></span>
+                            </div>
+                            <div class="content">
+                                <div class="ui form" style="max-width: 400px;">
+                                    <div class="field">
+                                        <label><span data-localize="SelectAFilter"></span></label>
+                                        <select class="ui search dropdown filter" id="FilterSelect"></select>
+                                    </div>
+                                    <div class="ui basic buttons">
+                                        <a class="ui close button" onclick="loadFilterForEdit();">
+                                            <span data-localize="Edit"></span>
+                                        </a>
+                                        <a class="ui close button" onclick="deleteSavedFilter();">
+                                            <span data-localize="Delete"></span>
+                                        </a>
+                                        <a class="ui close button">
+                                            <span data-localize="Close"></span>
+                                        </a>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="actions">
+                                <div class="ui basic buttons">
+                                    <a class="ui basic close button" id="RemoveDefaultFilterButton">
+                                        <span data-localize="RemoveAsDefault"></span>
+                                    </a>
+                                    <a class="ui basic button" id="MakeUserDefaultFilterButton">
+                                        <span data-localize="MakeAsDefault"></span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="vpad16" data-target="import">
+                        <div class="ui huge grey header">
+                            <span data-localize="DataImport"></span>
+                        </div>
+
+                        <div class="ui basic buttons">
+                            <a class="ui basic button" id="DownloadTemplateButton">
+                                <span data-localize="ExportData"></span>
+                            </a>
+                            <div class="ui basic button">
+                                <label for="file">
+                                    <span data-localize="ImportData"></span>
+                                </label>
+                                <input type="file" id="file" style="display:none;">
+                            </div>
+                        </div>
+
+                        <div class="big error"></div>
+
+                        <div id="ProgressBar" class="vpad16" style="display:none;">
+                            <div data-percent="0" class="ui indicating progress active">
+                                <div style="transition-duration: 300ms; width: 0%;" class="bar"></div>
+                                <div class="label"></div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    <div class="ui load stackable grid unstyled segment" id="Pager">
+                        <div class="left aligned six wide column">
+                            <div class="ui breadcrumb">
+                                <a class="section current page anchor"></a>
+                                <div class="divider">/ </div>
+                                <a class="section total pages anchor"></a>
+                            </div>
+                        </div>
+                        <div class="right aligned ten wide column">
+                            <a class="ui left attached labeled icon button" onclick="showPreviousPage();">
+                                <i class="left arrow icon"></i>
+                                <span data-localize="Previous"></span>
+                            </a>
+                            <a class="ui right attached right labeled icon button" onclick="showNextPage();">
+                                <span data-localize="Next"></span>
+                                <i class="right arrow icon"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+<input type="hidden" id="MarkupHidden" />
+<a id="DownloadAnchor" download></a>

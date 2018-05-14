@@ -1,0 +1,94 @@
+﻿@using Frapid.WebsiteBuilder
+@using Frapid.WebsiteBuilder.ViewModels
+@model  Frapid.WebsiteBuilder.ViewModels.ContactUs
+
+@{
+    ViewBag.Title = "Contact Us";
+    Layout = ViewBag.LayoutPath + ViewBag.Layout;
+}
+<div id="section" class="ui basic padded signup left aligned segment">
+    <div class="ui container">
+        <div class="ui grey huge header">@Resources.ContactUs</div>
+        <div class="ui divider"></div>
+        <div class="ui two column stackable grid">
+            @foreach (var item in Model.Contacts)
+            {
+                <div class="column">
+                    <div class="ui teal big header">
+                        @item.Title
+
+                        @if (!string.IsNullOrWhiteSpace(item.Name))
+                        {
+                            <div class="sub header">
+                                @item.Name
+                            </div>
+                        }
+                    </div>
+                    <div>
+                        @if (!string.IsNullOrWhiteSpace(item.Position))
+                        {
+                            @item.Position
+                        }
+                        @if (!string.IsNullOrWhiteSpace(item.Address))
+                        {
+                            <br />
+                            @item.Address
+                        }
+
+                        @if (!string.IsNullOrWhiteSpace(item.City))
+                        {
+                            <br />
+                            @item.City
+                        }
+                        @if (!string.IsNullOrWhiteSpace(item.State))
+                        {
+                            @item.State
+                        }
+                        @if (!string.IsNullOrWhiteSpace(item.Country))
+                        {
+                            @item.Country
+                        }
+                        @if (!string.IsNullOrWhiteSpace(item.PostalCode))
+                        {
+                            <br /><em>@Resources.PostalCode:</em>
+                            @item.PostalCode
+                        }
+                        <br />
+                        <br />
+
+                        @if (!string.IsNullOrWhiteSpace(item.Telephone))
+                        {
+                            <strong>@Resources.Telephone:</strong>
+                            @item.Telephone
+                        }
+                        @if (!string.IsNullOrWhiteSpace(item.Email) && item.DisplayEmail)
+                        {
+                            <br /><strong>@Resources.Email:</strong>
+                            <a href="mailto:@item.Email">@item.Email</a>
+                        }
+                        @if (!string.IsNullOrWhiteSpace(item.Details))
+                        {
+                            @Html.Raw(item.Details)
+                        }
+                    </div>
+
+                    @if (item.DisplayContactForm && !string.IsNullOrWhiteSpace(item.Email))
+                    {
+                        <br />
+                        <button class="ui teal button" onclick="showContactForm(this)">@Resources.SendEmail</button>
+                        @Html.Partial("~/Areas/Frapid.WebsiteBuilder/Views/Frontend/ContactUs/ContactForm.cshtml", new ContactForm { ContactId = item.ContactId })
+                    }
+
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+<script>
+    function showContactForm(el) {
+        el = $(el);
+        el.siblings(".ui.contact.form").slideDown(200);
+        el.remove();
+    };
+</script>

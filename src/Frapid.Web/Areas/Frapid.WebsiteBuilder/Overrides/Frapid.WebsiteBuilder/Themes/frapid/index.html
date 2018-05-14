@@ -1,0 +1,182 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>@ViewBag.Title</title>
+    <!-- core CSS -->
+    <link href="/scripts/semantic-ui/semantic.min.css" rel="stylesheet" />
+    <script src="/scripts/jquery-2.2.4.js"></script>
+    <script src="/scripts/semantic-ui/semantic.min.js"></script>
+    <link href="css/site.css" rel="stylesheet">
+</head><!--/head-->
+<body>
+    <div class="ui fixed stackable basic menu">
+        <div class="ui container">
+            <a class="logo" href="/">
+                <img src="images/frapid-logo.png" style="height:24px;" />
+            </a>
+            <div class="right menu">
+                <a class="item" href="/">
+                    Home
+                </a>
+                <a class="item" href="/account/sign-up">
+                    Sign Up
+                </a>
+                <a class="item" href="/dashboard">
+                    Admin Area
+                </a>
+                <a class="item" href="/contact-us">
+                    Contact Us
+                </a>
+            </div>
+        </div>
+    </div>
+    <section class="body">
+        <div class="ui basic inverted attached segment" id="banner">
+            <div class="ui caption container">
+                <div class="ui huge inverted header">
+                    Frapid Framework
+                </div>
+                <p>
+                     Howdy, your Frapid instance is now up and running.
+                     <br/>
+                      Login to your admin area now and start building your website. 
+                <p>
+                <div class="ui hidden divider"></div>
+                <a class="ui small button" href="/dashboard">Admin Area</a>
+                <a class="ui small button" href="http://docs.frapid.com/" target="_blank">Read Documentation</a>
+            </div>
+        </div>
+        <div class="ui attached vertically padded segment">
+            <div class="ui story container">
+                <div class="ui huge header">
+                    <span>Learn More</span> About Frapid
+                </div>
+                <div class="ui divider"></div>
+                <p>
+                    Frapid is a multi-tenant application development framework released under MIT License. 
+                    <br/> Learn more about Frapid and quickly add contents in your website. 
+                </p>
+            </div>
+
+
+
+            <div class="ui three column page stackable doubling padded grid">
+                <div class="column">
+                    <div class="ui ad box grid">
+                        <div class="ad icon four wide column">
+                            <i class="user circular icon"></i>
+                        </div>
+                        <div class="ad details twelve wide column">
+                            <div class="ui header">Edit Header</div>
+                            <p>
+                                Read the <a href="http://docs.frapid.com/" target="_blank">documentation</a>
+                                on editing your site header.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="column">
+                    <div class="ui ad box grid">
+                        <div class="ad icon four wide column">
+                            <i class="user circular icon"></i>
+                        </div>
+                        <div class="ad details twelve wide column">
+                            <div class="ui header">Edit Footer</div>
+                            <p>
+                                Edit the contents and links in your 
+                                <a href="http://docs.frapid.com/site/footer" target="_blank">site footer</a>.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="column">
+                    <div class="ui ad box grid">
+                        <div class="ad icon four wide column">
+                            <i class="user circular icon"></i>
+                        </div>
+                        <div class="ad details twelve wide column">
+                            <div class="ui header">Manage Pages</div>
+                            <p>
+                                Quickly add site pages, edit, and 
+                                <a href="http://docs.frapid.com/site/contents" target="_blank">manage them</a>.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="column">
+                    <div class="ui ad box grid">
+                        <div class="ad icon four wide column">
+                            <i class="user circular icon"></i>
+                        </div>
+                        <div class="ad details twelve wide column">
+                            <div class="ui header">Menu Builder</div>
+                            <p>
+                                Learn how you can add & edit 
+                                <a href="http://docs.frapid.com/site/menus" target="_blank">site menus</a>.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="column">
+                    <div class="ui ad box grid">
+                        <div class="ad icon four wide column">
+                            <i class="user circular icon"></i>
+                        </div>
+                        <div class="ad details twelve wide column">
+                            <div class="ui header">Develop Frapid Apps</div>
+                            <p>
+                                Develop your own open source or commercial 
+                                <a href="http://docs.frapid.com/site/develop-frapid-app" target="_blank">frapid apps</a>.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="column">
+                    <div class="ui ad box grid">
+                        <div class="ad icon four wide column">
+                            <i class="user circular icon"></i>
+                        </div>
+                        <div class="ad details twelve wide column">
+                            <div class="ui header">Improve Frapid</div>
+                            <p>
+                                Improve Frapid by
+                                <a href="https://github.com/frapid/frapid/issues/new" target="_blank">documenting</a>
+                                and fixing bugs.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="ui attached brown vertically padded segment" id="contact">
+            <div class="ui story container">
+                <div class="ui huge header">
+                    Keep In Touch
+                </div>
+                <div class="ui hidden divider"></div>
+                <p>
+                    Want us to build an application or website for you?
+                    <br/>
+                    Why not contact us today? We will be happy to listen to you!
+                </p>
+                <div class="ui hidden divider"></div>
+                <p>
+                <a class="ui small basic button" href="/dashboard">Contact Us</a>
+                </p>
+            </div>
+        </div>                       
+    </div>
+    <footer class="ui page grid">
+        <div class="column">
+            <div class="footer">
+            &copy; 2015 Your Company. Designed by <a href="http://frapid.com">Frapid Framework</a>.
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

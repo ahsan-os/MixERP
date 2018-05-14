@@ -1,0 +1,133 @@
+﻿@using Frapid.WebsiteBuilder
+@model Frapid.WebsiteBuilder.DTO.Content
+
+@{
+    bool isMarkDown = !string.IsNullOrWhiteSpace(Model.Markdown);
+    ViewBag.Title = Model.Title;
+    Layout = ViewBag.Layout;
+
+    var publishOn = Model.PublishOn ?? DateTimeOffset.Now;
+}
+
+<script src="/scripts/ace-1.2.2/src-min-noconflict/ace.js"></script>
+<script src="/scripts/marked-0.3.5/lib/marked.js"></script>
+<style>
+    #editor {
+        min-height: 1000px;
+    }
+
+    .field .ui.checkbox {
+        padding-right: 1em;
+    }
+
+    .action.grid > .column {
+        padding: 0 !important;
+    }
+</style>
+<div class="ui attached content segment" style="min-height: 1000px;">
+    <div class="ui stackable doubling grid" style="min-height: 1000px;">
+        <div class="three wide column">
+            <div class="ui one column grid">
+                <div class="right aligned column">
+                    <button class="ui icon basic violet circular button" onclick="maximize('editor', '');">
+                        <i class="code icon"></i>
+                    </button>
+                    <button class="ui icon violet circular button" onclick="maximize('preview', '');">
+                        <i class="expand icon"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="column">
+                <div class="ui violet header">@Resources.CreateNewPage</div>
+            </div>
+            <div class="ui divider"></div>
+            <div wi class="ui flat form">
+                <input type="hidden" id="ContentIdInputHidden" data-entity="content_id" class="integer" value="@Model.ContentId" />
+                <input type="hidden" id="MarkdownInputHidden" data-entity="markdown" value="@Model.Markdown" />
+                <div class="">
+                    <div class="field">
+                        <label>@Resources.Title</label>
+                        <input id="TitleInputText" type="text" data-entity="title" value="@Model.Title" required="" />
+                    </div>
+                    <div class="field">
+                        <label>@Resources.Alias</label>
+                        <input id="AliasInputText" type="text" data-entity="alias" value="@Model.Alias" required="" />
+                    </div>
+                    <div class="field">
+                        <label>@Resources.Category</label>
+                        <select id="CategoryIdSelect" class="ui search integer dropdown"
+                                data-entity="category_id"
+                                required=""
+                                data-placeholder="true"
+                                data-api="/api/views/website/website-category-view/display-fields"
+                                data-api-value-field="Value"
+                                data-api-key-field="Key"
+                                data-api-selected-value="@Model.CategoryId"></select>
+                    </div>
+                    <div class="field">
+                        <label>@Resources.Tags</label>
+                        <div class="ui tags" id="TagsDiv">
+                            <input type="text" value="@Model.Tags" />
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label>@Resources.PublishOn</label>
+                        <input id="PublishOnInputText" type="text" class="date" data-entity="publish_on" value="@(publishOn.ToString("d"))" required="" />
+                    </div>
+                    <div class="field">
+                        <label>@Resources.SeoDescription</label>
+                        <input id="SeoDescriptionInputText" type="text" data-entity="seo_description" value="@Model.SeoDescription" required="" />
+                    </div>
+                </div>
+                <div class="field">
+                    <label>&nbsp;</label>
+                    <div class="ui checkbox">
+                        <label for="IsDraftCheckbox">@Resources.Draft</label>
+                        <input id="IsDraftCheckbox" type="checkbox" data-value="@Model.IsDraft" />
+                    </div>
+
+                    <div class="ui checkbox">
+                        <label for="IsHomePageCheckbox">@Resources.HomePage</label>
+                        <input id="IsHomePageCheckbox" type="checkbox" data-value="@Model.IsHomepage" />
+                    </div>
+                    <div class="ui checkbox">
+                        <label for="IsMarkdownCheckbox">@Resources.IsMarkdown</label>
+                        <input id="IsMarkdownCheckbox" type="checkbox" data-value="@isMarkDown" />
+                    </div>
+                </div>
+                <div class="ui basic buttons">
+                    <button class="ui basic button" id="SaveButton">@Resources.Save</button>
+                    <a class="ui basic button" id="CancelButton">@Resources.Cancel</a>
+                </div>
+            </div>
+
+            <div class="ui container">
+                <div class="error vpad8 initially hidden">
+                    <div class="ui brown header">@Resources.Error</div>
+                    <ul class="ui red bulleted list"></ul>
+                    <div class="ui divider"></div>
+                </div>
+            </div>
+
+        </div>
+        <div class="thirteen wide column">
+            <div class="ui stackable two column divided action grid">
+                <div class="column" data-target="editor">
+                    <div id="editor">
+                    </div>
+                </div>
+                <div class="column" data-target="preview">
+                    <div id="content" class="body" data-entity="contents" data-raw="true">
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script>
+    var html = "@Html.Encode(HttpUtility.JavaScriptStringEncode(Model.Contents))";
+</script>
+
+<script src="~/Areas/Frapid.WebsiteBuilder/scripts/contents/manage.js"></script>

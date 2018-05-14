@@ -1,0 +1,43 @@
+﻿@model dynamic
+
+@{
+    ViewBag.Title = MixERP.Social.Resources.MixERPSocialApp;
+    Layout = ViewBag.Layout;
+}
+
+<link rel="stylesheet" type="text/css" href="/Areas/MixERP.Social/styles/social.css"/>
+
+<div class="activities">
+    <div class="heading">@MixERP.Social.Resources.AddANewPost</div>
+    <div class="add a new post">
+        <div class="post">
+            <textarea id="WhatsOnYourMindTextArea" placeholder="@MixERP.Social.Resources.WhatsOnYourMind" rows="4"></textarea>
+        </div>
+        <div class="ui gallery">
+        </div>
+        <div class="buttons">
+            <div class="left">
+                <input id="UploadInputFile" type="file" multiple="multiple" accept=".jpg,.jpeg,.png,.gif,.xls,.xlsx,.doc,.docx,.ppt,.pptx,.pdf" style="display: none;">
+                <button onclick="$('#UploadInputFile').trigger('click');" class="ui basic icon button" title="@MixERP.Social.Resources.Attach"><i class='photo icon'></i></button>
+            </div>
+            <div class="right">
+                <button id="PostButton" class="ui basic blue button">@MixERP.Social.Resources.Post</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="tpad8">
+        <input id="UploadAvatarInputFile" class="image" type="file" multiple="multiple" accept=".jpg,.jpeg,.png,.gif" style="display: none;">
+        <button onclick="$('#UploadAvatarInputFile').trigger('click');" class="ui basic icon button" title="@MixERP.Social.Resources.UploadYourProfilePicture">@MixERP.Social.Resources.MyProfilePicture</button>
+    </div>
+    <div class="heading">@MixERP.Social.Resources.AllStories</div>
+    <div class="all stories">
+    </div>
+    <a class="ui load older stories basic fluid button" onclick="loadOlderStories(this)">@MixERP.Social.Resources.LoadOlderStories</a>
+</div>
+
+<div id="LightBoxModal" class="ui small modal">
+    <img style="width: 100%;" />
+</div>
+
+<script src="/Areas/MixERP.Social/scripts/social.js"></script>

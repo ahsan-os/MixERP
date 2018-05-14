@@ -1,0 +1,22 @@
+﻿@using Frapid.i18n
+@{
+    ViewBag.Title = I18N.SignUp;
+    Layout = ViewBag.LayoutPath + ViewBag.Layout;
+    ViewBag.Description = I18N.CreateYourAccountOnOurSite;
+}
+@if (CultureManager.IsRtl())
+{
+    <link rel="Stylesheet" href="@Href("~/assets/css/backend.rtl.css")" />
+}
+else
+{
+    <link rel="Stylesheet" href="@Href("~/assets/css/backend.css")" />
+}
+
+<div class="ui very relaxed tall container">
+    <div class="ui red huge header">@I18N.RegistrationClosed</div>
+    <div class="ui divider"></div>
+    <div>
+        @Html.Raw(I18N.RegistrationClosedMessage)
+    </div>
+</div>

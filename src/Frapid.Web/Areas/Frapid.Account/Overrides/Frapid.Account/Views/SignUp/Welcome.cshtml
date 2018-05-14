@@ -1,0 +1,26 @@
+﻿@using Frapid.i18n
+
+@{
+    ViewBag.Title = "Welcome";
+    Layout = ViewBag.LayoutPath + ViewBag.Layout;
+}
+@if (CultureManager.IsRtl())
+{
+    <link rel="Stylesheet" href="@Href("~/assets/css/backend.rtl.css")" />
+}
+else
+{
+    <link rel="Stylesheet" href="@Href("~/assets/css/backend.css")" />
+}
+
+<div id="section" class="ui basic padded signup left aligned segment">
+    <div class="ui container">
+        <div class="ui header">Welcome</div>
+        <div class="ui divider"></div>
+        <p>
+            Thank you registering on our website. Your account has been successfully activated.
+        </p>
+        <a href="/account/sign-in" class="ui small padded positive button">Sign In</a>
+        <a href="/" class="ui small padded purple button">Return Home</a>
+    </div>
+</div>

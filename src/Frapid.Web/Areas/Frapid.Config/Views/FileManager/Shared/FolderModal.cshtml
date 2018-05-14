@@ -1,0 +1,19 @@
+﻿<div class="ui small modal" id="FolderModal">
+    <i class="close icon"></i>
+    <div class="header">
+        @I18N.CreateANewFolder
+    </div>
+    <div class="content">
+        <div class="ui padded form">
+            <div class="field">
+                <label>@I18N.Location</label>
+                <div class="ui container label" data-container=""></div>
+            </div>
+            <div class="field">
+                <label>@I18N.FolderName</label>
+                <input type="text" />
+            </div>
+            <button class="ui button" onclick="createFolder(this);">@I18N.Create</button>
+        </div>
+    </div>
+</div>

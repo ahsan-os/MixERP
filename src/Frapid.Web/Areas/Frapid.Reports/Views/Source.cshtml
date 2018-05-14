@@ -1,0 +1,163 @@
+﻿@model Frapid.Reports.ViewModels.ParameterMeta
+
+@{
+    ViewBag.Title = @I18N.FrapidReport;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>@I18N.FrapidReport</title>
+
+    <link rel="stylesheet" type="text/css" href="/scripts/semantic-ui/components/reset.min.css" />
+    <link rel="stylesheet" type="text/css" href="/scripts/semantic-ui/components/icon.min.css" />
+    <link rel="stylesheet" type="text/css" href="/scripts/semantic-ui/components/transition.min.css" />
+    <link rel="stylesheet" type="text/css" href="/scripts/semantic-ui/components/form.min.css" />
+
+    <link rel="stylesheet" type="text/css" href="/scripts/semantic-ui/components/segment.min.css" />
+    <link rel="stylesheet" type="text/css" href="/scripts/semantic-ui/components/modal.min.css" />
+    <link rel="stylesheet" type="text/css" href="/scripts/semantic-ui/components/dimmer.min.css" />
+
+    <link rel="stylesheet" type="text/css" href="/Areas/Frapid.Reports/styles/source.css" />
+
+
+    <script src="/i18n/resources.js?cultureCode=@CultureManager.GetCurrentUiCulture().Name"></script>
+    <script src="/assets/js/backend.js"></script>
+
+    <script src="/scripts/trumbowyg/dist/trumbowyg.min.js"></script>
+    <link rel="stylesheet" href="/scripts/trumbowyg/dist/ui/trumbowyg.min.css">
+</head>
+<body>
+    <div class="hide on print toolbar">
+        <div onclick="window.print();" class="print button" title="@I18N.PrintThisReport">
+            <i class="print icon"></i>
+        </div>
+        <div class="mail button" title="@I18N.EmailThisReport">
+            <i class="mail icon"></i>
+        </div>
+        <div class="pdf button" title="@I18N.DownloadPdf">
+            <i class="file pdf outline icon"></i>
+        </div>
+        <div class="excel button" title="@I18N.DownloadExcel">
+            <i class="file excel outline icon"></i>
+        </div>
+        <div class="word button" title="@I18N.DownloadWord">
+            <i class="file word outline icon"></i>
+        </div>
+        <div class="xml button" title="@I18N.DownloadXml">
+            <i class="code icon"></i>
+        </div>
+        <div class="text button" title="@I18N.DownloadText">
+            <i class="file text outline icon"></i>
+        </div>
+        <div class="zoom in button" title="@I18N.ZoomIn">
+            <i class="zoom icon"></i>
+        </div>
+        <div class="zoom out button" title="@I18N.ZoomOut">
+            <i class="zoom out icon"></i>
+        </div>
+        <div onclick="document.location = document.location" class="refresh button" title="@I18N.Reload">
+            <i class="refresh icon"></i>
+        </div>
+    </div>
+
+    <div id="EmailModal" class="ui modal hide on print">
+        <i class="close icon"></i>
+        <div class="header">
+            @I18N.SendEmail
+        </div>
+        <div class="content">
+            <div class="ui flat form basic segment">
+                <div class="field">
+                    <label>@I18N.SendTo</label>
+                    <input id="SendToInputEmail" type="email" required data-persist placeholder="Enter Email Address" />
+                </div>
+                <div class="field">
+                    <label>@I18N.Subject</label>
+                    <input id="SubjectInputText" type="text" required data-persist placeholder="Enter Subject" value="@Model.ReportTitle" />
+                </div>
+                <div class="field">
+                    <label>@I18N.Message</label>
+                    <textarea id="MessageTextArea" placeholder="Enter Your Message" rows="10">@I18N.PleaseFindAttachedDocument</textarea>
+                </div>
+                <div class="hidden field">
+                    <input type="text" id="FileNameInputText" value="@Model.ReportTitle" />
+                </div>
+                <div class="attachment vpad8 field">
+                    <label>@I18N.Attachments</label>
+                    <a href="javascript:void(0);">
+                        <i class="file pdf red outline icon"></i><span class="title">@(Model.ReportTitle).pdf</span>
+                    </a>
+                </div>
+                <button id="SendEmailButton" class="ui positive button">@I18N.Send</button>
+                <button class="ui negative button" onclick="$('#EmailModal').modal('hide');">@I18N.Close</button>
+            </div>
+        </div>
+    </div>
+    <a id="DownloadAnchor" style="display: none;"></a>
+
+    @Html.Action("ReportMarkup", new { path = Model.Path })
+
+    <script>
+        $(document).ready(function () {
+            const template = `<div style='background-color:{0};border:1px solid {1};margin:0.5em;text-align:center;'>
+                                <div class ='canvas container' style='width:{3}px;height:{4}px;'>
+                                    <canvas id='Canvas{2}' width='{3}' height='{4}'></canvas>
+                                </div>
+                                <br />
+                                <div id='Canvas{2}-legend'></div></div>`;
+
+            function createCanvas(target, backgroundColor, borderColor, index, width, height) {
+                const html = window.stringFormat(template, backgroundColor, borderColor, index, width, height);
+                const el = $(html);
+                target.append(el);
+            };
+
+            function displayChart(selector, canvasId, legendId, chartType, hideGridView, titleColumnIndex, valueColumnIndex) {
+                window.prepareReportChart(selector, canvasId, legendId, chartType, hideGridView, titleColumnIndex, valueColumnIndex);
+            };
+
+            const charts = $("chart");
+            $("charts").after("<div class='data visualization' />");
+            const container = $(".data.visualization");
+
+            $.each(charts, function () {
+                const el = $(this);
+
+                const index = el.attr("gridviewindex");
+
+                const selector = window.stringFormat('GridView{0}', index);
+                const canvasId = window.stringFormat("Canvas{0}", index);
+                const legendId = canvasId + '-legend';
+                const chartType = el.attr("type").toLowerCase();
+                const backgroundColor = el.attr("backgroundcolor") || "transparent";
+                const borderColor = el.attr("bordercolor") || "transparent";
+                const width = el.attr("width");
+                const height = el.attr("height");
+                const hideGridView = el.attr("hidegridview").toLowerCase().substring(0, 1) === "t";
+                const titleColumnIndex = el.attr("titlecolumnindex");
+                const valueColumnIndex = el.attr("valuecolumnindex");
+
+                createCanvas(container, backgroundColor, borderColor, index, width, height);
+                displayChart(selector, canvasId, legendId, chartType, hideGridView, titleColumnIndex, valueColumnIndex);
+            });
+
+            $("charts").remove();
+
+            $.each($("[data-remove-row-on-zero]"), function () {
+                const value = window.parseFloat2($(this).text().trim());
+                if (value === 0) {
+                    $(this).closest("tr").remove();
+                };
+            });
+        });
+    </script>
+    <script src="/Areas/Frapid.Reports/scripts/reports.js"></script>
+    <script src="/Areas/Frapid.Reports/scripts/jquery.rowspanizer.min.js"></script>
+	<script>
+		setTimeout(function(){
+		  $("table[id^=GridView]").rowspanizer({vertical_align: 'middle'});
+		}, 5000);
+	</script>
+</body>
+</html>

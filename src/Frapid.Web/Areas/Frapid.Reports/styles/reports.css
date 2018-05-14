@@ -1,0 +1,74 @@
+﻿#dashboard-container {
+    padding: 1em 0 !important;
+}
+
+.padded.container {
+    padding: 2em !important;
+}
+
+.collapsed.column {
+    padding: 0 !important;
+}
+
+/*.pusher, .report-panel, [data-ng-view] {
+    height: 100% !important;
+}*/
+
+.report-panel {
+    background-color: #949596;
+    padding-bottom: 4em;
+}
+
+.toolbar {
+    background-color: #444;
+    padding-left: 1em;
+    text-align: left;
+}
+
+    .toolbar .button {
+        background: transparent;
+        border: 0;
+        color: #dadada;
+        cursor: pointer;
+        display: inline-flex;
+        font-size: 0.8em;
+        height: 3.5em;
+        margin: 0 2px;
+        padding: 0.8em 0.5em;
+        width: 2em;
+        text-shadow: 2px 2px 20px white;
+    }
+
+        .toolbar .button:hover {
+            background-color: green;
+        }
+
+iframe {
+    background-color: #fafafa;
+    border: none;
+    display: block;
+    min-height: 800px;
+    margin: 0 auto;
+    overflow: auto;
+    width: 1000px;
+}
+
+.vertically.very.relaxed {
+    padding: 3em 0;
+}
+
+.filter.container {
+    padding: 1em;
+}
+
+.report.title {
+    font-size: 1.2em !important;
+    padding: 0 0 1em 0;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: #666;
+}
+
+select {
+    background-color: transparent !important;
+}

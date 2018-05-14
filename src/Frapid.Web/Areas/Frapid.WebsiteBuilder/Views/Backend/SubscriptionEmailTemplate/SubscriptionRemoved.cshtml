@@ -1,0 +1,12 @@
+﻿@model Frapid.WebsiteBuilder.ViewModels.Template
+
+@{
+    ViewBag.Title = "Subscription Removed Email";
+    Layout = ViewBag.Layout;
+}
+<link href="/my/template/css/site.css" rel="stylesheet">
+<script src="/scripts/ace-1.2.2/src-min-noconflict/ace.js"></script>
+<script>
+    var saveUrl = "/dashboard/website/subscription/removed/save";
+</script>
+@Html.Partial("~/Areas/Frapid.WebsiteBuilder/Views/Backend/SubscriptionEmailTemplate/Shared/Editor.cshtml")

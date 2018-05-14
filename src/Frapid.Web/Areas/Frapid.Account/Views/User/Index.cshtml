@@ -1,0 +1,66 @@
+﻿@model dynamic
+
+@{
+    ViewBag.Title = I18N.UserManagement;
+    Layout = ViewBag.Layout;
+}
+<script>
+    var scrudFactory = new Object();
+
+    scrudFactory.title = window.translate("UserManagement");
+
+    scrudFactory.viewAPI = "/api/views/account/user-scrud-view";
+    scrudFactory.viewTableName = "account.user_scrud_view";
+
+    scrudFactory.formAPI = "/api/forms/account/users";
+    scrudFactory.formTableName = "account.users";
+
+    scrudFactory.excludedColumns = ["AuditUserId", "AuditTs", "Password"];
+    scrudFactory.hiddenColumns = ["Password"];
+
+    scrudFactory.allowDelete = true;
+    scrudFactory.allowEdit = false;
+
+    scrudFactory.live = "Email";
+
+    scrudFactory.layout = [
+        {
+            tab: "",
+            fields: [
+                ["UserId", ""],
+                ["Email", "Name"],
+                ["OfficeId", "RoleId"],
+                ["Phone", "Status"]
+            ]
+        }
+    ];
+
+    scrudFactory.card = {
+        header: "Name"
+    };
+
+    scrudFactory.keys = [
+        {
+            property: "OfficeId",
+            url: '/api/forms/core/offices/display-fields',
+            data: null,
+            valueField: "Key",
+            textField: "Value"
+        },
+        {
+            property: "RoleId",
+            url: '/api/forms/account/roles/display-fields',
+            data: null,
+            valueField: "Key",
+            textField: "Value"
+        }
+    ];
+
+    $.get('/ScrudFactory/View.html?id=' + Math.random(), function(view) {
+        $("#ScrudFactoryView").html(view);
+        $.cachedScript("/assets/js/scrudfactory-view.js");
+    });
+</script>
+
+<div id="ScrudFactoryForm"></div>
+<div id="ScrudFactoryView"></div>

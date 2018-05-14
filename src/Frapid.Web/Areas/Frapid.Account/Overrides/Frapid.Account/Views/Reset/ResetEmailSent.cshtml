@@ -1,0 +1,26 @@
+﻿@using Frapid.i18n
+
+@{
+    ViewBag.Title = "Email Sent";
+    Layout = ViewBag.LayoutPath + ViewBag.Layout;
+}
+@if (CultureManager.IsRtl())
+{
+    <link rel="Stylesheet" href="@Href("~/assets/css/backend.rtl.css")" />
+}
+else
+{
+    <link rel="Stylesheet" href="@Href("~/assets/css/backend.css")" />
+}
+
+<div id="section" class="ui basic padded signup left aligned segment">
+    <div class="ui container">
+        <div class="ui header">Reset Email Sent</div>
+        <div class="ui divider"></div>
+        <p>
+            We have sent reset instructions on your email address. Please follow the link on that email
+            to reset your account.
+        </p>
+        <a href="/" class="ui small padded purple button">Return Home</a>
+    </div>
+</div>

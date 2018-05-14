@@ -1,0 +1,59 @@
+﻿@model dynamic
+
+@{
+    ViewBag.Title = I18N.Offices;
+    Layout = ViewBag.Layout;
+}
+
+<script>
+    var scrudFactory = new Object();
+
+    scrudFactory.title = window.translate("Offices");
+
+    scrudFactory.viewAPI = "/api/views/core/office-scrud-view";
+    scrudFactory.viewTableName = "core.office_scrud_view";
+
+    scrudFactory.formAPI = "/api/forms/core/offices";
+    scrudFactory.formTableName = "core.offices";
+
+    scrudFactory.excludedColumns = ["AuditUserId", "AuditTs", "Deleted"];
+
+
+    scrudFactory.uploadHanlder = "/dashboard/config/services/attachments";
+
+    scrudFactory.allowDelete = true;
+    scrudFactory.allowEdit = true;
+
+    scrudFactory.live = "OfficeName";
+
+    scrudFactory.layout = [
+        {
+            tab: "",
+            fields: [
+            ]
+        }
+    ];
+
+
+    scrudFactory.keys = [
+        {
+            property: "ParentOfficeId",
+            url: '/api/forms/core/offices/display-fields',
+            data: null,
+            valueField: "Key",
+            textField: "Value"
+        }
+    ];
+
+    $.get('/ScrudFactory/View.html', function(view) {
+        $.get('/ScrudFactory/Form.html', function(form) {
+            $("#ScrudFactoryView").html(view);
+            $("#ScrudFactoryForm").html(form);
+            $.cachedScript("/assets/js/scrudfactory-view.js");
+            $.cachedScript("/assets/js/scrudfactory-form.js");
+        });
+    });
+</script>
+
+<div id="ScrudFactoryForm"></div>
+<div id="ScrudFactoryView"></div>

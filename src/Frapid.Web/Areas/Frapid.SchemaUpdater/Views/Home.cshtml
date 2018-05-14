@@ -1,0 +1,111 @@
+﻿@model Frapid.SchemaUpdater.ViewModels.HomeViewModel
+
+@{
+    Layout = ViewBag.Layout;
+}
+
+<style>
+    .updater.segment {
+        min-height: 800px;
+    }
+
+        .updater.segment .container {
+            padding: 4em 0;
+        }
+
+    ul.ui.update.console {
+        line-height: 1.8;
+        border: 1px solid #eee;
+        height: 500px;
+        overflow: auto;
+        padding: 1em;
+    }
+
+
+        ul.ui.update.console li {
+            list-style: none;
+            border-bottom: 1px solid #eee;
+            padding: 0.5em 1em;
+            cursor: pointer;
+        }
+
+            ul.ui.update.console li:hover {
+                background: #fbfff2;
+            }
+
+            ul.ui.update.console li.error {
+                color: red;
+            }
+
+                ul.ui.update.console li.error:hover {
+                    background: #fffaf2;
+                }
+</style>
+<script src="/signalr/hubs"></script>
+<div class="ui attached updater segment">
+    <div class="ui container">
+        <h1 class="ui header">Database Schema Updater</h1>
+        <ul class="ui update console"></ul>
+
+        <div class="ui positive message">
+            <strong>Updates Found:</strong>
+            <ul>
+                @foreach (var candidate in Model.Updatables)
+                {
+                    <li>
+                        @candidate.AppInfo.ApplicationName
+                        <span>v</span>@candidate.VersionToUpdate.VersionNumber
+
+                        @if (candidate.InstalledVersions.Max(x => x.LastInstalledOn) != null)
+                        {
+                            <span class="date"> - @candidate.InstalledVersions.Max(x => x.LastInstalledOn).Value.ToLocalTime().ToString("F")</span>
+                        }
+                        else
+                        {
+                            <span class="date"> - Never</span>
+                        }
+                    </li>
+                }
+            </ul>
+            <strong>Update Last Installed On:</strong>
+            <ul>
+                @if (Model.LastInstalledOn == null)
+                {
+                    <li>Never</li>
+                }
+                else
+                {
+                    <li>@Model.LastInstalledOn.Value.ToLocalTime().ToString("F")</li>
+                }
+            </ul>
+            <button class="ui positive install update button" disabled="">Install Updates</button>
+        </div>
+
+
+    </div>
+</div>
+<script>
+    $(function () {
+        var updater = $.connection.updaterHub;
+
+        updater.client.getUpdaterNotification = function (message) {
+            const li = $("<li/>");
+            li.text((new Date()).toString() + " - " + message);
+
+            if (message.toLowerCase().substring(0, 6) === "error:") {
+                li.addClass("error");
+            };
+
+            $(".update.console").append(li);
+        };
+
+        $.connection.hub.start().done(function () {
+            $(".install.update.button").removeAttr("disabled");
+
+            $(".install.update.button").click(function () {
+                $(this).addClass("disabled");
+                updater.server.update();
+            });
+        });
+    });
+</script>

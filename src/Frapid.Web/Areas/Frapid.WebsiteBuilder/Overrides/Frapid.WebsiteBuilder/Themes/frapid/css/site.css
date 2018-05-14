@@ -1,0 +1,196 @@
+html, body, h1, h2, h3, h4, h5, .ui.header, 
+.ui.text.container,
+.ui.list .list>.item .header,.ui.list>.item .header,
+.ui.steps .step .title,
+.ui.menu, .item,
+.ui.button, .ui.input input,
+.ui.form input:not([type]),.ui.form input[type=text],.ui.form input[type=email],.ui.form input[type=search],.ui.form input[type=password],.ui.form input[type=date],.ui.form input[type=datetime-local],.ui.form input[type=tel],.ui.form input[type=time],.ui.form input[type=url],.ui.form input[type=number],
+.ui.message .header,
+.ui.card>.content>.header,.ui.cards>.card>.content>.header,
+.ui.items>.item>.content>.header,
+.ui.statistic>.value,.ui.statistics .statistic>.value,
+.ui.statistic>.label,.ui.statistics .statistic>.label,
+.ui.accordion .title:not(.ui),
+.ui.modal>.header,
+.ui.popup>.header,
+.ui.search>.results .result .title,
+.ui.search>.results>.message .header,
+.ui.category.search>.results .category>.name
+ {
+    font-family: "Myriad Set Pro","Helvetica Neue", Helvetica, "Segoe UI", Arial, Verdana, sans-serif!important;
+}
+
+
+@media (max-width: 300px) {
+    html, body
+    {
+        font-size: 14px!important;    
+    }
+}
+
+@media (max-width: 768px) {
+    html, body
+    {
+        font-size: 12px!important;    
+    }
+}
+
+@media (min-width: 769px) {
+    html, body
+    {
+        font-size: 14px!important;    
+    }
+}
+
+@media (min-width: 1200px) {
+    html, body
+    {
+        font-size: 13px!important;    
+    }
+}
+
+
+
+.body, .body p, .body div, .story, footer, .body .button, .body .field, .body .field label, .body .field input, header .item {
+    color:#808080;
+}
+
+.subscription .inverted.segment p
+{
+    color:white;
+}   
+
+.subscription .ui.form{
+    width:400px;
+    margin:0 auto;
+}
+
+.subscription .ui.form input {
+    text-align:center;
+}
+
+.confirm.email {
+    position:absolute;
+    left: -2000px;
+}
+
+header
+{
+    height:48px;
+}
+
+.logo
+{
+    padding-top:12px;
+}
+
+
+
+.vertically.padded.segment{
+    padding-top:100px;
+    padding-bottom:100px;
+}
+
+.fixed.menu .item:hover
+{
+    background-color:#339900!important;
+    color:#FFFFFF!important;
+}
+
+
+section.body
+{
+    min-height:100%;
+    padding:20px 0 0 0;
+}
+
+section.body .segment .container
+{
+    padding:40px 12px;
+}
+
+#banner{
+    background: #0E1619 url("../images/banners/banner1.jpg") no-repeat scroll 50% 25% / cover;
+}
+
+#contact{
+    background: #FFFFFF url("../images/banners/banner2.jpg") no-repeat scroll 10% 25% / cover;
+    padding-top:200px;
+    min-height:800px;
+}
+
+.caption.container
+{
+    padding:172px 0!important;
+}
+
+
+.caption.container .header
+{
+    font-size:48px;
+}
+
+.caption.container *
+{
+    line-height:1.7em;
+}
+
+.story.container
+{
+    text-align:center;
+}
+
+.story.container .header
+{
+    font-size:32px;
+}
+
+.story.container .header span
+{
+    color:#339900;
+}
+
+.story.container .divider
+{
+    margin:0 auto;
+    width:200px;
+    padding:8px;
+}
+
+
+a:hover{
+    color:#339941;
+}
+
+.ad.icon
+{
+    width:25%;
+    float:left;
+}
+
+.ad.details
+{
+    width:75%;
+    float:right;
+}
+
+.ad.icon i
+{
+    font-size:22px;
+}
+
+footer
+{
+    background-color:#1B1C1D;
+}
+
+.footer{
+    color:#ECF1ED!important;
+}
+footer a {
+    color:#FFFFFF;
+}
+
+footer a:active, footer a:hover {
+    color:#FAD101;
+}

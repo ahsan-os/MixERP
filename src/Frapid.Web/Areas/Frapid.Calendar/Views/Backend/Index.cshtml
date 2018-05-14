@@ -1,0 +1,403 @@
+﻿@using Frapid.Calendar.Contracts
+@model IEnumerable<Frapid.Calendar.DTO.Category>
+
+@{
+    Layout = ViewBag.Layout;
+}
+
+
+<link rel="stylesheet" type="text/css" href="/scripts/semantic-ui-calendar-0.0.6/dist/calendar.min.css"/>
+<link rel="stylesheet" href="/scripts/nanoscrollerjs-0.8.6/nanoscroller.min.css"/>
+<link rel="stylesheet" type="text/css" href="/scripts/fullcalendar-3.1.0/fullcalendar.min.css"/>
+<link rel="stylesheet" type="text/css" href="/scripts/fullcalendar-3.1.0/fullcalendar.print.css" media="print"/>
+<link rel="stylesheet" type="text/css" href="/Areas/Frapid.Calendar/styles/backend/index.css" />
+
+<script src="/scripts/semantic-ui-calendar-0.0.6/dist/calendar.min.js"></script>
+<script src="/scripts/nanoscrollerjs-0.8.6/jquery.nanoscroller.min.js"></script>
+<script src="/scripts/fullcalendar-3.1.0/fullcalendar.min.js"></script>
+
+
+
+<div class="ui frapid calendar app attached segment">
+<div class="display toggler" style="display: none;">
+    <div class="action">
+        <div class="ui vertical buttons">
+            <button class="ui grey icon button" onclick="toggleDisplay(true);">
+                <i class="sidebar icon"></i>
+            </button>
+            <button class="ui icon button" onclick="toggleCategoryPanel();" title="@I18N.AddCategory">
+                <i class="tags icon"></i>
+            </button>
+            <button class="ui icon button" onclick="showEventModal();" title="@I18N.AddEvent">
+                <i class="large icons">
+                    <i class="calendar icon"></i>
+                    <i class="inverted corner add icon"></i>
+                </i>
+            </button>
+        </div>
+    </div>
+</div>
+<div class="left panel">
+    <div class="top section">
+        <div class="document title">
+            @I18N.EventsAndSchedules
+        </div>
+        <div class="action">
+            <div class="ui buttons">
+                <button class="ui icon button" onclick="showEventModal();" title="@I18N.AddEvent">
+                    <i class="large icons">
+                        <i class="calendar icon"></i>
+                        <i class="inverted corner add icon"></i>
+                    </i>
+                </button>
+                <button class="ui icon button" onclick="toggleCategoryPanel();" title="@I18N.AddCategory">
+                    <i class="tags icon"></i>
+                </button>
+                <button class="ui icon button" onclick="toggleDisplay(false);">
+                    <i class="sidebar icon"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="ui inverted divider"></div>
+    <div id="QueryPanel" class="query panel">
+        <div class="ui calendar categories">
+            <div class="nano">
+                <div class="nano-content sortable">
+                    @foreach (var category in Model.OrderBy(x => x.CategoryOrder))
+                    {
+                        <div class="category">
+                            <div class="ui toggle checkbox name">
+                                <input type="checkbox" data-category-id="@category.CategoryId" data-local="@category.IsLocal" data-category-name="@category.CategoryName" data-color-code="@category.ColorCode"/>
+                                <label>@category.CategoryName</label>
+                            </div>
+                            <div class="@category.ColorCode"></div>
+                        </div>
+                    }
+                </div>
+            </div>
+            <div class="vpad8">
+            </div>
+            <div class="ui basic inverted buttons">
+                <button id="SaveCategoryOrderButton" class="ui basic inverted button">@I18N.SaveOrder</button>
+                <button id="EditCategoryButton" class="ui basic inverted button" title="@I18N.EditFirstSelectedCategory">@I18N.Edit</button>
+                <button id="DeleteCategoryButton" class="ui basic inverted button" title="@I18N.DeleteFirstSelectedCategory">@I18N.Delete</button>
+            </div>
+        </div>
+
+        <div class="ui inverted divider"></div>
+        <div class="ui inverted date only picker calendar">
+        </div>
+    </div>
+    <div id="CategoryPanel" class="category form panel" data-category-id="" style="display: none;">
+        <div class="ui mixerp form">
+            <div class="field">
+                <input id="CategoryNameInputText" type="text" placeholder="@I18N.EnterCategoryName"/>
+            </div>
+            <div class="field">
+                <div class="colors">
+                    <div class="color1 category color"></div>
+                    <div class="color2 category active color"></div>
+                    <div class="color3 category color"></div>
+                    <div class="color4 category color"></div>
+                    <div class="color5 category color"></div>
+                    <div class="color6 category color"></div>
+                    <div class="color7 category color"></div>
+                    <div class="color8 category color"></div>
+                    <div class="color9 category color"></div>
+                    <div class="color10 category color"></div>
+                    <div class="color11 category color"></div>
+                    <div class="color12 category color"></div>
+                    <div class="color13 category color"></div>
+                    <div class="color14 category color"></div>
+                    <div class="color15 category color"></div>
+                    <div class="color16 category color"></div>
+                    <div class="color17 category color"></div>
+                    <div class="color18 category color"></div>
+                    <div class="color19 category color"></div>
+                    <div class="color20 category color"></div>
+                    <div class="color21 category color"></div>
+                    <div class="color22 category color"></div>
+                    <div class="color23 category color"></div>
+                    <div class="color24 category color"></div>
+                    <div class="color25 category color"></div>
+                    <div class="color26 category color"></div>
+                    <div class="color27 category color"></div>
+                </div>
+            </div>
+            <div class="field">
+                <div class="ui basic inverted buttons">
+                    <button id="SaveCategoryButton" class="ui basic inverted button">@I18N.Save</button>
+                    <button onclick="toggleCategoryPanel();" class="ui basic inverted button">@I18N.Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="right panel">
+<div id="toolbar" class="ui attached segment">
+    <div class="left">
+        <div class="ui input">
+            <input id="NaturalLanguageInputText" type="text" placeholder="@I18N.NaturalLanguageDemoText"/>
+        </div>
+    </div>
+    <div class="right">
+        <div class="ui initially hidden icon buttons">
+            <button class="ui grey icon button" title="@I18N.Integrations">
+                <i class="cloud download icon"></i>
+            </button>
+        </div>
+    </div>
+</div>
+
+<div id="scheduler">
+<div class="ui organizer attached segment">
+<div id="EventModal" class="new event" style="display: none;">
+    <div class="ui mixerp form">
+        <div class="title field">
+            <input id="NameInputText" type="text" placeholder="@I18N.EnterEventTitle" value=""/>
+        </div>
+        <div class="category field">
+            <div id="CategoryDropdown" class="ui floating fluid dropdown">
+                <input name="CategoryIdInputHidden" type="hidden"/>
+                <div class="text"></div>
+                <div class="menu">
+                    <div class="ui icon search input">
+                        <i class="search icon"></i>
+                        <input placeholder="@I18N.SearchCategory" type="text">
+                    </div>
+                    <div class="divider"></div>
+                    <div class="header">
+                        <i class="calendar icon"></i>
+                        @I18N.SelectCategory
+                    </div>
+                    <div class="scrolling menu">
+                        @foreach (var category in Model.OrderBy(x => x.CategoryOrder))
+                        {
+                            <div class="item" data-value="@category.CategoryId">
+                                <div class="ui @category.ColorCode empty circular label"></div>
+                                @category.CategoryName
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="location field">
+            <label>@I18N.Location</label>
+            <input id="LocationInputText" type="text" placeholder="@I18N.EnterLocation"/>
+        </div>
+        @if (!string.IsNullOrWhiteSpace(Configs.GoogleMapsJavascriptApiKey))
+        {
+            <div class="location map">
+                <div id="map"></div>
+                <div id="infowindow-content">
+                    <img src="" width="16" height="16" id="place-icon">
+                    <span id="place-name" class="title"></span><br>
+                    <span id="place-address"></span>
+                </div>
+            </div>
+            <div class="vpad8"></div>
+        }
+        <div class="field">
+            <label>@I18N.StartsAt</label>
+            <div id="StartsAtCalendar" class="ui date time picker calendar">
+                <input type="text" placeholder="@I18N.StartsAt"/>
+            </div>
+        </div>
+        <div class="field">
+            <label>@I18N.EndsOn</label>
+            <div id="EndsOnCalendar" class="ui date time picker calendar">
+                <input type="text" placeholder="@I18N.EndsOn"/>
+            </div>
+        </div>
+        <div class="inline fields">
+            <label>@I18N.Options</label>
+            <div class="field">
+                <div class="ui toggle checkbox">
+                    <input id="AllDayCheckbox" type="checkbox">
+                    <label for="AllDayCheckbox">@I18N.AllDay</label>
+                </div>
+            </div>
+            <div class="field">
+                <div class="ui green toggle checkbox">
+                    <input id="IsPrivateCheckbox" type="checkbox" checked="checked">
+                    <label for="IsPrivateCheckbox">@I18N.Private</label>
+                </div>
+            </div>
+        </div>
+        <div class="field">
+            <a href="javascript:void(0)" onclick="toggleMore()">@I18N.More</a>
+        </div>
+    </div>
+    <div class="ui show more form" style="display: none;">
+        <div class="two fields">
+            <div class="four wide field">
+                <label>@I18N.RepeatEvery</label>
+                <input type="text" id="RepeatEveryInputText" class="integer" disabled="disabled"/>
+            </div>
+            <div class="twelve wide field">
+                <label>&nbsp;</label>
+                <select id="RepeatDropdown">
+                    <option value="None">@I18N.DontRepeat</option>
+                    <option value="NDays">@I18N.Days</option>
+                    <option value="NWeeks">@I18N.Weeks</option>
+                    <option value="NMonthsChosenDate">@I18N.MonthsOnChosenDate</option>
+                    <option value="NMonthsChosenDay">@I18N.MonthsOnChosenDay</option>
+                </select>
+            </div>
+        </div>
+        <div class="toggle group vpad8 item" data-value="NWeeks" style="display: none;">
+            <div class="field">
+                <label>@I18N.On</label>
+                <select id="DayOfWeekSelect" multiple="multiple" class="ui fluid dropdown">
+                    <option value="1">@I18N.Monday</option>
+                    <option value="2">@I18N.Tuesday</option>
+                    <option value="3">@I18N.Wednesday</option>
+                    <option value="4">@I18N.Thursday</option>
+                    <option value="5">@I18N.Friday</option>
+                    <option value="6">@I18N.Saturday</option>
+                    <option value="0">@I18N.Sunday</option>
+                </select>
+            </div>
+        </div>
+        <div class="toggle group vpad8 item" data-value="NMonthsChosenDate" style="display: none;">
+            <div class="field">
+                <label>@I18N.WhichDayOfMonth</label>
+                <input id="MonthDayInputText" type="text" class="integer" value="15"/>
+            </div>
+        </div>
+        <div class="toggle group vpad8 item" data-value="NMonthsChosenDay" style="display: none;">
+            <div class="two fields">
+                <div class="four wide field">
+                    <label>@I18N.OnThe</label>
+                    <select id="DayOfMonthTypeSelect">
+                        <option value="1">@I18N.First</option>
+                        <option value="2">@I18N.Second</option>
+                        <option value="3">@I18N.Third</option>
+                        <option value="4">@I18N.Last</option>
+                    </select>
+                </div>
+                <div class="twelve wide field">
+                    <label>&nbsp;</label>
+                    <select id="DayOfMonthSelect">
+                        <option value="1">@I18N.Monday</option>
+                        <option value="2">@I18N.Tuesday</option>
+                        <option value="3">@I18N.Wednesday</option>
+                        <option value="4">@I18N.Thursday</option>
+                        <option value="5">@I18N.Friday</option>
+                        <option value="6">@I18N.Saturday</option>
+                        <option value="0">@I18N.Sunday</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div id="RepeatUntilPanel" class="field" style="display: none;">
+            <label>@I18N.Until</label>
+            <div id="UntilCalendar" class="ui date time picker calendar">
+                <input id="UntilInputDate" type="text" placeholder="@I18N.StopRecurrenceWhenDateIs"/>
+            </div>
+        </div>
+        <div class="field">
+            <label>@I18N.RemindMe</label>
+            <select id="RemindMeDropdown">
+                <option value="0">@I18N.None</option>
+                <option value="5">@I18N.Remind5MinutesBefore</option>
+                <option value="10">@I18N.Remind10MinutesBefore</option>
+                <option value="15">@I18N.Remind15MinutesBefore</option>
+                <option value="30">@I18N.Remind30MinutesBefore</option>
+                <option value="60">@I18N.Remind1HourBefore</option>
+                <option value="120">@I18N.Remind2HoursBefore</option>
+                <option value="1440">@I18N.Remind1DayBefore</option>
+                <option value="2880">@I18N.Remind2DaysBefore</option>
+            </select>
+        </div>
+        <div id="ReminderTypePanel" class="field" style="display: none;">
+            <div class="field">
+                <label>@I18N.SelectReminderTypes</label>
+                <select id="ReminderTypesSelect" multiple="multiple" class="ui fluid dropdown">
+                    @foreach (var provider in ReminderProviders.GetEnabled())
+                    {
+                        <option value="@provider.ProviderId">@provider.LocalizedName</option>
+                    }
+                </select>
+            </div>
+        </div>
+        <div class="field">
+            <label>@I18N.Note</label>
+            <input id="NoteInputText" type="text" placeholder="@I18N.EnterNote"/>
+        </div>
+        <div class="field">
+            <label>@I18N.Url</label>
+            <input id="UrlInputUrl" type="url" placeholder="@I18N.EnterUrl"/>
+        </div>
+    </div>
+    <div class="ui form">
+        <div class="vpad8"></div>
+        <button id="OkButton" class="ui positive button">@I18N.Ok</button>
+        <button id="CloseEventModalButton" class="ui basic button">@I18N.Close</button>
+    </div>
+</div>
+<div class="ui grid">
+    <div class="sixteen wide tablet five wide computer column">
+        <div class="ui basic buttons">
+            <button class="ui button" onclick='showOrganizerEvent("today")'>@I18N.Today</button>
+            <button class="ui button" onclick='showOrganizerEvent("day")'>@I18N.Day</button>
+            <button class="ui button" onclick='showOrganizerEvent("week")'>@I18N.Week</button>
+            <button class="ui button" onclick='showOrganizerEvent("month")'>@I18N.Month</button>
+            <button class="ui button" onclick='showOrganizerEvent("list")'>@I18N.Agendas</button>
+        </div>
+    </div>
+    <div class="sixteen wide tablet six wide computer column">
+        <div class="title">
+            <i class="angle left icon" onclick='showOrganizerEvent("previous")'></i>
+            <span></span>
+            <i class="angle right icon" onclick='showOrganizerEvent("next")'></i>
+        </div>
+    </div>
+    <div class="sixteen wide tablet five wide computer column">
+        <div class="ui search fluid input">
+            <input type="search" placeholder="@I18N.Search"/>
+        </div>
+    </div>
+</div>
+</div>
+<div class="ui attached segment">
+    <div id="calendar"></div>
+</div>
+</div>
+</div>
+</div>
+
+
+<div class="event popup"
+     data-event-id=""
+     data-category-id=""
+     style="display: none; position: fixed;">
+    <i class="remove icon" onclick="$('.event.popup').hide();" title="@I18N.CloseThisTooltip"></i>
+    <a class="title"></a>
+    <div class="location">
+        <span class="label"></span>
+        <span class="name"></span>
+    </div>
+    <div id="PopupMap"></div>
+    <div class="time info">
+        <i class="clock icon"></i>
+        <span class="starts"></span>
+    </div>
+    <div class="reminder info">
+        <i class="alarm icon"></i>
+        @Html.Raw(I18N.RemindMeNMinutesBefore)
+    </div>
+
+    <button id="EditEventButton" class="ui button">@I18N.EditThisEvent</button>
+    <button id="DeleteEventButton" class="ui negative button">@I18N.DeleteThisEvent</button>
+</div>
+
+@if (!string.IsNullOrWhiteSpace(Configs.GoogleMapsJavascriptApiKey))
+{
+    <script src="/Areas/Frapid.Calendar/scripts/backend/google-places.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=@Configs.GoogleMapsJavascriptApiKey&libraries=places&callback=initMap" async defer></script>
+}
+
+<script src="/Areas/Frapid.Calendar/scripts/backend/index.js" async defer></script>

@@ -1,0 +1,165 @@
+﻿#dashboard-container {
+    padding: 0;
+}
+
+.address.book {
+    display: flex;
+    min-height: 100%;
+    padding: 0 !important;
+}
+
+    .address.book .left.panel {
+        padding: 1em;
+        width: 300px;
+    }
+
+        .address.book .left.panel .title {
+            font-size: 1.2em;
+            font-weight: bold;
+            padding: 0.25em 0;
+        }
+
+        .address.book .left.panel .tags {
+            padding-left: 0.5em;
+        }
+
+        .address.book .left.panel .ui.checkbox {
+            display: block !important;
+            margin: 0.5em;
+        }
+
+
+
+    .address.book .middle.panel .entries {
+        width: 100% !important;
+    }
+
+.middle.panel .toolbar {
+    background: #eee;
+    border-bottom: 1px solid #dedede;
+    display: flex;
+    margin: 0 -0.2em;
+}
+
+    .middle.panel .toolbar .item {
+        background: #eee;
+        border-right: 1px solid #dedede;
+        color: #888;
+        cursor: pointer;
+        padding: 0.7em;
+    }
+
+        .middle.panel .toolbar .item:hover {
+            background: #ddd;
+            color: #7A997B;
+        }
+
+.address.book .middle.panel {
+    border-left: 1px solid #ededed;
+    border-right: 1px solid #ededed;
+    padding: 0.2em;
+    width: 300px;
+}
+
+
+
+    .address.book .middle.panel .ui.input {
+        padding: 1em;
+    }
+
+
+    .address.book .middle.panel .entry {
+        cursor: pointer;
+        display: flex;
+        margin: 1px -0.2em 0 -0.2em !important;
+        padding: 1em 0.25em 0.25em 1.25em;
+    }
+
+
+        .address.book .middle.panel .entry:hover,
+        .address.book .middle.panel .selected.entry {
+            background-color: #efefef;
+        }
+
+
+        .address.book .middle.panel .entry .photo {
+            height: 3.5em;
+            width: 3.5em;
+            overflow: hidden;
+        }
+
+            .address.book .middle.panel .entry .photo img {
+                height: 3em;
+                width: auto;
+                border-radius: 3em;
+            }
+
+            .address.book .middle.panel .entry .photo span {
+                background: #7A997B;
+                border-radius: 3em;
+                color: #eee;
+                display: inline-block;
+                font-weight: bold;
+                height: 3em;
+                padding-top: 0.75em;
+                text-align: center;
+                width: 3em;
+            }
+
+        .address.book .middle.panel .entry .info .name label {
+            color: #888 !important;
+            font-size: 1.3em !important;
+            font-weight: bold !important;
+            padding-left: 1.5em !important;
+        }
+
+        .address.book .middle.panel .entry .info .detail {
+            color: #aaa;
+            padding-left: 2em;
+        }
+
+
+
+.address.book .right.panel {
+    padding: 1em;
+    width: calc(100% - 612px);
+}
+
+    .address.book .right.panel .field .photo {
+        background: #eee !important;
+        height: 200px;
+        margin-bottom: 1em;
+        width: 200px;
+    }
+
+.not.padded {
+    padding: 0 !important;
+}
+
+.borderless {
+    border: none !important;
+}
+
+
+#FormattedNameInputText {
+    border: none;
+    color: #7A997B;
+    font-size: 4em;
+    font-weight: 100;
+    margin-bottom: 2px;
+    padding: 0.2em 0;
+}
+
+.address.book .right.panel .form {
+    padding: 1em;
+}
+
+.middle.panel .scroller {
+    height: 1254px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+#ShowMoreAnchor {
+    cursor: pointer;
+}

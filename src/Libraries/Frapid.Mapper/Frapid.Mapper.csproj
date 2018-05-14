@@ -1,0 +1,118 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{86545C4A-5202-4368-B013-EA37615CBD8E}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Frapid.Mapper</RootNamespace>
+    <AssemblyName>Frapid.Mapper</AssemblyName>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Humanizer, Version=2.1.0.0, Culture=neutral, PublicKeyToken=979442b78dfc278e, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Humanizer.Core.2.1.0\lib\netstandard1.0\Humanizer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Caching" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Database\DatabaseType.cs" />
+    <Compile Include="Database\Inflector.cs" />
+    <Compile Include="Database\MapperDb.cs" />
+    <Compile Include="Decorators\IgnoreAttribute.cs" />
+    <Compile Include="Decorators\PrimaryKeyAttribute.cs" />
+    <Compile Include="Decorators\TableNameAttribute.cs" />
+    <Compile Include="Extensions\AttributeExtensions.cs" />
+    <Compile Include="Extensions\CastExtensions.cs" />
+    <Compile Include="Extensions\New.cs" />
+    <Compile Include="Helpers\MapperCache.cs" />
+    <Compile Include="Extensions\MapperDbExtensions.cs" />
+    <Compile Include="Extensions\DynamicExtensions.cs" />
+    <Compile Include="Helpers\PropertyAccessor.cs" />
+    <Compile Include="Extensions\StringExtensions.cs" />
+    <Compile Include="Helpers\Castable.cs" />
+    <Compile Include="Helpers\PascalCaseConverter.cs" />
+    <Compile Include="Helpers\PocoHelper.cs" />
+    <Compile Include="Helpers\ResultsetCache.cs" />
+    <Compile Include="Helpers\SqlHelper.cs" />
+    <Compile Include="Helpers\StringExtensions.cs" />
+    <Compile Include="Helpers\TitleCaseConverter.cs" />
+    <Compile Include="Helpers\TypeConverter.cs" />
+    <Compile Include="Helpers\UnderscoreCaseConverter.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Query\Delete\DefaultDelete.cs" />
+    <Compile Include="Query\Delete\DeleteOperation.cs" />
+    <Compile Include="Query\Delete\MySqlDelete.cs" />
+    <Compile Include="Query\Delete\PostgreSQLDelete.cs" />
+    <Compile Include="Query\Delete\SqlServerDelete.cs" />
+    <Compile Include="Query\Insert\DefaultInsert.cs" />
+    <Compile Include="Query\Insert\InsertOperation.cs" />
+    <Compile Include="Query\Insert\MySqlInsert.cs" />
+    <Compile Include="Query\Insert\PostgreSQLInsert.cs" />
+    <Compile Include="Query\Insert\SqlServerInsert.cs" />
+    <Compile Include="Query\NonQuery\DefaultNonQuery.cs" />
+    <Compile Include="Query\NonQuery\MySqlNonQuery.cs" />
+    <Compile Include="Query\NonQuery\NonQueryOperation.cs" />
+    <Compile Include="Query\NonQuery\PostgreSQLNonQuery.cs" />
+    <Compile Include="Query\NonQuery\SqlServerNonQuery.cs" />
+    <Compile Include="Query\Select\DefaultSelect.cs" />
+    <Compile Include="Query\Select\MySqlSelect.cs" />
+    <Compile Include="Query\Select\PostgreSQLSelect.cs" />
+    <Compile Include="Query\Select\SelectOperation.cs" />
+    <Compile Include="Query\Select\SqlServerSelect.cs" />
+    <Compile Include="Query\Update\DefaultUpdate.cs" />
+    <Compile Include="Query\Update\MySqlUpdate.cs" />
+    <Compile Include="Query\Update\PostgreSQLUpdate.cs" />
+    <Compile Include="Query\Update\SqlServerUpdate.cs" />
+    <Compile Include="Query\Update\UpdateOperation.cs" />
+    <Compile Include="Sql.cs" />
+    <Compile Include="Types\MapperException.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Frapid.Framework\Frapid.Framework.csproj">
+      <Project>{A4DEE358-3203-425C-80E9-8EBA0A01B73F}</Project>
+      <Name>Frapid.Framework</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

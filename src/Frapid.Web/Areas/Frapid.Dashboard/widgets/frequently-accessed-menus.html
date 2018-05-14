@@ -1,0 +1,100 @@
+﻿<style>
+#FrequentlyAccessedMenus .menus{
+  padding:1em;
+}
+
+#FrequentlyAccessedMenus .menus .item{
+  padding:0.15em;
+}
+
+#FrequentlyAccessedMenus .menus a{
+  color:#999;
+}
+
+#FrequentlyAccessedMenus .menus a:hover {
+  color:#FF3D67;
+}
+
+
+#FrequentlyAccessedMenus .menus a i{
+  width:2em;
+}    
+</style>
+<div id="FrequentlyAccessedMenus" class="four wide column">
+    <div class="ui widget segment">
+        <div class="header">
+            <span data-localize="FrequentlyAccessMenus"></span>
+            <div class="sub header"></div>
+        </div>
+        <div class="controls">
+            <span class="collapse button"><i class="chevron up icon"></i></span>
+            <span class="close button"><i class="delete icon"></i></span>
+        </div>
+        <div class="body">
+            <div class="menus">
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    (function () {
+        function getTopMenus(appMenus, appName) {
+            const key = window.meta.Tenant + "_menu_events";
+            const items = JSON.parse(window.localStorage.getItem(key));
+
+            for (let i = 0; i < appMenus.length; i++) {
+                const menuId = appMenus[i].MenuId;
+                var clicked = 0;
+
+                if (items) {
+                    clicked = items[menuId] || 0;
+                };
+
+                appMenus[i]["Clicked"] = clicked;
+            };
+
+            const candidates = window.Enumerable.From(appMenus)
+                .Where(function(x) {
+                    return x.AppName === appName;
+                })
+                .OrderByDescending(function (x) {
+                    return x.Clicked;
+                }).ThenBy(function (x) {
+                    return x.MenuName;
+                }).Take(5).ToArray();
+
+            return candidates;
+        };
+
+        const path = window.overridePath || window.location.pathname;
+
+        const application = window.Enumerable.From(window.appMenus)
+            .Where(function (x) { return x.Url === path; })
+            .FirstOrDefault();
+
+        if (application) {
+            $("#FrequentlyAccessedMenus .sub.header").html(window.translate(application.AppI18nKey));
+
+            const container = $("#FrequentlyAccessedMenus .menus").html("");
+
+            const menus = getTopMenus(window.appMenus, application.AppName);
+
+            for (let i = 0; i < menus.length; i++) {
+                const menu = menus[i];
+                const item = $("<div class='item' />");
+
+                const icon = $("<i class='icon' />");
+                icon.addClass(menu.Icon);
+
+                const anchor = $("<a />");
+                anchor.attr("href", menu.Url);
+                anchor.html(window.translate(menu.I18nKey));
+
+                anchor.prepend(icon).appendTo(item);
+                container.append(item);
+            };
+        };
+
+    })();
+</script>

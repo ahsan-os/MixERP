@@ -1,0 +1,230 @@
+﻿.console.segment {
+    background: #efefef;
+    min-height: 1200px;
+}
+
+    .console.segment .title {
+        display: flex;
+    }
+
+        .console.segment .title section.heading {
+            width: 50%;
+        }
+
+        .console.segment .title .actions {
+            width: 50%;
+            text-align: right;
+        }
+
+.console.grid {
+    background: #fff;
+    padding: 2em;
+}
+
+
+@media (min-width: 900px) {
+    .very.relaxed.segment {
+        padding: 4em;
+    }
+}
+
+@media (max-width: 768px) {
+	.console.segment .title{
+	  display:block!important;
+	  margin-bottom: 1rem;
+	}
+	.console.segment .title section.heading,
+	.console.segment .title .actions {
+		width: 100%;
+		text-align:left;
+	}
+}
+
+.widget-container {
+}
+
+    .widget-container .widget {
+        -webkit-touch-callout: none; /* iOS Safari */
+        -webkit-user-select: none; /* Safari */
+        -khtml-user-select: none; /* Konqueror HTML */
+        -moz-user-select: none; /* Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+        user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome and Opera */
+        filter: grayscale(0.3);
+    }
+
+        .widget-container .widget:hover {
+            filter: grayscale(0);
+            border-color: #bbb;
+        }
+
+
+.headerless.widget {
+    position: relative;
+}
+
+    .headerless.widget .close.button {
+        position: absolute;
+        right: 1em;
+    }
+
+.statistics {
+    color: #888;
+    padding: 1em;
+}
+
+    .statistics,
+    .statistics .number,
+    .statistics .number .text {
+        text-align: center;
+    }
+
+        .statistics .numbers .number {
+            display: inline-block;
+            padding: 0.5em;
+            font-size: 1.8em;
+        }
+
+        .statistics .number {
+            font-size: 2.5em;
+            padding: 0.25em;
+        }
+
+            .statistics .number .text {
+                text-transform: uppercase;
+                display: block;
+                font-size: 0.5em;
+                padding-top: 0.5em;
+                color: #bbb;
+            }
+
+
+        .statistics.style1 .number {
+            color: #9BB868;
+        }
+
+        .statistics.style2 .number {
+            color: #B0B11C;
+        }
+
+
+        .statistics.style3 .number {
+            color: #2688B1;
+        }
+
+
+        .statistics.style4 .number {
+            color: #B714FB;
+        }
+
+        .statistics.style5 .number {
+            color: #3CDCCC;
+        }
+
+
+
+
+
+.widget-container .widget {
+    background: #fefefe !important;
+    border: 1px solid #dedede;
+    padding: 1em !important;
+    transition: 1s ease;
+}
+
+
+.widget-container .widget {
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    position: relative;
+}
+
+    .widget-container .widget .header:not(.sub) {
+        display: inline-flex;
+        font-size: 1.5em;
+        font-weight: bold;
+        justify-content: center;
+        padding: 0.5em 0 0.75em 0;
+    }
+
+    .widget-container .widget .header,
+    .headerless.widget {
+        cursor: move;
+    }
+
+    .widget-container .widget .sub.header {
+        font-weight: normal;
+        font-size: 0.7em;
+        text-transform: uppercase;
+        padding: 0.1em 0.25em;
+        color: #999;
+    }
+
+    .widget-container .widget .controls {
+        position: absolute;
+        right: 1em;
+        top: 1.5em;
+        background: #fff;
+    }
+
+        .widget-container .widget .controls .button,
+        .headerless.widget .close.button {
+            padding: 0.5em 0.3em 0.5em 0.5em;
+            border: 1px solid transparent;
+            cursor: pointer;
+            transition: 500ms ease-in;
+            color: #999;
+        }
+
+            .widget-container .widget .controls .button:hover,
+            .headerless.widget .close.button:hover {
+                background: #efefef;
+                border-color: #ddd;
+                color: #555;
+            }
+
+    .widget-container .widget .body {
+        border-top: 1px solid #ccc;
+    }
+
+    .widget-container .widget.error * {
+        color: #F34167 !important;
+    }
+
+    .widget-container .widget.error {
+        background-color: #F7F7D5 !important;
+        border-color: #F34167;
+    }
+
+.document.heading {
+    display: inline-block;
+    min-width: 2px;
+    width: auto;
+    border: none;
+    color: #7A997B;
+    font-size: 4em;
+    font-weight: 100;
+    background: transparent;
+    line-height: 1.1;
+}
+
+section.heading {
+    position: relative;
+    padding-bottom: 1.5em;
+}
+
+    section.heading i {
+        position: absolute;
+        margin-left: 1em;
+    }
+
+#OpenButton .menu .item i.check.mark.icon {
+    position: absolute !important;
+    margin-left: 1em !important;
+}
+
+.ui-state-highlight { 
+	background:white;
+	border: 1px dashed #999;
+}

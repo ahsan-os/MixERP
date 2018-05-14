@@ -1,0 +1,122 @@
+﻿@using Frapid.WebsiteBuilder
+<div class="ui modal" id="NewThemeModal">
+    <div class="header">
+        @Resources.AddANewTheme
+    </div>
+    <div class="content">
+        <div class="ui basic segment">
+            <div class="ui two column very relaxed stackable grid">
+
+                <div class="eight wide center aligned column">
+
+                    <i class="massive cloud upload green icon"></i>
+                    <div class="vpad8"></div>
+
+                    <div class="ui big header">
+                        @Resources.UploadATheme
+                    </div>
+
+                    <div class="vpad8"></div>
+
+
+                    <div class="">
+                        <label for="UploadThemeInputFile" class="ui basic green button">@Resources.FromLocalHardDrive</label>
+                        <input id="UploadThemeInputFile"
+                               data-handler="/dashboard/my/website/themes/upload"
+                               data-loader-id="UploaderSegment"
+                               class="file"
+                               style="display: none"
+                               type="file">
+                    </div>
+
+                    <div class="vpad16"></div>
+
+                    <div class="ui horizontal divider">@Resources.Or</div>
+
+                    <div class="vpad16"></div>
+
+                    <div class="ui small header">@Resources.DownloadThemeFrom</div>
+                    <div class="ui fluid labeled input">
+                        <div class="ui basic label">@Resources.Url</div>
+                        <input id="RemoteUploadUrl" type="url" value="http://">
+                    </div>
+
+                    <div class="vpad8">
+                        <button class="ui left aligned basic green button" onclick="remoteUpload();">@Resources.DownloadAndInstall</button>
+                    </div>
+
+                    <div class="ui error padded message" style="display: none;">
+                        <div class="ui small header"></div>
+                    </div>
+                </div>
+
+                <div class="ui vertical divider">
+                    @Resources.Or
+                </div>
+
+
+                <div class="eight wide column">
+                    <div class="ui big header">
+                        @Resources.CreateABrandNewTheme
+                    </div>
+                    <div class="ui divider"></div>
+                    <form class="ui padded form">
+                        <div class="field">
+                            <label>@Resources.ThemeName</label>
+                            <input type="text" name="ThemeName" required=""/>
+                        </div>
+                        <div class="field">
+                            <label>@Resources.Author</label>
+                            <input type="text" name="Author" required=""/>
+                        </div>
+                        <div class="field">
+                            <label>@Resources.AuthorUrl</label>
+                            <input type="url" name="AuthorUrl"/>
+                        </div>
+                        <div class="field">
+                            <label>@Resources.AuthorEmail</label>
+                            <input type="email" name="AuthorEmail" required=""/>
+                        </div>
+                        <div class="field">
+                            <label>@Resources.ThemeConvertedBy</label>
+                            <input type="text" name="ConvertedBy"
+                                   title="@Resources.ThemeConvertedByTitle"/>
+                        </div>
+                        <div class="field">
+                            <label>@Resources.ReleasedOn</label>
+                            <input type="date" name="ReleasedOn"/>
+                        </div>
+                        <div class="field">
+                            <label>@Resources.ThemeVersion</label>
+                            <input type="text" name="Version"/>
+                        </div>
+                        <div class="field">
+                            <label>@Resources.Category</label>
+                            <input type="text" name="Category"/>
+                        </div>
+                        <div class="field">
+                            <label>@Resources.Responsive</label>
+                            <div class="ui toggle checkbox vpad8">
+                                <input name="Responsive" type="checkbox" checked="checked">
+                                <label>&nbsp;</label>
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label>@Resources.CSSFramework</label>
+                            <input type="text" name="Framework"/>
+                        </div>
+                        <div class="field">
+                            <label>@Resources.Tags</label>
+                            <input type="text" name="Tags" title="@Resources.TagsDescription"/>
+                        </div>
+
+                        <div class="ui buttons">
+                            <button class="ui positive button" onclick="createTheme();">@Resources.LetsGo</button>
+                            <button class="ui negative button" onclick='$("#NewThemeModal").modal("hide");'>@Resources.Cancel</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

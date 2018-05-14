@@ -1,0 +1,38 @@
+﻿@using Frapid.WebsiteBuilder
+@{
+    ViewBag.Title = Resources.Unsubscribe;
+    Layout = ViewBag.LayoutPath + ViewBag.Layout;
+}
+<script src="/scripts/frapid/core/frapid-ajax.js"></script>
+
+<div class="ui vertically padded basic segment">
+    <div class="ui story container">
+        <div class="ui grey header">@Resources.UnsubscribeFromOurMailingList</div>
+        <div class="ui divider"></div>
+        @Html.Raw(Resources.UnsubscribeMessage)
+        <div class="ui center aligned page subscription grid">
+            <div class="column">
+                <div class="ui green header">@Resources.WeWillMissYou</div>
+                <div class="ui subscription form">
+                    <div class="field">
+                        <div class="ui input">
+                            <input id="EmailAddressInputEmail" placeholder="@Resources.EnterYourEmailAddressToUnsubscribe" type="email">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <div class="ui confirm email input">
+                            <input id="ConfirmEmailAddressInputEmail" placeholder="@Resources.EnterYourEmailAddressAgain" type="email">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <input type="hidden" id="TokenHiddenInputHidden" value="@ViewBag.Token"/>
+                    </div>
+                    <button class="ui negative button" onclick="unsubscribe()">@Resources.UnsubscribeMe</button>
+                    <button class="ui positive button">@Resources.Cancel</button>
+                </div>
+                <div class="ui positive thank you message" style="display: none;">@Resources.ThankYouForUnsubscribing</div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="/Areas/Frapid.WebsiteBuilder/scripts/subscription/remove.js"></script>

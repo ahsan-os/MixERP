@@ -1,0 +1,28 @@
+<section class="subscription">
+    <div class="ui attached basic inverted violet vertically padded segment">
+        <div class="ui story container">
+            <div class="ui huge inverted header">Stay Connected</div>
+            <div class="ui hidden divider"></div>
+            <p>Subscribe to our email newsletter list and stay updated.</p>
+            
+            <div class="ui form">
+                <div class="field">
+                    <div class="ui input">
+                      <input id="EmailAddressInputEmail" placeholder="" type="email" required="">
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="ui confirm email input">
+                      <input id="ConfirmEmailAddressInputEmail" placeholder="" type="email" required="">
+                    </div>
+                </div>
+                <div class="field">
+                    <input type="hidden" id="TokenHiddenInputHidden" value="@ViewBag.Token" />
+                </div>
+                <button type="submit" class="ui inverted small button" onclick="subscribe(this);">Subscribe</button>
+            </div>
+            
+            <p class="thank you" style="display:none;"><strong>Thank you for subscribing.</strong></div>
+        </div>
+    </div>
+</section>

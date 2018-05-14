@@ -1,0 +1,45 @@
+﻿@model Frapid.Account.ViewModels.Template
+@{
+    ViewBag.Title = Model.Title;
+    Layout = ViewBag.Layout;
+}
+
+<link href="/my/template/css/site.css" rel="stylesheet">
+<style>
+    #editor {
+        position: absolute;
+        top: 0px;
+        right: 0;
+        bottom: 0;
+        left: 0;
+    }
+</style>
+
+<script src="/scripts/ace-1.2.2/src-min-noconflict/ace.js"></script>
+
+<script>
+    var saveUrl = "/dashboard/website/subscription/removed/save";
+</script>
+
+<div class="ui stackable divided grid" style="height: 100%;">
+    <div class="ui three wide column segment">
+        <div class="ui header">
+            @ViewBag.Title
+        </div>
+        <div class="ui basic buttons">
+            <div class="ui basic button" id="SaveButton">@I18N.Save</div>
+            <a class="ui basic button" href="javascript:history.go(-1)">@I18N.Back</a>
+        </div>
+    </div>
+
+    <div class="thirteen wide column" data-target="editor" style="height: 100%;">
+        <div id="editor">
+        </div>
+    </div>
+</div>
+
+<script>
+    var title = "@Model.Title";
+    var html = "@Html.Encode(HttpUtility.JavaScriptStringEncode(Model.Contents))";
+</script>
+<script src="~/Areas/Frapid.Account/scripts/email-template/editor.js"></script>

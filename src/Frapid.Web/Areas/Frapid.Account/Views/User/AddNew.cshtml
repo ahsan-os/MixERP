@@ -1,0 +1,141 @@
+﻿@model dynamic
+
+@{
+    ViewBag.Title = I18N.CreateANewUser;
+    Layout = ViewBag.Layout;
+}
+<div class="ui segment" style="padding: 48px;">
+    <div class="ui container">
+        <div class="ui huge header">@I18N.CreateANewUser</div>
+        <div class="ui stackable grid">
+            <div class="six wide column">
+                <div class="ui form">
+                    <div class="field">
+                        <label>@I18N.Email</label>
+                        <input type="email" id="EmailInputEmail" required="" />
+                    </div>
+                    <div class="field">
+                        <label>@I18N.Name</label>
+                        <input type="text" id="NameInputText" required="" />
+                    </div>
+                    <div class="field">
+                        <label>@I18N.Password</label>
+                        <input type="password" id="PasswordInputPassword" required="" />
+                    </div>
+                    <div class="field">
+                        <label>@I18N.ConfirmPassword</label>
+                        <input type="password" id="ConfirmPasswordInputPassword" required="" />
+                    </div>
+                    <div class="field">
+                        <label>@I18N.Office</label>
+                        <select id="OfficeIdSelect" class="ui search dropdown" required=""></select>
+                    </div>
+                    <div class="field">
+                        <label>@I18N.Role</label>
+                        <select id="RoleIdSelect" class="ui search dropdown" required=""></select>
+                    </div>
+                    <div class="field">
+                        <label>@I18N.Phone</label>
+                        <input type="tel" id="PhoneInputTel" required="" />
+                    </div>
+
+                    <button class="ui green button" id="CreateButton">@I18N.Create</button>
+                </div>
+            </div>
+        </div>
+    </div>    
+</div>
+
+<script>
+    $(".form").addClass("loading");
+    //Todo: Remove Semantic UI Dropdown dependency 
+    //$(".dropdown").dropdown({forceSelection: false});
+    window.validator.initialize($(".ui.form"));
+
+    function bindOffices() {
+        function request() {
+            const url = "/api/views/core/offices/display-fields";
+            return window.getAjaxRequest(url);
+        };
+
+        const ajax = request();
+
+        ajax.success(function (response) {
+            const select = $("#OfficeIdSelect");
+            var options = "";
+
+            $.each(response, function () {
+                var option = "<option value='{key}'>{value}</option>";
+                option = option.replace("{key}", this.Key);
+                option = option.replace("{value}", this.Value);
+
+                options += option;
+            });
+
+            select.html(options);
+            $(".form").removeClass("loading");
+        });
+
+        ajax.fail(function() {
+            $(".form").removeClass("loading");
+        });
+    };
+
+    function bindRoles() {
+        function request() {
+            const url = "/api/forms/account/roles/display-fields";
+            return window.getAjaxRequest(url);
+        };
+
+        const ajax = request();
+
+        ajax.success(function (response) {
+            const select = $("#RoleIdSelect");
+            var options = "";
+
+            $.each(response, function () {
+                var option = "<option value='{key}'>{value}</option>";
+                option = option.replace("{key}", this.Key);
+                option = option.replace("{value}", this.Value);
+
+                options += option;
+            });
+
+            select.html(options);
+        });
+    };
+
+    bindRoles();
+    bindOffices();
+
+    $("#CreateButton").off("click").on("click", function() {
+        function request(model) {
+            const url = "/dashboard/account/user/add";
+            const data = JSON.stringify(model);
+
+            return window.getAjaxRequest(url, "POST", data);
+        };
+
+        var form = $(".ui.form");
+        form.addClass("loading");
+
+        const model = window.serializeForm(form);
+        if (model.Password !== model.ConfirmPassword) {
+            alert(window.translate("ConfirmPasswordDoesNotMatch"));
+            return;
+        };
+
+        const ajax = request(model);
+
+        ajax.success(function () {
+            form.removeClass("loading");
+            $(".ui.form input").val("");
+            window.displaySuccess();
+        });
+
+        ajax.fail(function (xhr) {
+            form.removeClass("loading");
+            window.logAjaxErrorMessage(xhr);
+        });
+    });
+</script>

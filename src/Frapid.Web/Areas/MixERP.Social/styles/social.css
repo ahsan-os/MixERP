@@ -1,0 +1,356 @@
+﻿#dashboard-container {
+    padding: 0 !important;
+}
+
+
+.social.network {
+    font-size: 1em !important;
+    background: #eee;
+}
+
+    .social.network .actions {
+        padding: 1em;
+        text-align: right;
+    }
+
+.selected.reply,
+.selected.reply .liked.by,
+.selected.reply .reply {
+    background: #FAEEC8;
+}
+
+.liked.like,
+.active.liked.by, .active.toggle.like, .active.liked.by i {
+    color: #3775CC !important;
+}
+
+    .liked.like i {
+        color: #3775CC !important;
+    }
+
+.filters a.filter {
+    display: block !important;
+    color: #555;
+    padding: 0.25em 0;
+    font-size: 0.9em;
+    cursor: pointer;
+    color: #aaa;
+    font-weight: 600;
+}
+
+    .filters a.filter.sected,
+    .filters a.filter:hover {
+        color: #ddd;
+    }
+
+
+.action.column {
+    background: #222;
+    color: #ddd;
+}
+
+
+.add.a.new.post {
+    border: 1px solid #ccc;
+    background: #fff;
+}
+
+    .add.a.new.post > .post textarea {
+        width: 100%;
+        border: none;
+        border-bottom: 1px solid #ddd;
+        padding: 1em;
+    }
+
+    .add.a.new.post > .buttons {
+        padding: 1em;
+    }
+
+        .add.a.new.post > .buttons .left {
+            display: inline-block;
+            width: 50%;
+        }
+
+        .add.a.new.post > .buttons .right {
+            display: inline-block;
+            width: 50%;
+            text-align: right;
+        }
+
+.stories > .story {
+    background: #fff;
+    border: 1px solid #ccc;
+    margin: 1em 0;
+}
+
+    .stories > .story:first-of-type {
+        margin-top: 0;
+    }
+
+    .stories > .story .text {
+        padding: 1em;
+    }
+
+.social.network a {
+    cursor: pointer;
+}
+
+.stories > .story .actions, .liked.by {
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+    text-align: left !important;
+    padding: 0.25em 1em !important;
+}
+
+.liked.by {
+    background: #fafafa;
+    color: #777;
+    display: block;
+}
+
+.story.liked.by {
+    padding: 0.8em 1em !important;
+}
+
+.story .meta {
+    padding: 0.3em 0 0 0;
+}
+
+.meta > .like,
+.meta > .reply,
+.comment.liked.by {
+    padding: 0 0.5em 0 0 !important;
+    border: none;
+    color: #888;
+}
+
+.refreshing.moment {
+    color: #999;
+    text-transform: uppercase;
+    font-size: 0.8em;
+    cursor: pointer;
+}
+
+.reply > .story .meta .refreshing.moment {
+    padding: 0.25em 0.25em;
+    color: #999;
+}
+
+.stories > .story a {
+    color: #444;
+    font-weight: 500;
+}
+
+    .stories > .story a i {
+        color: #999;
+    }
+
+.story textarea {
+    width: 100%;
+    border: none;
+    padding: 1em;
+    outline: none;
+}
+
+.stories > .story a:hover {
+    color: #000;
+}
+
+.stories > .story .actions a {
+    text-align: left !important;
+    padding: 0 1em 1em 0 !important;
+    color: #666;
+}
+
+.story .buttons {
+    border-top: 1px solid #eee;
+    display: flex;
+    padding: 1em;
+}
+
+    .story .buttons .left {
+        display: inline-block;
+        width: 50%;
+    }
+
+    .story .buttons .right {
+        display: inline-block;
+        width: 50%;
+        text-align: right;
+    }
+
+.social.network .heading {
+    padding: 1em 0;
+    font-size: 2em;
+    color: #B5474A;
+    font-weight: 300;
+}
+
+section.social.network {
+    display: flex;
+}
+
+
+    section.social.network .activities {
+        padding: 0 1em 4em 1em;
+        width: 100%;
+    }
+
+.story .avatar {
+    display: flex;
+    padding: 1em 0 0 1em;
+}
+
+
+    .story .avatar .photo img {
+        height: 2.5em;
+        width: auto;
+    }
+
+    .story .avatar .info {
+        padding: 0 0.5em;
+    }
+
+.reply {
+    display: flex;
+    background: #fcfcfc;
+    border-bottom: 1px solid #eee;
+}
+
+    .reply > .avatar {
+        display: inine-flex;
+    }
+
+    .reply > .story {
+        display: inine-flex;
+        padding: 1em;
+    }
+
+        .reply > .story .meta {
+            display: flex;
+        }
+
+
+.story .buttons .ui.basic.buttons {
+    width: 80px;
+}
+
+.story {
+    position: relative;
+    width: 100%;
+}
+
+    .story .remove.feed {
+        position: absolute;
+        right: 2px;
+        top: 2px;
+        color: #eee;
+        cursor: pointer;
+    }
+
+        .story .remove.feed:hover {
+            color: #aaa;
+        }
+
+.show.previous {
+    padding: 1em;
+    background: #fafafa;
+    text-align: center;
+    display: block;
+    border-bottom: 1px solid #eee;
+}
+
+.ui.gallery {
+    width: 100%;
+}
+
+    .ui.gallery .item {
+        display: inline-flex;
+        width: 10em;
+        height: 10em;
+        margin: 0.25em;
+        position: relative;
+        border: 1px solid #aaa;
+        cursor: pointer;
+        overflow: hidden;
+    }
+
+        .ui.gallery .item img {
+            height: 10em;
+            width: auto;
+        }
+
+        .ui.gallery .item:hover {
+            border-color: #aaa;
+        }
+
+    .ui.gallery > .item .delete.icon {
+        position: absolute;
+        top: 1px;
+        right: 1px;
+        color: #eee;
+        font-size: 0.78em;
+        text-shadow: 0 0 2px #000;
+        cursor: pointer;
+        z-index: 2;
+    }
+
+    .ui.gallery > .item .file.name {
+        position: absolute;
+        bottom: 1em;
+        left: 1em;
+        color: transparent;
+        text-transform: uppercase;
+        font-size: 0.8em;
+        font-weight: bold;
+        text-align: left;
+        width: 80%;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        -o-text-overflow: ellipsis;
+    }
+
+    .ui.gallery > .item[data-is-local] .file.name {
+        color: #fff;
+        text-shadow: 0 0 2px #000;
+    }
+
+    .ui.gallery .pdf.placeholder.item {
+        background: #AECA1C;
+    }
+
+    .ui.gallery .doc.placeholder.item,
+    .ui.gallery .docx.placeholder.item {
+        background: #FB7E26;
+    }
+
+    .ui.gallery .xls.placeholder.item,
+    .ui.gallery .xlsx.placeholder.item {
+        background: #83997B;
+    }
+
+    .ui.gallery .ppt.placeholder.item,
+    .ui.gallery .pptx.placeholder.item {
+        background: #E300C1;
+    }
+
+    .ui.gallery .placeholder.item .text {
+        font-size: 2.4em;
+        width: 100%;
+        text-align: center;
+        position: absolute;
+        color: #fff;
+        font-weight: 300;
+        text-transform: uppercase;
+    }
+
+.add.a.new.post .ui.gallery .placeholder.item .text {
+    top: 25%;
+}
+
+@media print {
+	.social.network {
+		display: none!important;
+	}
+}

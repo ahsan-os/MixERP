@@ -1,0 +1,13 @@
+﻿@using MixERP.Social.Extensions
+@model dynamic
+
+@{
+    ViewBag.Title = MixERP.Social.Resources.MixERPSocialApp;
+    Layout = ViewBag.Layout;
+}
+
+<section class="ui attached segment" style="background: #fafafa!important;">
+    <section class="ui social network embedded text container" style="background: transparent">
+        @Html.PartialView("Shared/Social.cshtml", TenantConvention.GetTenant())
+    </section>    
+</section>

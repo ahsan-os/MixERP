@@ -1,0 +1,34 @@
+﻿#editor, #viewer {
+    font-family: Consolas, "Courier New", monospace!important;
+    position: absolute;
+    top: 56px;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+
+
+#viewer, #editor {
+    height: calc(100% - 56px);
+    overflow: auto;
+}
+
+.full.height {
+    background-color: white;
+    height: 100%;
+}
+
+.action.buttons {
+    height: 56px;
+}
+
+.medium.label {
+    font-size: 12px;
+}
+
+.ui.pointing.label {
+    white-space: normal !important;
+    font-weight: normal;
+    font-size: 90%;
+    line-height: 150%;
+}

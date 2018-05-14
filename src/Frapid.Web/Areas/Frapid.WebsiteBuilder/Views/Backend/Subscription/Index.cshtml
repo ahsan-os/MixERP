@@ -1,0 +1,36 @@
+﻿@using Frapid.WebsiteBuilder
+@model dynamic
+
+@{
+    ViewBag.Title = Resources.ViewSubscriptions;
+    Layout = ViewBag.Layout;
+}
+
+<script>
+    var scrudFactory = new Object();
+
+    scrudFactory.title = window.translate("ViewSubscriptions");
+
+    scrudFactory.viewAPI = "/api/views/website/email-subscription-scrud-view";
+    scrudFactory.viewTableName = "website.email_subscription_scrud_view";
+
+    scrudFactory.formAPI = "/api/forms/website/email-subscriptions";
+    scrudFactory.formTableName = "website.email_subscriptions";
+
+    scrudFactory.excludedColumns = ["AuditUserId", "AuditTs", "Deleted"];
+
+
+    scrudFactory.allowDelete = false;
+
+    scrudFactory.card = {
+        meta: "SubscribedOn"
+    };
+
+    $.get('/ScrudFactory/View.html', function(view) {
+        $("#ScrudFactoryView").html(view);
+        $.cachedScript("/assets/js/scrudfactory-view.js");
+    });
+</script>
+
+<div id="ScrudFactoryForm"></div>
+<div id="ScrudFactoryView"></div>

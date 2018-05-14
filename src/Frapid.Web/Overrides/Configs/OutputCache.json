@@ -1,0 +1,22 @@
+﻿[
+	{
+		"CacheProfile": "BlogHome",
+		"Duration": 300,
+		"Location": "Any"
+	},
+	{
+		"CacheProfile": "BlogContent",
+		"Duration": 300,
+		"Location": "Any"
+	},
+	{
+		"CacheProfile": "Content",
+		"Duration": 3000,
+		"Location": "Any"
+	},
+	{
+		"CacheProfile": "RemoveSubscription",
+		"Duration": 3000,
+		"Location": "Any"
+	},
+]

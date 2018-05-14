@@ -1,0 +1,38 @@
+﻿@using Frapid.WebsiteBuilder
+@using Frapid.WebsiteBuilder.Extensions
+@model Frapid.WebsiteBuilder.ViewModels.Blog
+
+@{
+    ViewBag.Description = Model.Description;
+    ViewBag.Title = Model.Title;
+    Layout = Model.LayoutPath + Model.Layout;
+    ViewBag.LayoutPath = Model.LayoutPath;
+}
+
+@foreach (var content in Model.Contents.OrderByDescending(x => x.PublishOn))
+{
+    <div class="post">
+        <a href="/blog/@content.CategoryAlias/@content.Alias" title="@content.Title" class="blog header">
+            @content.Title
+        </a>
+        <div class="meta">
+            <a class="item" title="@content.PublishOn">
+                <i class="time icon"></i>
+                @content.PublishOn.ToString("D")
+            </a>
+            <a class="item">
+                <i class="user icon"></i>
+                @content.AuthorName
+            </a>
+            <a class="item">
+                <i class="folder icon"></i>
+                @content.CategoryName
+            </a>
+        </div>
+        <div class="content">
+            @Html.Raw(content.Contents)
+        </div>
+        <a class="ui basic button" href="/blog/@content.CategoryAlias/@content.Alias">@Resources.ReadMore</a>
+    </div>
+
+}

@@ -1,0 +1,26 @@
+@model Frapid.WebsiteBuilder.ViewModels.Content
+@{
+    ViewBag.Keywords = "";
+    ViewBag.Description = "404 Not Found";
+    ViewBag.Title = "Not Found";
+    Layout = ViewBag.LayoutPath + ViewBag.Layout;
+}
+
+
+<div class="ui basic segment" style="height:1100px;">
+    <div class="ui caption container">
+        <div class="ui huge red header">
+            404 Not Found
+        </div>
+        <p>
+            We cannot find the page you requested because <br/>
+            it might not exist, or may have been removed.
+        </p>
+        <div class="ui hidden divider"></div>
+        <div class="ui small basic buttons">
+            <a class="ui basic button" href="javascript:history.go(-1);">Back to Previous Page</a>
+            <a class="ui basic button" href="/">Return Home</a>
+            <a class="ui basic button" href="/dashboard">Admin Area</a>
+        </div>
+    </div>
+</div>

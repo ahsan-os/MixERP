@@ -1,0 +1,24 @@
+﻿@using Frapid.i18n
+
+@{
+    ViewBag.Title = I18N.PleaseConfirmYourRegistration;
+    Layout = ViewBag.LayoutPath + ViewBag.Layout;
+}
+@if (CultureManager.IsRtl())
+{
+    <link rel="Stylesheet" href="@Href("~/assets/css/backend.rtl.css")" />
+}
+else
+{
+    <link rel="Stylesheet" href="@Href("~/assets/css/backend.css")" />
+}
+
+<div class="ui attached padded signup left aligned segment" style="height:600px;">
+    <div class="ui container">
+        <div class="ui header">@I18N.PleaseConfirmYourRegistration</div>
+        <div class="ui divider"></div>
+        @Html.Raw(I18N.PleaseConfirmYourRegistrationMessage)
+
+        <a href="/" class="ui small padded purple button">@I18N.ReturnHome</a>
+    </div>
+</div>

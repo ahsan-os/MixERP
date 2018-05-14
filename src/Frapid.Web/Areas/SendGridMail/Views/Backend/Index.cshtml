@@ -1,0 +1,51 @@
+﻿@model Config
+@{
+    Layout = ViewBag.Layout;
+}
+
+<style>
+    .relaxed.segment .container { padding: 4em; }
+</style>
+<div class="ui attached relaxed sendgrid configuration segment">
+    <div class="ui container">
+        <div class="ui huge header">Setup SendGrid for Frapid</div>
+        <div class="ui yellow message">
+            SendGrid is a cloud-based SMTP provider that allows you to send email without having to maintain email servers. SendGrid manages all of the technical details, from scaling the infrastructure to ISP outreach and reputation monitoring to whitelist services and real time analytics.
+        </div>
+        <div class="ui flat form">
+            <div class="field">
+                <label for="ApiDomainInputUrl">Api Domain</label>
+                <input type="url" id="ApiDomainInputUrl" value="@Model.ApiDomain"/>
+            </div>
+            <div class="two fields">
+                <div class="field">
+                    <label for="FromNameInputText">From Name</label>
+                    <input type="text" id="FromNameInputText" value="@Model.FromName" />
+                </div>
+                <div class="field">
+                    <label for="FromEmailInputEmail">From Email</label>
+                    <input type="email" id="FromEmailInputEmail" value="@Model.FromEmail" />
+                </div>
+            </div>
+            <div class="two fields">
+                <div class="field">
+                    <label for="ApiUserInputText">Api User</label>
+                    <input type="text" id="ApiUserInputText" value="@Model.ApiUser" />
+                </div>
+                <div class="field">
+                    <label for="ApiKeyInputText">Api Key</label>
+                    <input type="text" id="ApiKeyInputText" value="@Model.ApiKey" />
+                </div>
+            </div>
+            <div class="field">
+                <div class="ui toggle checkbox">
+                    <input id="EnabledCheckbox" type="checkbox" data-checked="@Model.Enabled.ToString().ToLower()" />
+                    <label>Is Enabled</label>
+                </div>
+            </div>
+            <button id="SaveButton" class="ui positive button">Save</button>
+        </div>
+    </div>
+</div>
+
+<script src="/Areas/SendGridMail/scripts/backend/index.js"></script>

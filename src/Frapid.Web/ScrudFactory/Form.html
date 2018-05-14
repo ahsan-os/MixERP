@@ -1,0 +1,78 @@
+﻿<div class="ui very relaxed padded page grid">
+    <div class="sixteen wide column">
+        <div class="ui flat form factory attached segment" style="display: none;padding:36px;">
+            <div id="ScrudFormErrorModal" class="ui small negative modal">
+                <i class="close icon"></i>
+                <div class="orange header">
+                    <i class="warning sign icon"></i>
+                     <span data-localize="CannotSave"></span>
+                </div>
+                <div class="content">
+                    <div class="ui grey header" data-localize="FormInvalid"></div>
+                    <ul class="error-list error-message"></ul>
+                </div>
+                <div class="actions">
+                    <div class="ui positive close button">
+                        <span data-localize="Close"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="ui stackable grid">
+                <div class="eight wide column">
+                    <div class="ui grey huge header">
+                        <span class="scrud title initial value"></span>
+                        <span class="live"></span>
+                        <div class="ui sub header"></div>
+                    </div>
+                </div>
+                <div class="eight wide right aligned column">
+                    <div class="ui small basic icon buttons">
+                        <a class="ui basic icon button" id="ReturnToViewButton" data-localized-title="ReturnToView">
+                            <i class="list layout icon"></i>
+                        </a>
+                        <a class="ui basic icon button" id="CreateDuplicateButton" data-localized-title="CreateDuplicate">
+                            <i class="copy icon"></i>
+                        </a>
+                    </div>
+                    <div class="ui small basic icon buttons">
+                        <a class="ui basic icon button" id="FirstButton" data-localized-title="First">
+                            <i class="arrow left icon"></i>
+                        </a>
+                        <div class="ui basic icon button" id="PreviousButton" data-localized-title="Previous">
+                            <i class="angle left icon"></i>
+                        </div>
+                        <div class="ui basic icon button" id="NextButton" data-localized-title="Next">
+                            <i class="angle right icon"></i>
+                        </div>
+                        <div class="ui basic icon button" id="LastButton" data-localized-title="Last">
+                            <i class="arrow right icon"></i>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="ui info description message" style="display: none;"></div>
+
+            <div class='ui divider'></div>
+
+            <div data-role="form-members">
+                <div class="ui stackable form" id="scrud" data-role="pre-tab" style="display: none;">
+                </div>
+                <div id="scrud-tabs">
+                    <div id="scrud-tab-menus" class="ui pointing secondary tabular blue stackable menu">
+                    </div>
+                    <div id="scrud-tab-members">
+                    </div>
+                </div>
+            </div>
+
+            <div class="big error"></div>
+            <div class="ui buttons tpad8">
+                <input type="button" class="ui teal button" id="SaveButton" data-localize="Save" />
+                <input type="button" class="ui basic teal button" id="CancelButton" data-localize="Cancel" />
+            </div>
+        </div>
+    </div>
+</div>

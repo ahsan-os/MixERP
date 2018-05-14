@@ -1,0 +1,27 @@
+﻿@using Frapid.i18n
+@using Frapid.Areas
+@model Frapid.Account.ViewModels.SignIn
+
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="description" content="Frapid Framework" />
+    <script src="/i18n/resources.js?cultureCode=@CultureManager.GetCurrentUiCulture().Name"></script>
+    <script src="/assets/js/backend.js"></script>
+    <script src="/scripts/jssha1.5/src/sha.js"></script>
+    <title>
+        @Resources.SignIn
+    </title>
+</head>
+<body>
+    @I18N.PleaseWait
+
+    <script>
+        localStorage.removeItem("access_token");
+        document.location = "/account/sign-in";
+        localStorage.removeItem("haveWeMet");
+    </script>
+</body>
+</html>

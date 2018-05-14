@@ -1,0 +1,100 @@
+﻿@using Frapid.WebsiteBuilder
+@model dynamic
+
+@{
+    ViewBag.Title = Resources.MenuItems;
+    Layout = ViewBag.Layout;
+}
+
+<script>
+    var scrudFactory = new Object();
+
+    scrudFactory.title = window.translate("MenuItems");
+
+    scrudFactory.viewAPI = "/api/forms/website/menu-items";
+    scrudFactory.viewTableName = "website.menu_items";
+
+    scrudFactory.formAPI = "/api/forms/website/menu-items";
+    scrudFactory.formTableName = "website.menu_items";
+
+    scrudFactory.excludedColumns = ["AuditUserId", "AuditTs", "Deleted"];
+
+
+    scrudFactory.allowDelete = true;
+    scrudFactory.allowEdit = true;
+
+    scrudFactory.live = "Title";
+
+    scrudFactory.layout = [
+        {
+            tab: "",
+            fields: [
+                ["MenuItemId", ""],
+                ["MenuId", "Title"],
+                ["ContentId", ""],
+                ["Url", "Sort"]
+            ]
+        }
+    ];
+
+    scrudFactory.card = {
+        header: "Title",
+        description: "Url"
+    };
+
+    scrudFactory.back = {
+        Title: "Back to Menus",
+        Url: "/dashboard/website/menus"
+    };
+
+    scrudFactory.keys = [
+        {
+            property: "MenuId",
+            url: '/api/forms/website/menus/display-fields',
+            data: null,
+            valueField: "Key",
+            textField: "Value"
+        },
+        {
+            property: "ParentMenuItemId",
+            url: '/api/forms/website/menu-items/all',
+            data: null,
+            valueField: "menu_item_id",
+            textField: "title"
+        },
+        {
+            property: "ContentId",
+            url: '/api/forms/website/contents/all',
+            data: null,
+            valueField: "content_id",
+            textField: "title"
+        }
+    ];
+
+    $.get('/ScrudFactory/View.html', function(view) {
+        $.get('/ScrudFactory/Form.html', function(form) {
+            $("#ScrudFactoryView").html(view);
+            $("#ScrudFactoryForm").html(form);
+            $.cachedScript("/assets/js/scrudfactory-view.js");
+            $.cachedScript("/assets/js/scrudfactory-form.js");
+        });
+    });
+</script>
+<script>
+    $(document).on("formready", function() {
+        $("#category_name").keyup(function() {
+            function getAlias(title) {
+                return title.toLowerCase().replace(/ +(?= )/g, '').replace(/ /g, '-').replace(/[^\w-]+/g, '');
+            };
+
+            const category = $(this).val();
+            const alias = getAlias(category);
+
+            $("#alias").val(alias);
+
+        });
+    });
+</script>
+
+<div id="ScrudFactoryForm"></div>
+<div id="ScrudFactoryView"></div>

@@ -1,0 +1,3 @@
+- default-language : 
+- script-directory : db/PostgreSQL/1.1.update/src
+- output-directory:db/PostgreSQL/1.1.update
